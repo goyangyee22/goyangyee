@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>피자 주문</title>
+  </head>
+  <body>
+    <form>
+      <p>고객 명 : <input type="text" placeholder="홍길동" /></p>
+      <p>
+        전화번호 :
+        <input
+          type="text"
+          placeholder="010-4444-4444"
+          required
+          pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}"
+        />
+      </p>
+      <p>E-mail : <input type="text" placeholder="xx@naver.com" /></p>
+      <br />
+      <fieldset>
+        <legend>피자 사이즈</legend>
+        <br />
+        <label for="small">Small</label>
+        <input type="radio" name="size" id="small" value="small" /><br /><br />
+        <label for="medium">Medium</label>
+        <input
+          type="radio"
+          name="size"
+          id="meidum"
+          value="medium"
+        /><br /><br />
+        <label for="large">Large</label>
+        <input type="radio" name="size" id="large" value="large" /><br /><br />
+      </fieldset>
+      <fieldset>
+        <legend>토핑 선택</legend>
+        <br />
+        <label for="bacon">베이컨</label>
+        <input
+          type="checkbox"
+          name="topping"
+          id="bacon"
+          value="bacon"
+        /><br /><br />
+        <label for="cheese">치즈</label>
+        <input
+          type="checkbox"
+          name="topping"
+          id="cheese"
+          value="cheese"
+        /><br /><br />
+        <label for="onion">양파</label>
+        <input
+          type="checkbox"
+          name="topping"
+          id="onion"
+          value="onion"
+        /><br /><br />
+        <label for="mushroom">버섯</label>
+        <input
+          type="checkbox"
+          name="topping"
+          id="mushroom"
+          value="mushroom"
+        /><br /><br />
+      </fieldset>
+      <p>희망배송시간 <input type="datetime-local" /></p>
+      <br /><br />
+      <p>배송시 요청사항 :</p>
+      <textarea
+        name="contents"
+        width="80"
+        height="2000"
+        placeholder="내용을 입력하여주십시오."
+      ></textarea>
+      <br />
+      <p>
+        <input type="submit" value="주문하기" />
+        <input type="reset" value="다시 선택하기" />
+      </p>
+    </form>
+  </body>
+</html>
