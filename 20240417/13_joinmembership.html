@@ -10,7 +10,7 @@
     <form>
       <fieldset>
         <legend>필수 입력 사항</legend>
-        <h2>
+        <h3>
           <p>
             ID <input type="text" placeholder="아이디 10글자 이내" />
             <input type="submit" value="중복 확인" />
@@ -18,11 +18,11 @@
           <p>
             비밀번호
             <input
-              type="hidden"
+              type="password"
               placeholder="영문, 숫자, 특수문자 포함 8자 이상"
             />
           </p>
-          <p>비밀번호 확인 <input type="hidden" /></p>
+          <p>비밀번호 확인 <input type="password" /></p>
           <p>
             Email <input type="text" /><select name="email">
               <option value="naver.com">네이버</option>
@@ -30,15 +30,40 @@
               <option value="daum.net">다음</option>
               <option value="" selected>직접 입력</option>
             </select>
-            <form>
-                <fieldset>
+        </h3>
+        </fieldset>
+        <fieldset>
                     <legend>추가 정보</legend>
-                    <p>프로필 사진 : <input</p>
-                </fieldset>
-            </form>
-          </p>
+                    <p>프로필 사진 <input type="file" accept=".jpeg" /> </p>
+                    <p>성별 : 
+                        <input type="radio" name="gender" id="male" value="male" />
+                        <label for="male">남자</label>
+                        <input type="radio" name="gender" id="female" value="female" /> 
+                        <label for="female">여자</label>
+                    </p>
+                    <p>생년월일 : <input type="date" /></p>
+                    <p>취미</p>
+                        <input type="checkbox" name="hobby" id="baseball" value="baseball" />
+                        <label for="baseball">야구</label>
+                        <input type="checkbox" name="hobby" id="basketball" value="basketball" />
+                        <label for="basketball">농구</label>
+                        <input type="checkbox" name="hobby" id="soccer" value="soccer" />
+                        <label for="soccer">축구</label>
+                        <br/>
+                        <input type="checkbox" name="hobby" id="study" value="study" />
+                        <label for="study">공부</label>
+                        <input type="checkbox" name="hobby" id="listening music" value="listening music" />
+                        <label for="listening music">음악감상</label>
+                 <br/>
+                 <input type="checkbox" name="hobby" id="etc" value="etc" />기타<input type="text">       
+                 <label for="etc"></label>
         </h2>
+        <br/><br/>
+        자기소개
+        <br />
+            <input type="text" width="500" length="800" />
       </fieldset>
+      <input type="submit" value="회원가입"> <input type="reset" value="다시입력"> <input type="reset" value="이전으로">
     </form>
   </body>
 </html>
