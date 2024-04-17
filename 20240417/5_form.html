@@ -8,12 +8,21 @@
   <body>
     <form name="input" enctype="multipart/form-data">
       사용자 아이디:
-      <input type="text" name="user" /><br />
-      <input type="submit" value="제출" />
+      <input type="text" name="user" placeholder="ID" /><br />
+      이메일 :
+      <input type="email" placeholder="xx@example.com" required /><br />
+      전화번호 :
+      <input
+        type="tel"
+        placeholder="010-0000-0000"
+        required
+        pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}"
+      />
       <input type="reset" value="초기화" />
       <br /><br />
       <input type="file" accept=".hwpx" />
       <input type="hidden" value="hiddenValue" />
+      <input type="submit" value="제출" />
     </form>
     <button onclick="alert('안녕하세요?')">눌러보세요!</button>
     <br /><br />
