@@ -11,25 +11,26 @@
       <fieldset>
         <legend>필수 입력 사항</legend>
         <h3>
-          <p>
+          <div>
             ID <input type="text" placeholder="아이디 10글자 이내" />
-            <button onclick="alert('중복된 아이디입니다.')">회원가입</button>
-          </p>
-          <p>
+            <button onclick="alert('중복된 아이디입니다.')">중복확인</button>
+          </div>
+          <div>
             비밀번호
             <input
               type="password"
               placeholder="영문, 숫자, 특수문자 포함 8자 이상"
             />
-          </p>
-          <p>비밀번호 확인 <input type="password" /></p>
-          <p>
+          </div>
+          <div>비밀번호 확인 <input type="password" /></div>
+          <div>
             Email <input type="text" /><select name="email">
-              <option value="naver.com">네이버</option>
-              <option value="nate.com">네이트</option>
-              <option value="daum.net">다음</option>
-              <option value="" selected>직접 입력</option>
+              <option>naver.com</option>
+              <option>nate.com</option>
+              <option>daum.net</option>
+              <option selected>직접 입력</option>
             </select>
+            </div>
         </h3>
         </fieldset>
         <fieldset>
