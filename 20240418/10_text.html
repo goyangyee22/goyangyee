@@ -12,10 +12,23 @@
       height: 100px;
       background-color: yellow;
       line-height: 3;
+      /*line-height은 줄 간격*/
+    }
+    p.poet {
+      color: blue;
+      /* letter-spacing: 10px; */
+      word-spacing: -10px;
+      /* word-spaceing 값을 음수로 설정하면 글자끼리 붙을 수 있음 */
+    }
+    p.indent {
+      text-indent: 30px;
+      /* indent는 값 만큼 왼쪽에서 글자를 오른쪽으로 밀어냄 */
     }
   </style>
   <body>
     <h1>CSS 텍스트 정렬 예제</h1>
     <p class="date">2024년 4월 18일<br />2024년 4월 19일</p>
+    <p class="poet">삶이 그대를 속일지라도 슬퍼하거나 노여워하지 말라</p>
+    <p class="indent">참고 푸시킨의 시</p>
   </body>
 </html>
