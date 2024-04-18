@@ -44,6 +44,12 @@
       /* text-transform: lowercase; */
       text-transform: capitalize;
     }
+    p.shadow {
+      font-size: 3rem;
+      text-shadow: 5px 5px 10px orange;
+      /* 첫번째 px는 오른쪽 두번째 px는 아랫쪽 세번째 px는 없어도 되지만
+      블러효과를 주기 때문에 있는 게 좋음*/
+    }
   </style>
   <body>
     <h1>CSS 텍스트 정렬 예제</h1>
@@ -56,6 +62,7 @@
     <!-- <p id="dir">텍스트가 오른쪽부터 작성됩니다.</p> -->
     <h1 class="deco">텍스트 장식의 예입니다.</h1>
     <p class="transform">text_transform IS uppercase.</p>
-    <!-- uppercase는 대문자로 변환 lowercase는 소문자로 변환 -->
+    <!-- uppercase는 대문자로 변환 lowercase는 소문자로 변환 capitalize는 앞자리만 대문자 -->
+    <p class="shadow">Text-shadow 처리!</p>
   </body>
 </html>
