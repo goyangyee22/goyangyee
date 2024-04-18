@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Css id Example</title>
     <style>
-      #special {
+      /* #special {
         color: blue;
-      }
+      } */
       p {
         background-color: yellow;
         color: red;
@@ -15,6 +15,15 @@
     </style>
   </head>
   <body>
+    <!-- 
+        스타일 적용 우선순위
+        1. important
+        2. inlile style
+        3. ID 선택자(#)
+        4. Class 선택자
+        5. Tag 선택자(<p></p> 등)
+        6. *(전체) 선택자
+     -->
     <p id="special">id가 special인 단락입니다.</p>
     <p>id가 없는 단락입니다.</p>
   </body>
