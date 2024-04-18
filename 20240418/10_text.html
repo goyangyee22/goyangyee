@@ -24,11 +24,37 @@
       text-indent: 30px;
       /* indent는 값 만큼 왼쪽에서 글자를 오른쪽으로 밀어냄 */
     }
+    div {
+      text-align: center;
+      /* text-align은 텍스트 뿐 아니라 요소도 정렬함*/
+      color: green;
+    }
+    #dir {
+      background-color: black;
+      color: yellow;
+      direction: rtl;
+    }
+    h1.deco {
+      /* text-decoration: overline; */
+      /* text-decoration: line-through dotted blue; */
+      /* line-through는 취소선 */
+      text-decoration: underline wavy blue;
+    }
+    p.transform {
+      text-transform: lowercase;
+    }
   </style>
   <body>
     <h1>CSS 텍스트 정렬 예제</h1>
     <p class="date">2024년 4월 18일<br />2024년 4월 19일</p>
     <p class="poet">삶이 그대를 속일지라도 슬퍼하거나 노여워하지 말라</p>
     <p class="indent">참고 푸시킨의 시</p>
+    <div>
+      <span>정렬이 될까요?</span>
+    </div>
+    <!-- <p id="dir">텍스트가 오른쪽부터 작성됩니다.</p> -->
+    <h1 class="deco">텍스트 장식의 예입니다.</h1>
+    <p class="transform">text_transform IS uppercase.</p>
+    <!-- uppercase는 대문자로 변환 lowercase는 소문자로 변환 -->
   </body>
 </html>
