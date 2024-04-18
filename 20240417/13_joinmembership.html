@@ -10,7 +10,6 @@
     <h1>회원가입</h1>
       <fieldset>
         <legend>필수 입력 사항</legend>
-        <h3>
           <div>
             ID <input type="text" placeholder="아이디 10글자 이내" />
             <button onclick="alert('중복된 아이디입니다.')">중복확인</button>
@@ -31,11 +30,10 @@
               <option selected>직접 입력</option>
             </select>
             </div>
-        </h3>
         </fieldset>
         <fieldset>
                     <legend>추가 정보</legend>
-                    <p>프로필 사진 <input type="file" accept=".jpeg" /> </p>
+                    <p>프로필 사진 <input type="file" accept="image/*" /> </p>
                     <p>성별 : 
                         <input type="radio" name="gender" id="male" value="male" />
                         <label for="male">남자</label>
