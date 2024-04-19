@@ -6,28 +6,35 @@
     <title>table</title>
   </head>
   <style>
-    table,
-    th,
-    td {
-      border: 2px solid orange;
-    }
-    table {
-      border-collapse: separate;
-      border-spacing: 20px 30px;
+    #list {
+      font-family: "Trebuchet MS", sans-serif;
       width: 100%;
+    }
+    #list td,
+    #list th {
+      border: 1px dotted gray;
       text-align: center;
     }
-    th {
-      height: 50px;
-      vertical-align: top;
+    /* #list th {
+      color: white;
+      background-color: blue;
+    } */
+    /*#list tr.alt td {
+      background-color: yellow;
+    }*/
+    tr:not(:last-child) {
+      background-color: yellow;
     }
-    td {
-      height: 50px;
-      vertical-align: bottom;
-    }
+    /* tr:first-child {
+      background-color: blue;
+      color: white;
+    } */
+    /* tr:last-child{
+
+    } */
   </style>
   <body>
-    <table>
+    <!-- <table>
       <caption>
         VIP고객리스트
       </caption>
@@ -42,6 +49,36 @@
       <tr>
         <td>김영희</td>
         <td>young@google.com</td>
+      </tr>
+    </table> -->
+    <table id="list">
+      <tr>
+        <th>이름</th>
+        <th>이메일</th>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>chul@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김영희</td>
+        <td>young@google.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김수진</td>
+        <td>sujin@google.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@google.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@google.com</td>
       </tr>
     </table>
   </body>
