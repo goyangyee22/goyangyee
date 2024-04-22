@@ -28,11 +28,19 @@
     li:nth-child(2) {
       flex-grow: 2;
       /* flex-grow의 기본 값은 0이다. */
-      flex-shrink: 1;
+      flex-shrink: 2;
     }
     li:nth-child(3) {
       flex-grow: 1;
-      flex-shrink: 2;
+      /* flex-shrink의 기본 값은 1이다. */
+      flex-shrink: 3;
+    }
+    li:nth-child(4) {
+      flex-basis: 200px;
+    }
+    li:nth-child(5) {
+      flex: 1 3 200px;
+      /* flex: 의 순서는 grow shrink basis */
     }
   </style>
   <body>
