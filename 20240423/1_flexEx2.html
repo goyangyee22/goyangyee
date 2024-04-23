@@ -14,6 +14,10 @@
       width: 100%;
       height: 100%;
     }
+    body {
+      flex-direction: row;
+      margin: 0;
+    }
     #wrapper {
       display: flex;
       flex-direction: column;
@@ -22,18 +26,23 @@
     }
     #header {
       background-color: yellow;
+      flex-grow: 1;
     }
     #main {
-      background-color: pink;
+      flex-grow: 3;
+      display: flex;
     }
     #nav {
-      /* background-color: red; */
+      background-color: red;
+      flex-grow: 1;
     }
     #content {
-      /* background-color: blue; */
+      background-color: blue;
+      flex-grow: 4;
     }
     #footer {
       background-color: aqua;
+      flex-grow: 1;
     }
   </style>
   <body>
