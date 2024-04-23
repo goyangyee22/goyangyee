@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>flex 예제1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex 예제2</title>
 </head>
 <style>
-  body > div{
+    body > div{
     display:flex;
     border:5px solid red;
     justify-content: space-around;
     border-radius:10px;
-  }
-  body > div > div{
+    height:700px;
+    align-items: center;
+    }
+    body > div > div{
     background-color: beige;
     border: 3px solid teal;
     border-radius:5px;
     padding:20px;
+    flex-grow:1;
+    text-align:center;
   }
 </style>
 <body>
-  <h1>1번</h1>
+    <h1>1번</h1>
   <div>
     <div>1</div>
     <div>2</div>
     <div>3</div>
 </body>
-
 </html>

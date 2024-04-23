@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex 예제2</title>
+</head>
+<style>
+    body > div{
+    display:flex;
+    border:5px solid red;
+    justify-content: space-around;
+    border-radius:10px;
+    height:700px;
+    align-items: center;
+    }
+    body > div > div{
+    background-color: beige;
+    border: 3px solid teal;
+    border-radius:5px;
+    padding:20px;
+    flex-grow:1;
+    text-align:center;
+  }
+  div:nth-child(1){
+    align-self:flex-start;
+  }
+  div:nth-child(3){
+    align-self:flex-end;
+  }
+</style>
+<body>
+    <h1>1번</h1>
+  <div>
+    <div id="1">1</div>
+    <div id="2">2</div>
+    <div id="3">3</div>
+</body>
+</html>
