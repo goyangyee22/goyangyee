@@ -21,7 +21,7 @@
       flex-direction: column;
       border: 5px solid blue;
       height: 100%;
-      padding:5px;
+      padding:10px;
       /* justify-content: center;
       align-items: center; */
     }
@@ -32,10 +32,11 @@
         justify-content:center;
         align-items: center;
         border-radius:20px;
-        padding:5px;
+        padding:10px;
         flex-grow:1;
+        margin-bottom:10px;
     }
-    #main{
+    .main{
         display:flex;
         flex-grow: 4;
         justify-content: center;
@@ -52,13 +53,14 @@
     #li1{
         color:white;
     }
+    a{
+      text-decoration: none;
+    }
     a:link{
         color:white;
-        text-decoration-line: none;
     }
     a:visited{
         color:white;
-        text-decoration-line: none;
     }
     a:hover{
         color:red;
@@ -76,7 +78,8 @@
         background-color: #99e6e6;
         height:100%;
         border-radius: 20px;
-        margin: 10px;
+        margin-left: 2px;
+        margin-right: 2px;
         flex-grow: 1;
         justify-content: space-evenly;
         align-items:center;
@@ -101,7 +104,7 @@
         background-color: #9999e6;
         border-radius: 20px;
         margin: 5px;
-        flex-grow: 1;
+        flex-grow: 2;
         justify-content: center;
         align-items: center;
     }
@@ -112,7 +115,7 @@
         <h1>My Blog Page</h1>
         <p>DIV와 flex 만들어진 페이지 입니다.</p>
         </div>
-      <div id="main">
+      <div class="main">
         <div id="links"><h2>Links</h2>
           <ul>
             <li><h4 id="li1"><a href="http://naver.com" target="_blank">w3schools</a></h4></li>
