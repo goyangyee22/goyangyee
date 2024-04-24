@@ -1,40 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div id="wrapper">
-  <div id="header"><img src="../resources/img/Kimchangseob.jpg"/>빛 창 섭</div>
-  <div id="nav">
-    <ul>
-      <li><a href="#" target="_blank">리</a></li>
-      <li><a href="#" target="_blank">선</a></li>
-      <li><a href="#" target="_blank">족</a></li>
-      <li><a href="#" target="_blank">따</a></li>
-      <li><a href="#" target="_blank">잇</a></li>
-    </ul>
-  </div>
-  <div id="main">
-    <div class="aside">카테고리
-      <ul>
-        <li>리</li>
-        <li>부</li>
-        <li>트</li>
-        <li>슬</li>
-        <li>레</li>
-        <li>이</li>
-        <li>어</li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>김창섭스토리</title>
+  </head>
+  <style>
+    /* 공통 스타일 시작 */
+    *{
+      box-sizing: border-box;
+    }
+    html, body, #wrapper{
+      width:100%;
+      height:100%;
+    }
+    body{
+      margin:0;
+    }
+    ul{
+      padding:0;
+      list-style-type: none;
+    }
+    a{
+      text-decoration: none;
+      color:white;
+      font-weight:600;
+    }
+    /* 공통 스타일 종료 */
+
+    /* wrapper 스타일 시작 */
+    #wrapper{
+      border:2px solid orange;
+      display:flex;
+      flex-direction: column;
+      gap:1%;
+    }
+    /* wrapper 스타일 종료 */
+
+    /* header 스타일 시작 */
+    #header{
+      background-color: #ffd65c;
+      height:10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #header > img{
+      width:60px;
+      height:75px;
+    }
+    #header > span{
+      font-size: 2em;
+      font-weight: 900;
+      color: #53188b;
+    }
+    /* header 스타일 종료 */
+
+    /* nav 스타일 시작 */
+    #nav{
+      background-color: #d1b3e0;
+      height:10%;
+      margin:0;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    #nav > li > a{
+      letter-spacing: 0.3em;
+      font-size: 1.5em;
+    }
+    /* nav 스타일 종료 */
+
+    /* main 스타일 시작 */
+    #main{
+      height:70%;
+      display:flex;
+      gap:0.6%;
+    }
+    .aside{
+      background-color: #faebeb;
+      width:15%;
+      gap: 2% 1%;
+    }
+    .aside li{
+      background-color: #e6b3b3;
+      padding: 8% 8%;
+      border-bottom: 1px solid #d1a3a3;
+    }
+    .aside li:last-child{
+      border-bottom: 1px solid #e6b3b3;
+    }
+    #content{
+      background-color: #fafafa;
+      height:70%;
+      display: flex;
+      padding: 1%;
+      gap: 1%;
+    }
+    #content a{
+      color:black;
+    }
+    #content a:hover{
+      text-decoration: underline;
+    }
+    .item{
+      width:33%;
+      border:1px solid #e5e5e5;
+      display: flex;
+      flex-direction: column;
+    }
+    .image-section{
+      height:70%;
+    }
+    .desc-section{
+      height:25%;
+    }
+    .btn-section{
+      height:5%;
+    }
+    .btn-section button{
+      width:100%;
+      height:100%;
+    }
+    /* main 스타일 종료 */
+
+    /* footer 스타일 시작 */
+    #footer{
+      background-color: #ccccf2;
+      height:10%;
+    }
+    /* footer 스타일 종료 */
+  </style>
+  <body>
+    <div id="wrapper">
+    <div id="header">
+      <img src="../resources/img/Kimchangseob.jpg" />
+      <span>김창섭 네가 만든 월드</span>
+    </div>
+    <ul id="nav">
+        <li><a href="#">SCANIA</a></li>
+        <li><a href="#">BERA</a></li>
+        <li><a href="#">LUNA</a></li>
+        <li><a href="#">CROA</a></li>
+        <li><a href="#">REBOOT</a></li>
       </ul>
+    <div id="main">
+      <div class="aside">
+        <h3>카테고리</h3>
+        <ul>
+          <li><a href="#">리</a></li>
+          <li><a href="#">선</a></li>
+          <li><a href="#">족</a></li>
+          <li><a href="#">슬</a></li>
+          <li><a href="#">레</a></li>
+          <li><a href="#">이</a></li>
+          <li><a href="#">어</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        <div class="item">
+          <div
+            class="image-section"
+            style="
+              background-image: url(../resources/img/blackmagician.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          ></div>
+          <div class="desc-section">
+            <a href="#">
+              검마 쌀먹 단돈 100억 메소에 모십니다 연락주세요 아니면 조각 125개
+            </a>
+          </div>
+          <div class="btn-section">
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+        <div class="item">
+          <div
+            class="image-section"
+            style="
+              background-image: url(../resources/img/Kimchangseob.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          ></div>
+          <div class="desc-section">
+            <a href="#">
+              김창섭,,네가 만든 Worlds, 네가 만든 Characters,Maplestory,
+              Players'cheers,너의 가장 큰 Gloria Haters의 noise, 넌 mute, 네
+              의지는 so strong, 로기견's Just Shadow
+            </a>
+          </div>
+          <div class="btn-section">
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+        <div class="item">
+          <div
+            class="image-section"
+            style="
+              background-image: url(../resources/img/reboot.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          ></div>
+          <div class="desc-section">
+            <a href="#">
+              게임은 건강해지는 중인데 점유율은 왜 자꾸 떨어지는 걸까
+            </a>
+          </div>
+          <div class="btn-section">
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+        </div>
+      </div>
+      <div class="aside">
+        <h3>Shopping Cart</h3>
+        <p>현재 쇼핑카트에 물품이 없습니다.</p>
+        <a href="#">쇼핑카트 보기</a>
+        <br /><br />
+        <h3>Log In</h3>
+        <span>아이디</span>
+        <form>
+          <p><input type="text" /></p>
+          <span>비밀번호</span>
+          <p><input type="password" /></p>
+          <input type="submit" value="로그인" />
+          <input type="reset" value="초기화" />
+        </form>
+        <br />
+        <a href="#">회원가입</a>
+        <a href="#">비밀번호 분실</a>
     </div>
-    <div class="content"></div>
-    <div class="aside"><h1>RIP Reboot</h1>
-    <p>X를 눌러 조의를 표하십시오.</p>
     </div>
+    <div id="footer"></div>
   </div>
-  <div id="footer"></div>
-</div>
-</body>
+  </body>
 </html>
