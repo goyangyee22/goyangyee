@@ -6,6 +6,7 @@
     <title>쇼핑몰</title>
   </head>
   <style>
+    /* 공통 스타일 시작 */
     * {
       box-sizing: border-box;
     }
@@ -18,6 +19,17 @@
       width: 100%;
       height: 100%;
     }
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+    /* 공통 스타일 종료 */
+
     /* wrapper 스타일 시작 */
     #wrapper {
       border: 2px solid orange;
@@ -50,16 +62,11 @@
       background-color: #d1b3e0;
       height: 10%;
       margin: 0;
-      padding: 0;
       display: flex;
-      list-style-type: none;
       justify-content: space-evenly;
       align-items: center;
     }
     #nav > li > a {
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
       letter-spacing: 0.3em;
       font-size: 1.5em;
     }
@@ -75,12 +82,31 @@
       background-color: #faebeb;
       width: 15%;
     }
+    .aside li {
+      background-color: #e6b3b3;
+      padding: 8% 8%;
+      border-bottom: 1px solid #d1a3a3;
+    }
+    .aside li:last-child {
+      border-bottom: 1px solid #e6b3b3;
+    }
     #content {
       background-color: #fafafa;
       width: 70%;
+      display: flex;
+      padding: 1%;
+      gap: 1%;
     }
-    .aside li {
-      list-style-type: none;
+    .item {
+      /* flex-grow:1; */
+      width: 33%;
+      border: 1px solid #e5e5e5;
+    }
+    #content > div:nth-child(1) > div {
+    }
+    #content > div:nth-child(2) > div {
+    }
+    #content > div:nth-child(3) > div {
     }
     /* main 스타일 종료 */
 
@@ -117,7 +143,17 @@
             <li><a href="#">식품</a></li>
           </ul>
         </div>
-        <div id="content"></div>
+        <div id="content">
+          <div class="item">
+            <div style="inline"></div>
+            <a href="#">
+              김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
+            </a>
+            <button>쇼핑카트에 추가하기</button>
+          </div>
+          <div class="item"></div>
+          <div class="item"></div>
+        </div>
         <div class="aside">
           <h1>Shopping Cart</h1>
           <p>현재 쇼핑카트에 물품이 없습니다.</p>
