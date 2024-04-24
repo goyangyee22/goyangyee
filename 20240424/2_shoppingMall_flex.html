@@ -32,6 +32,16 @@
       height: 10%;
     }
     #header > img {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #header > span {
+      font-size: 2em;
+      font-weight: 900;
+      color: #53188b;
     }
     /* header 스타일 종료 */
 
@@ -41,6 +51,17 @@
       height: 10%;
       margin: 0;
       padding: 0;
+      display: flex;
+      list-style-type: none;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    #nav > li > a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.3em;
+      font-size: 1.5em;
     }
     /* nav 스타일 종료 */
 
@@ -58,6 +79,9 @@
       background-color: #fafafa;
       width: 70%;
     }
+    .aside li {
+      list-style-type: none;
+    }
     /* main 스타일 종료 */
 
     /* footer 스타일 시작 */
@@ -74,16 +98,30 @@
         <span>Web Shopping</span>
       </div>
       <ul id="nav">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li><a href="#" target="_blank">HOME</a></li>
+        <li><a href="#" target="_blank">SHOPPING ABOUT</a></li>
+        <li><a href="#" target="_blank">NEWS</a></li>
+        <li><a href="#" target="_blank">MY ACCOUNT</a></li>
+        <li><a href="#" target="_blank">CONTACTS</a></li>
       </ul>
       <div id="main">
-        <div class="aside"></div>
+        <div class="aside">
+          <h3>카테고리</h3>
+          <ul>
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레저</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
         <div id="content"></div>
-        <div class="aside"></div>
+        <div class="aside">
+          <h1>Shopping Cart</h1>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+        </div>
       </div>
       <div id="footer"></div>
     </div>
