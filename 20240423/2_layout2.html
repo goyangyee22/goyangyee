@@ -1,218 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>쇼?핑몰</title>
-  </head>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-    }
-    body {
-        display:flex;
-        flex-direction: column;
-      margin: 0px;
-    }
-    form{
-        display: flex;
-        margin:0px;
-        flex-direction: column;
-        justify-content: stretch;
-    }
-    #header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: yellow;
-      color: purple;
-      border-radius: 10px;
-      padding: 5px;
-    }
-    img {
-      width: 50px;
-      height: 50px;
-    }
-    #menu {
-      display:flex;
-      flex-direction: row;
-      background-color: pink;
-      border-radius: 10px;
-      justify-content: space-evenly;
-      /* align-items: center; */
-      padding:5px;
-    }
-    #main {
-      display: flex;
-      flex-grow:1;
-    }
-    #category {
-      display: flex;
-      flex-direction: column;
-      background-color: pink;
-      border-radius:10px;
-      flex-grow:2;
-      flex-shrink:0;
-      /* width:10%; */
-    }
-    #info {
-      background-color: pink;
-      border-radius: 10px;
-    }
-    ul {
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      list-style-type: none;
-    }
-    ul li {
-      display: inline;
-      text-transform: uppercase;
-      padding: 0 15px;
-      letter-spacing: 3px;
-    }
-    li a:link {
-      text-decoration-line: none;
-    }
-    li a:visited {
-      text-decoration-line: none;
-    }
-    li a:hover {
-      color: blue;
-      text-decoration-line: none;
-    }
-    li a:active {
-      color: green;
-    }
-    #category a:link{
-      text-decoration-line: none;
-      color:white;
-    }
-    #category a:visited{
-      text-decoration-line: none;
-      color:white;
-    }
-    #category a:hover {
-      color: white;
-      text-decoration-line: none;
-    }
-    #category a:active {
-      color: blue;
-    }
-    #category div{
-        background-color: purple;
-        border:1px solid pink;
-        color:white;
-    }
-    #items{
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-        padding:5px;
-        flex-grow:5;
-        /* width:70%; */
-        height:100%;
-    }
-    #item1, #item2, #item3 {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        border:2px solid black;
-        flex-grow:1;
-    }
-    #items img{
-        width:300px;
-        height:300px;
-        padding:5px;
-    }
-    #info{
-        display: flex;
-        padding: 5px;
-        flex-direction: column;
-        justify-content: space-evenly;
-        flex-grow:2;
-        flex-shrink:0;
-    }
-    #footer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 10px;
-      background-color: aquamarine;
-      font-size: 1em;
-    }
-    #id3{
-        display:flex;
-    }
-    #id4{
-        display: flex;
-        padding: 5px;
-        text-decoration: underline;
-    }
-  </style>
-  <body>
-    <div id="header">
-      <img src="../resources/img/check.png" />
-      <h1>Web Shopping</h1>
-    </div>
-    <div id="menu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="wrapper">
+  <div id="header"><img src="../resources/img/Kimchangseob.jpg"/>빛 창 섭</div>
+  <div id="nav">
+    <ul>
+      <li><a href="#" target="_blank">리</a></li>
+      <li><a href="#" target="_blank">선</a></li>
+      <li><a href="#" target="_blank">족</a></li>
+      <li><a href="#" target="_blank">따</a></li>
+      <li><a href="#" target="_blank">잇</a></li>
+    </ul>
+  </div>
+  <div id="main">
+    <div class="aside">카테고리
       <ul>
-        <li><a href="#" target="_blank">HOME</a></li>
-        <li><a href="#" target="_blank">SHOPPING ABOUT</a></li>
-        <li><a href="#" target="_blank">NEWS</a></li>
-        <li><a href="#" target="_blank">MY ACCOUNT</a></li>
-        <li><a href="#" target="_blank">CONTACTS</a></li>
+        <li>리</li>
+        <li>부</li>
+        <li>트</li>
+        <li>슬</li>
+        <li>레</li>
+        <li>이</li>
+        <li>어</li>
       </ul>
     </div>
-    <div id="main">
-      <div id="category"><h3>카테고리</h3>
-        <div><a href="#" target="_blank">컴퓨터</a></div>
-        <div><a href="#" target="_blank">의류</a></div>
-        <div><a href="#" target="_blank">음악</a></div>
-        <div><a href="#" target="_blank">영화</a></div>
-        <div><a href="#" target="_blank">스포츠/레저</a></div>
-        <div><a href="#" target="_blank">가구/인테리어</a></div>
-        <div><a href="#" target="_blank">식품</a></div>
+    <div class="content"></div>
+    <div class="aside"><h1>RIP Reboot</h1>
+    <p>X를 눌러 조의를 표하십시오.</p>
     </div>
-      <div id="items">
-        <div id="item1"><img src="../resources/img/kuromi.jpg" /><p>쿠로미는 귀엽다 반박시 니 말이 맞다.</p><input type="submit" value="쇼핑카트에 추가하기">
-        </div>
-        <div id="item2"><img src="../resources/img/coffee.jpg" /><p>우리 집에서 커피 마시고 갈래?</p><input type="submit" value="쇼핑카트에 추가하기">
-        </div>
-        <div id="item3"><img src="../resources/img/Kimchangseob.jpg" /><p>대 창 섭</p><input type="submit" value="쇼핑카트에 추가하기">
-        </div>
-      </div>
-      <form>
-      <div id="info">
-        <div id="id1">
-          <h3>Shopping Cart</h3>
-          <p>현재 쇼핑카드에 물품이 없습니다.</p>
-          <a href="#" target="_blank">쇼핑카트 보기</a>
-        </div>
-          <div id="id2">
-            <h3>Log In</h3>
-            <p>아이디</p>
-            <input type="text" />
-            <p>패스워드</p>
-            <input type="password" />
-          </div>
-        <div id="id3">
-          <p><input type="submit" value="회원가입" /></p>
-          <p><input type="reset" value="초기화" /></p>
-        </div>
-        <div id="id4">
-          <p><a href="#" target="_blank">회원가입</a></p>
-          <p><a href="#" target="_blank">비밀번호 분실</a></p>
-        </form>
-        </div>
-      </div>
-    </div>
-    <div id="footer">2019.08.23 DW아카데미 042-123-4567</div>
-  </body>
+  </div>
+  <div id="footer"></div>
+</div>
+</body>
 </html>

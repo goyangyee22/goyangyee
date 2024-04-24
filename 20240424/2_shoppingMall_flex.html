@@ -35,6 +35,7 @@
       border: 2px solid orange;
       display: flex;
       flex-direction: column;
+      gap:1%;
     }
     /* wrapper 스타일 종료 */
 
@@ -42,10 +43,13 @@
     #header {
       background-color: #ffd65c;
       height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     #header > img {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -74,13 +78,18 @@
 
     /* main 스타일 시작 */
     #main {
-      background-color: aqua;
+      /* background-color: aqua; */
       height: 70%;
       display: flex;
+      gap:0.6%;
     }
     .aside {
       background-color: #faebeb;
       width: 15%;
+      padding:2% 1%;
+      display: flex;
+      flex-direction: column;
+      border-radius: 20px 20px 0 0;
     }
     .aside li {
       background-color: #e6b3b3;
@@ -97,10 +106,31 @@
       padding: 1%;
       gap: 1%;
     }
+    #content a {
+      color: black;
+    }
+    #content a:hover {
+      text-decoration: underline;
+    }
     .item {
       /* flex-grow:1; */
       width: 33%;
       border: 1px solid #e5e5e5;
+      display: flex;
+      flex-direction: column;
+    }
+    .image-section{
+        height:70%;
+    }
+    .desc-section{
+        height:25%;
+    }
+    .btn-section {
+        height:5%;
+    }
+    .btn-section button{
+        width:100%;
+        height:100%;
     }
     #content > div:nth-child(1) > div {
     }
@@ -145,18 +175,72 @@
         </div>
         <div id="content">
           <div class="item">
-            <div style="inline"></div>
-            <a href="#">
-              김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
-            </a>
-            <button>쇼핑카트에 추가하기</button>
+            <div class="image-section"
+              style="
+              background-image: url(../resources/img/Kimchangseob.jpg)"
+              background-size:contain;
+              background-repeat:no-repeat;
+              background-position:center;
+            ></div>
+            <div class="desc-section">
+              <a href="#">
+                김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
+              </a>
+            </div>
+            <div class="btn-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
           </div>
-          <div class="item"></div>
-          <div class="item"></div>
+          <div class="item">
+            <div class="image-section"
+            style="
+            background-image:url(../resources/img/good.png)"
+            background-size:contain;
+            background-repeat:no-repeat;
+            background-position:center;
+            ></div>
+            <div class="desc-section">
+                <a href="#">
+                  김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
+                </a>
+              </div>
+              <div class="btn-section">
+                <button>쇼핑카트에 추가하기</button>
+              </div>
+          </div>
+          <div class="item">
+            <div class="image-section"
+            style="
+            background-image:url(../resources/img/pinkbean.jpg)"
+            background-size:contain;
+            background-repeat:no-repeat;
+            background-position:center;
+            ></div>
+            <div class="desc-section">
+                <a href="#">
+                  김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
+                </a>
+              </div>
+              <div class="btn-section">
+                <button>쇼핑카트에 추가하기</button>
+              </div>
+          </div>
         </div>
         <div class="aside">
-          <h1>Shopping Cart</h1>
+          <h3>Shopping Cart</h3>
           <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <a href="#">쇼핑카트 보기</a>
+          <br><br>
+          <h3>Log IN</h3>
+          <span>아이디</span>
+          <p><input type="text"/></p>
+          <span>비밀번호</span>
+          <p><input type="password"/></p>
+          <input type="submit" value="로그인" />
+          <input type="reset" value="초기화" />
+          <br>
+          <a href="#">회원가입</a>
+          <a href="#">비밀번호 분실</a>
         </div>
       </div>
       <div id="footer"></div>
