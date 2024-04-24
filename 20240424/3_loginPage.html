@@ -38,26 +38,64 @@
     #main{
         background-color: pink;
         display: flex;
-        width:400px;
-        height:400px;
+        width:500px;
+        height:500px;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
+        position:relative;
     }
-    #emailpassword{}
-    #submit{}
+    .emailpassword > .fa-at {
+        padding : 2%;
+        color:navy;
+        position:absolute;
+    }
+    .emailpassword > .fa-lock {
+        padding : 2%;
+        color:navy;
+        position:absolute;
+    }
+    input{
+        width:100%;
+        height:100%;
+        padding-left:40px;
+    }
+    .submitbox{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width:100px;
+        height:40px;
+        background-color: beige;
+        border:1px solid beige;
+        border-radius:10px;
+    }
+    .submitbox > a{
+        color:navy;
+        text-decoration-line: none;
+        font-size: 1em;
+    }
+    .forgot > a{
+        color:white;
+        text-decoration-line: none;
+        font-size: 1.2em;
+    }
     /* main 스타일 종료 */
 </style>
-<body><i class="fas fa-wifi"></i>
+<body>
+    <i class="fas fa-wifi"></i>
     <div id="wrapper">
     <div id="main">
         <div class="login"><h1>Log In</h1></div>
-        <div class="emailpassword"><i class="fas fa-at"></i><input type="text" placeholder="Your Email" />
+        <div class="emailpassword"><i class="fas fa-at"></i><input type="text" placeholder="Your Email"/>
         <br><i class="fas fa-lock"></i><input type="password" placeholder="Your Password"/>
         </div>
-        <!-- <div class="password"><i class="fas fa-lock"></i><input type="password" placeholder="Your Password"/></div> -->
-        <div class="submit"><h3><a href="#">SUBMIT</a></h3></div>
-        <div class="forgot"><h4><a href="#">Forgot your password?</a></h4></div>
+        <div class="submit">
+            <div class="submitbox"><a href="#">SUBMIT</a>
+            </div>
+        </div>
+        <div class="forgot"><a href="#">Forgot your password?</a></div>
     </div>
 </div>
 </div>

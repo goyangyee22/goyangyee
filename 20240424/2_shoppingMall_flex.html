@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,16 +28,16 @@
       color: white;
       font-weight: 600;
     }
-    /* 공통 스타일 종료 */
+    /* 공통 스타일 끝 */
 
     /* wrapper 스타일 시작 */
     #wrapper {
       border: 2px solid orange;
       display: flex;
       flex-direction: column;
-      gap:1%;
+      gap: 1%;
     }
-    /* wrapper 스타일 종료 */
+    /* wrapper 스타일 끝 */
 
     /* header 스타일 시작 */
     #header {
@@ -48,18 +48,15 @@
       align-items: center;
     }
     #header > img {
-      width: 80px;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100px;
+      height: 100px;
     }
     #header > span {
       font-size: 2em;
       font-weight: 900;
       color: #53188b;
     }
-    /* header 스타일 종료 */
+    /* header 스타일 끝 */
 
     /* nav 스타일 시작 */
     #nav {
@@ -74,22 +71,19 @@
       letter-spacing: 0.3em;
       font-size: 1.5em;
     }
-    /* nav 스타일 종료 */
+    /* nav 스타일 끝 */
 
     /* main 스타일 시작 */
     #main {
       /* background-color: aqua; */
       height: 70%;
       display: flex;
-      gap:0.6%;
+      gap: 0.6%;
     }
     .aside {
       background-color: #faebeb;
       width: 15%;
-      padding:2% 1%;
-      display: flex;
-      flex-direction: column;
-      border-radius: 20px 20px 0 0;
+      padding: 2% 1%;
     }
     .aside li {
       background-color: #e6b3b3;
@@ -113,52 +107,46 @@
       text-decoration: underline;
     }
     .item {
-      /* flex-grow:1; */
+      /* flex-grow: 1; */
       width: 33%;
       border: 1px solid #e5e5e5;
       display: flex;
       flex-direction: column;
     }
-    .image-section{
-        height:70%;
+    .image-section {
+      height: 70%;
     }
-    .desc-section{
-        height:25%;
+    .desc-section {
+      height: 25%;
     }
     .btn-section {
-        height:5%;
+      height: 5%;
     }
-    .btn-section button{
-        width:100%;
-        height:100%;
+    .btn-section button {
+      width: 100%;
+      height: 100%;
     }
-    #content > div:nth-child(1) > div {
-    }
-    #content > div:nth-child(2) > div {
-    }
-    #content > div:nth-child(3) > div {
-    }
-    /* main 스타일 종료 */
+    /* main 스타일 끝 */
 
     /* footer 스타일 시작 */
     #footer {
       background-color: #ccccf2;
       height: 10%;
     }
-    /* footer 스타일 종료 */
+    /* footer 스타일 끝 */
   </style>
   <body>
     <div id="wrapper">
       <div id="header">
-        <img src="../resources/img/Kimchangseob.jpg" />
-        <span>Web Shopping</span>
+        <img src="../resources/img/시바견.png" />
+        <span>SIBA shopping</span>
       </div>
       <ul id="nav">
-        <li><a href="#" target="_blank">HOME</a></li>
-        <li><a href="#" target="_blank">SHOPPING ABOUT</a></li>
-        <li><a href="#" target="_blank">NEWS</a></li>
-        <li><a href="#" target="_blank">MY ACCOUNT</a></li>
-        <li><a href="#" target="_blank">CONTACTS</a></li>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">SHOPPING ABOUT</a></li>
+        <li><a href="#">NEWS</a></li>
+        <li><a href="#">MY ACCOUNT</a></li>
+        <li><a href="#">CONTACTS</a></li>
       </ul>
       <div id="main">
         <div class="aside">
@@ -168,23 +156,26 @@
             <li><a href="#">의류</a></li>
             <li><a href="#">음악</a></li>
             <li><a href="#">영화</a></li>
-            <li><a href="#">스포츠/레저</a></li>
+            <li><a href="#">스포츠/레져</a></li>
             <li><a href="#">가구/인테리어</a></li>
             <li><a href="#">식품</a></li>
           </ul>
         </div>
         <div id="content">
           <div class="item">
-            <div class="image-section"
+            <div
+              class="image-section"
               style="
-              background-image: url(../resources/img/Kimchangseob.jpg)"
-              background-size:contain;
-              background-repeat:no-repeat;
-              background-position:center;
+                background-image: url(../resources/img/한성컴퓨터.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
             ></div>
             <div class="desc-section">
               <a href="#">
-                김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
+                한성컴퓨터 TFG AX3A707iRX3 블랙 라이젠7 7800X3D RTX4070Ti SUPER
+                게이밍컴퓨터 본체 데스크탑 PC
               </a>
             </div>
             <div class="btn-section">
@@ -192,53 +183,61 @@
             </div>
           </div>
           <div class="item">
-            <div class="image-section"
-            style="
-            background-image:url(../resources/img/good.png)"
-            background-size:contain;
-            background-repeat:no-repeat;
-            background-position:center;
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/한성컴퓨터.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
             ></div>
             <div class="desc-section">
-                <a href="#">
-                  김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
-                </a>
-              </div>
-              <div class="btn-section">
-                <button>쇼핑카트에 추가하기</button>
-              </div>
+              <a href="#">
+                한성컴퓨터 TFG AX3A707iRX3 블랙 라이젠7 7800X3D RTX4070Ti SUPER
+                게이밍컴퓨터 본체 데스크탑 PC
+              </a>
+            </div>
+            <div class="btn-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
           </div>
           <div class="item">
-            <div class="image-section"
-            style="
-            background-image:url(../resources/img/pinkbean.jpg)"
-            background-size:contain;
-            background-repeat:no-repeat;
-            background-position:center;
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/Kimchangseob.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
             ></div>
             <div class="desc-section">
-                <a href="#">
-                  김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭김창섭
-                </a>
-              </div>
-              <div class="btn-section">
-                <button>쇼핑카트에 추가하기</button>
-              </div>
+              <a href="#">
+                한성컴퓨터 TFG AX3A707iRX3 블랙 라이젠7 7800X3D RTX4070Ti SUPER
+                게이밍컴퓨터 본체 데스크탑 PC
+              </a>
+            </div>
+            <div class="btn-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
           </div>
         </div>
         <div class="aside">
           <h3>Shopping Cart</h3>
           <p>현재 쇼핑카트에 물품이 없습니다.</p>
           <a href="#">쇼핑카트 보기</a>
-          <br><br>
-          <h3>Log IN</h3>
+          <br /><br />
+          <h3>Log In</h3>
           <span>아이디</span>
-          <p><input type="text"/></p>
-          <span>비밀번호</span>
-          <p><input type="password"/></p>
-          <input type="submit" value="로그인" />
-          <input type="reset" value="초기화" />
-          <br>
+          <form>
+            <p><input type="text" /></p>
+            <span>비밀번호</span>
+            <p><input type="password" /></p>
+            <input type="submit" value="로그인" />
+            <input type="reset" value="초기화" />
+          </form>
+          <br />
           <a href="#">회원가입</a>
           <a href="#">비밀번호 분실</a>
         </div>
