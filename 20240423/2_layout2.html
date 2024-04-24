@@ -23,6 +23,7 @@
         display: flex;
         margin:0px;
         flex-direction: column;
+        justify-content: stretch;
     }
     #header {
       display: flex;
@@ -38,11 +39,13 @@
       height: 50px;
     }
     #menu {
-    display:flex;
+      display:flex;
+      flex-direction: row;
       background-color: pink;
       border-radius: 10px;
-      justify-content: space-around;
+      justify-content: space-evenly;
       align-items: center;
+      padding:5px;
       
     }
     #main {
@@ -50,6 +53,8 @@
       flex-grow:1;
     }
     #category {
+      display: flex;
+      flex-direction: column;
       background-color: pink;
       border-radius:10px;
       flex-grow:2;
@@ -129,6 +134,7 @@
         display: flex;
         padding: 5px;
         flex-direction: column;
+        justify-content: space-evenly;
         flex-grow:2;
         flex-shrink:0;
     }
