@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
+  </head>
+  <style>
     * {
       box-sizing: border-box;
     }
@@ -33,41 +33,23 @@
       /* justify-items:center; */
       /* justify-items:center; */
     }
-    li:nth-child(1){
-        align-self: start;
-        justify-self: start;
+    li:nth-child(n + 1):nth-child(-n + 3) {
+      align-self: start;
     }
-    li:nth-child(2){
-        align-self: start;
-        justify-self: center;
+    li:nth-child(n + 4):nth-child(-n + 6) {
+      align-self: center;
     }
-    li:nth-child(3){
-        align-self: start;
-        justify-self: end;
+    li:nth-child(n + 7):nth-child(-n + 9) {
+      align-self: end;
     }
-    li:nth-child(4){
-        align-self: center;
-        justify-self: start;
+    li:nth-child(3n + 1) {
+      justify-self: start;
     }
-    li:nth-child(5){
-        align-self: center;
-        justify-self: center;
+    li:nth-child(3n + 2) {
+      justify-self: center;
     }
-    li:nth-child(6){
-        align-self: center;
-        justify-self: end;
-    }
-    li:nth-child(7){
-        align-self: end;
-        justify-self: start;
-    }
-    li:nth-child(8){
-        align-self: end;
-        justify-self: center;
-    }
-    li:nth-child(9){
-        align-self: end;
-        justify-self: end;
+    li:nth-child(3n) {
+      justify-self: end;
     }
     li {
       background-color: beige;
@@ -78,17 +60,17 @@
       align-items: center;
     }
   </style>
-<body>
+  <body>
     <ul class="container">
-        <li class="item">1</li>
-        <li class="item">2</li>
-        <li class="item">3</li>
-        <li class="item">4</li>
-        <li class="item">5</li>
-        <li class="item">6</li>
-        <li class="item">7</li>
-        <li class="item">8</li>
-        <li class="item">9</li>
-      </ul>
-</body>
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+  </body>
 </html>
