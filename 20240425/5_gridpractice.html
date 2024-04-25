@@ -24,16 +24,19 @@
       border: 5px solid teal;
       display: grid;
       height: 500px;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 80px);
+      align-content: space-between;
+      justify-content: space-between;
       /* align-items: stretch; */
       /* align-items: start; */
       /* align-items: end; */
-      align-items: center;
+      /* align-items: center; */
       /* justify-items:start; */
       /* justify-items:center; */
       /* justify-items:center; */
     }
-    li:nth-child(n + 1):nth-child(-n + 3) {
+    /* li:nth-child(n + 1):nth-child(-n + 3) {
       align-self: start;
     }
     li:nth-child(n + 4):nth-child(-n + 6) {
@@ -50,7 +53,7 @@
     }
     li:nth-child(3n) {
       justify-self: end;
-    }
+    } */
     li {
       background-color: beige;
       border: 5px solid tomato;

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spongebob</title>
+</head>
+<style>
+    /* 공통 스타일 시작 */
+    *{
+        box-sizing: border-box;
+    }
+    html, body, #wrapper{
+        width:100%;
+        height:100%;
+    }
+    body{
+        margin:0;
+    }
+    /* 공통 스타일 종료 */
+
+    /* wrapper 스타일 시작 */
+    #wrapper{
+        border:2px solid blue;
+        display: flex;
+        flex-direction: column;
+        height:100%;
+        width:100%;
+        padding:10px;
+    }
+    /* wrapper 스타일 종료 */
+
+    /* header 스타일 시작 */
+    #header{
+        background-color:yellow;
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        justify-content: center;
+        align-items: center;
+    }
+    /* header 스타일 종료 */
+</style>
+<body>
+    <div id="wrapper">
+    <div id="header">
+        <h1>My Blog Page</h1>
+        <p>시멘틱 태그로 만들어진 페이지 입니다.</p>
+    </div>
+    <div id="nav">
+        <h2>Links</h2>
+        <img src="../resources/img/blackmagician.jpg" width="70%" />
+        <ul>
+            <li class="nav1">w3schools</li>
+            <li class="nav2">Naver</li>
+            <li class="nav3">Daum</li>
+        </ul>
+    </div>
+    <div id="main">
+        <div class="main1">
+            <h3>Semantic Tags</h3>
+            <p>시멘틱 요소들은 브라우저에게 요소의 의미나 목적을 명확하게 알려주는 요소이다. 레이아웃을 만들때 쓰는 것. 의미가 있는 요소라면 div보다는 시멘틱 태그를 사용해준다.
+            </p>
+        </div>
+        <div class="main2">
+            <h3>div와 span</h3>
+            <p>div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데 사용되는 태그이다. span요소는 인라인 요소로서 텍스트를 위한 컨테이너로 사용할 수 있다.</p>
+        </div>
+    </div>
+    <div id="footer">Copyright ⒞2019 Lee</div>
+</div>
+</body>
+</html>
