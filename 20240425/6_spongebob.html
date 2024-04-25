@@ -35,21 +35,71 @@
     #nav {
       background-color: pink;
     }
+    #nav1 a:link {
+      color: white;
+      text-decoration: none;
+    }
+    #nav2 a:link {
+      color: yellow;
+      text-decoration: none;
+    }
+    #nav3 a:link {
+      color: yellow;
+      text-decoration: none;
+    }
     #main {
       background-color: beige;
     }
     #footer {
       background-color: purple;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   </style>
   <body>
     <div id="wrapper">
-      <div id="header"></div>
-      <div id="content">
-        <div id="nav"></div>
-        <div id="main"></div>
+      <div id="header">
+        <h1>My Blog Page</h1>
+        <p>시멘틱 태그로 만들어진 페이지입니다.</p>
       </div>
-      <div id="footer"></div>
+      <div id="content">
+        <div id="nav">
+          <h3>Links</h3>
+          <ul>
+            <li>
+              <h4 id="nav1"><a href="#" target="_blank">w3schools</a></h4>
+            </li>
+            <li>
+              <h4 id="nav2"><a href="#" target="_blank">Naver</a></h4>
+            </li>
+            <li>
+              <h4 id="nav3"><a href="#" target="_blank">Daum</a></h4>
+            </li>
+          </ul>
+          <img src="../resources/img/blackmagician.jpg" width="70%" />
+          <p>스폰지밥</p>
+        </div>
+        <div id="main">
+          <div class="main1">
+            <h4>Semantic Tags</h4>
+            <p>
+              시멘틱 요소들은 브라우저에게 요소의 의미나 목적을 명확하게
+              알려주는 요소이다. 레이아웃을 만들때 쓰는 것. 의미가 있는 요소라면
+              div보다는 시멘틱 태그를 사용해준다.
+            </p>
+          </div>
+          <div class="main2">
+            <h4>div와 span</h4>
+            <p>
+              div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데
+              사용되는 태그이다. span 요소는 인라인 요소로서 텍스트를 위한
+              컨테이너로 사용할 수 있다.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="footer">Copyright ⒞2019 Lee</div>
     </div>
   </body>
 </html>
