@@ -23,8 +23,19 @@
   }
   a{
     text-decoration: none;
-    color:white;
     font-weight: 600;
+  }
+  a:link{
+    color:brown;
+  }
+  a:visited{
+    color:brown;
+  }
+  a:hover{
+    color:green;
+  }
+  a:active{
+    color:orangered;
   }
   /* 공통 스타일 종료 */
 
@@ -46,13 +57,14 @@
     align-items: center;
   }
   #header > img{
-    width:100px;
-    height:100px;
+    width:60px;
+    height:75px;
   }
   #header > span{
     font-size:2em;
     font-weight:600;
     color:purple;
+    padding: 1%;
   }
   /* header 스타일 종료 */
 
@@ -74,22 +86,68 @@
   #main{
     height:70%;
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     gap:0.6%;
   }
   .aside{
-    width:15%
+    background-color: pink;
+    padding:1%;
+    width:15%;
+  }
+  .aside li{
+    background-color: yellowgreen;
+    border-bottom: 1px dotted purple;
+    padding: 8% 8%;
+  }
+  .aside li:last-child{
+    border-bottom:1px dotted yellowgreen;
   }
   .content{
-    width:70%
+    width:70%;
+    display: flex;
+    flex-direction: row;
+  }
+  .items{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .item{
+    border:2px dotted black;
+  }
+  .image-section{
+    height:70%;
+  }
+  .desc-section{
+    height:25%;
+  }
+  .btn-section{
+    height:5%;
+  }
+  .btn-section button{
+    width:100%;
+    height:100%;
   }
   /* main 스타일 종료 */
+
+  /* footer 스타일 시작 */
+  #footer{
+    height:10%;
+    background-color: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* footer 스타일 종료 */
 </style>
 <body>
   <div id="wrapper">
+  <div id="header">
     <img src="../resources/img/Kimchangseob.jpg"/>
     <span>김창섭 니가 만든 World</span>
   </div>
-  <div id="header"></div>
   <ul id="nav">
     <li><a href="#">스카니아</a></li>
     <li><a href="#">베라</a></li>
@@ -99,15 +157,15 @@
   </ul>
   <div id="main">
     <div class="aside">
-      <h3>카테고리</h3>
+      <h3>쌀먹 리스트</h3>
       <ul>
-        <li>카링</li>
-        <li>칼로스</li>
-        <li>선택받은 세렌</li>
-        <li>진 힐라</li>
-        <li>듄켈</li>
-        <li>더스크</li>
-        <li>가디언 엔젤 슬라임</li>
+        <li><a href="#">카링</a></li>
+        <li><a href="#">칼로스</a></li>
+        <li><a href="#">선택받은 세렌</a></li>
+        <li><a href="#">진 힐라</a></li>
+        <li><a href="#">듄켈</a></li>
+        <li><a href="#">더스크</a></li>
+        <li><a href="#">가디언 엔젤 슬라임</a></li>
       </ul>
     </div>
     <div class="content">
@@ -122,7 +180,7 @@
         ></div>
         <div class="desc-section">
           <a href="#">
-            게임은 건강해지는 중인데 점유율은 왜 자꾸 떨어지는 걸까
+            검마 쌀먹 단 100조각에 모십니다. 클탐 10분 이내 24시간 상담가능 연락주세요.
           </a>
         </div>
         <div class="btn-section">
@@ -130,7 +188,6 @@
         </div>
       </div>
       <div class="item">
-        <div class="item">
           <div class="image-section"
           style="
           background-image: url(../resources/img/Kimchangseob.jpg);
@@ -149,10 +206,9 @@
           </div>
       </div>
       <div class="item">
-        <div class="item">
           <div class="image-section"
           style="
-          background-image: url(../resources/img/pinkbean.jpg);
+          background-image: url(../resources/img/reboot.jpg);
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -170,10 +226,24 @@
     </div>
     <div class="aside">
       <h3>Shopping Cart</h3>
-      <p>귀찮아요</p>
+      <p>현재 쌀먹을 할 수 없습니다.</p>
       <a href="#">게임 접기</a>
+      <br><br>
+      <h3>Log In</h3>
+      <span>아이디</span>
+      <form>
+        <p><input type="text" /></p>
+        <span>비밀번호</span>
+        <p><input type="password"/></p>
+        <input type="submit" value="로그인"/>
+        <input type="reset" value="초기화"/>
+        <br/>
+        <a href="#">회원가입</a>
+        <a href="#">비밀번호 분실</a>
+      </form>
     </div>
   </div>
-  <div id="footer"></div>
+  <div id="footer">신창섭을 숭배해도 리선족이야</div>
+</div>
 </body>
 </html>
