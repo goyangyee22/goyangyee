@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid area</title>
+</head>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    .container {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      border: 5px solid teal;
+      display: grid;
+      height: 500px;
+      grid-template-columns:200px 1fr 200px;
+      grid-template-rows: 50px 50px 1fr 50px;
+      grid-template-areas: 
+      'h h h'
+      'n n n'
+      'a1 m a2'
+      'f f f'
+      ;
+    }
+    li {
+      background-color: beige;
+      border: 5px solid tomato;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    li:nth-child(1){
+        grid-area:h;
+    }
+    li:nth-child(2){
+        grid-area:n;
+    }
+    li:nth-child(3){
+        grid-area:a1;
+    }
+    li:nth-child(4){
+        grid-area:m;
+    }
+    li:nth-child(5){
+        grid-area:a2;
+    }
+    li:nth-child(6){
+        grid-area:f;
+    }
+</style>
+<body>
+    <ul class="container">
+        <li class="item">HEADER</li>
+        <li class="item">NAV</li>
+        <li class="item">ASIDE</li>
+        <li class="item">MAIN</li>
+        <li class="item">ASIDE</li>
+        <li class="item">FOOTER</li>
+    </ul>
+</body>
+</html>
