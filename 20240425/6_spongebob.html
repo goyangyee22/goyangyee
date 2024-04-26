@@ -25,6 +25,10 @@
     }
     #header {
       background-color: yellow;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     #content {
       /* background-color: pink; */
@@ -34,25 +38,68 @@
     }
     #nav {
       background-color: pink;
+      font-size:2rem;
+      padding: 0 15%;
     }
     #nav1 a:link {
       color: white;
+      text-decoration: none;
+    }
+    #nav1 a:visited {
+      color: white;
+      text-decoration: none;
+    }
+    #nav1 a:hover {
+      color: aqua;
       text-decoration: none;
     }
     #nav2 a:link {
       color: yellow;
       text-decoration: none;
     }
+    #nav2 a:visited {
+      color: yellow;
+      text-decoration: none;
+    }
+    #nav2 a:hover {
+      color: aqua;
+      text-decoration: none;
+    }
     #nav3 a:link {
       color: yellow;
       text-decoration: none;
     }
+    #nav3 a:visited {
+      color: yellow;
+      text-decoration: none;
+    }
+    #nav3 a:hover {
+      color: aqua;
+      text-decoration: none;
+    }
+    #nav p {
+      text-align: center;
+    }
+    /* #nav img{
+    } */
     #main {
       background-color: beige;
+      display:grid;
+      align-content: space-evenly;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      padding:2%;
+      gap:5%;
     }
-    #main1 {
-    }
-    #main2 {
+    .section {
+      /* width: 95%;
+      height: 90%; */
+      background-color: aqua;
+      border: 2px dotted brown;
+      border-radius: 20px;
+      /* gap: 10%; */
+      padding:1% 2%;
+      font-size:1.5rem;
     }
     #footer {
       background-color: purple;
@@ -85,7 +132,7 @@
           <p>스폰지밥</p>
         </div>
         <div id="main">
-          <div class="main1">
+          <div class="section">
             <h4>Semantic Tags</h4>
             <p>
               시멘틱 요소들은 브라우저에게 요소의 의미나 목적을 명확하게
@@ -93,7 +140,7 @@
               div보다는 시멘틱 태그를 사용해준다.
             </p>
           </div>
-          <div class="main2">
+          <div class="section">
             <h4>div와 span</h4>
             <p>
               div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데
