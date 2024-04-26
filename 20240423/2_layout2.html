@@ -69,7 +69,6 @@
       font-size: 2em;
       font-weight: 600;
       color: purple;
-      padding: 1%;
     }
     /* header 스타일 종료 */
 
@@ -77,6 +76,8 @@
     #nav {
       background-color: plum;
       height: 10%;
+      margin-top: 0.2%;
+      margin-bottom: 0.2%;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -103,9 +104,13 @@
       width: 15%;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
+      display: flex;
+      flex-direction: column;
     }
     .aside2 {
       background-color: pink;
+      display: flex;
+      flex-direction: column;
       padding: 1%;
       gap: 1%;
       width: 15%;
@@ -113,11 +118,6 @@
       border-bottom-left-radius: 20px;
     }
     .aside1 li {
-      background-color: yellow;
-      border-bottom: 1px dotted purple;
-      padding: 8% 8%;
-    }
-    .aside2 li {
       background-color: yellow;
       border-bottom: 1px dotted purple;
       padding: 8% 8%;
@@ -142,7 +142,7 @@
       width: 33%;
     }
     .image-section {
-      height: 60%;
+      height: 70%;
     }
     .desc-section {
       height: 25%;
@@ -159,7 +159,11 @@
     /* footer 스타일 시작 */
     #footer {
       height: 10%;
+      margin-top:0.2%;
       background-color: purple;
+      color:beige;
+      font-size:24px;
+      font-weight:500;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -269,7 +273,7 @@
             <p><input type="password" /></p>
             <input type="submit" value="로그인" />
             <input type="reset" value="초기화" />
-            <br /><br />
+            <br /><br /><br /><br />
             <a href="#">회원가입</a>
             <a href="#">비밀번호 분실</a>
           </form>
