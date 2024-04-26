@@ -44,7 +44,7 @@
     border:2px solid orange;
     display: flex;
     flex-direction: column;
-    gap:1%;
+    gap:0.1%;
   }
   /* wrapper 스타일 종료 */
 
@@ -57,6 +57,7 @@
     align-items: center;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    gap:0.1%;
   }
   #header > img{
     width:68px;
@@ -91,19 +92,35 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    gap:0.6%;
+    gap:1%;
   }
-  .aside{
+  .aside1{
     background-color: pink;
     padding:1%;
+    gap:1%;
     width:15%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
-  .aside li{
+  .aside2{
+    background-color: pink;
+    padding:1%;
+    gap:1%;
+    width:15%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  .aside1 li{
     background-color: yellow;
     border-bottom: 1px dotted purple;
     padding: 8% 8%;
   }
-  .aside li:last-child{
+  .aside2 li{
+    background-color: yellow;
+    border-bottom: 1px dotted purple;
+    padding: 8% 8%;
+  }
+  .aside1 li:last-child{
     border-bottom:1px dotted yellow;
   }
   #content{
@@ -111,6 +128,7 @@
     display: flex;
     flex-direction: row;
     gap:1%;
+    padding:1%;
   }
   .item{
     display:flex;
@@ -162,7 +180,7 @@
     <li><a href="#">리부트</a></li>
   </ul>
   <div id="main">
-    <div class="aside">
+    <div class="aside1">
       <h3>쌀먹 리스트</h3>
       <ul>
         <li><a href="#">카링</a></li>
@@ -186,7 +204,7 @@
         ></div>
         <div class="desc-section">
           <a href="#">
-            검마 쌀먹 단 100조각에 모십니다. 클탐 10분 이내 24시간 상담 가능 연락 주세요.
+            검마 쌀먹 단 100조각에 모십니다. 클리어 타임 10분 이내 24시간 상담 가능 연락 주세요.
           </a>
         </div>
         <div class="btn-section">
@@ -230,7 +248,7 @@
           </div>
       </div>
     </div>
-    <div class="aside">
+    <div class="aside2">
       <h3>Shopping Cart</h3>
       <p>현재 쌀먹을 할 수 없습니다.</p>
       <a href="#">게임 접기</a>
