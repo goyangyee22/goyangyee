@@ -105,11 +105,15 @@
       }
     }
     .gradient {
+      display:inline-block;
       background-color: #e0e5ec;
+      text-decoration: none;
       position: relative;
       background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+      overflow:hidden;
+      z-index:1;
     }
-    .gradient:hover::after {
+    .gradient::after {
       content: "";
       display: block;
       position: absolute;
@@ -117,43 +121,17 @@
       width: 100%;
       height: 100%;
       top: 0;
-      left: 0;
-      opacity: 1;
+      left: 0%;
       animation: gradient 0.5s infinite;
       background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+      transition:left 0.5s;
+      transform-origin:top left;
+      transform:rotate(45deg);
     }
 
     @keyframes gradient {
-      10% {
-        transform: scale(1.1) rotate(-36deg);
-      }
-      20% {
-        transform: scale(1.1) rotate(-72deg);
-      }
-      30% {
-        transform: scale(1.1) rotate(-108deg);
-      }
-      40% {
-        transform: scale(1.1) rotate(-144deg);
-      }
-      50% {
-        transform: scale(1.1) rotate(-180deg);
-      }
-      60% {
-        transform: scale(1.1) rotate(-216deg);
-      }
-      70% {
-        transform: scale(1.1) rotate(-252deg);
-      }
-      80% {
-        transform: scale(1.1) rotate(-288deg);
-      }
-      90% {
-        transform: scale(1.1) rotate(-324deg);
-      }
-      100% {
-        transform: scale(1.1) rotate(-360deg);
-      }
+      0%{transform:rotate(0deg);}
+      100%{transform:rotate(360deg);}
     }
   </style>
   <body>
