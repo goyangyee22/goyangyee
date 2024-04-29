@@ -46,7 +46,7 @@
     opacity:0;
     transition:.3s ease-in-out;
   }
-  figure:hover+span{
+  figure:hover~span{
     bottom:-30px;
     opacity:1;
   }
@@ -111,6 +111,43 @@
     background-size: 50px 50px;
     background-repeat: no-repeat;
   } */
+
+  #absolDiv{
+    width:50%;
+    height:100%;
+    position:absolute;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+    transform:skewX(-25deg);
+    left:-75%;
+    top:-0px;
+    z-index: 0;
+    opacity:0.4;
+  }
+  .hover06 figure:hover + div{
+    animation:shine 0.75s;
+  }
+
+  @keyframes shine{
+    100%{
+        left:125px;
+    }
+  }
+  .hover06 figure{
+    position:relative;
+  }
+  .hover06 figure::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-75%;
+    display:block;
+    width:50%;
+    height:100%;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+  }
+  .hover06 figure:hover::before{
+    animation:shine .75s;
+  }
 </style>
 <body>
     <div id="wrapper">
@@ -215,7 +252,7 @@
             <!-- <div></div> -->
             <div>
                 <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
-                <div id="absolDiv"></div>
+                <!-- <div id="absolDiv"></div> -->
                 <span>Hover</span>
             </div>
             <div>
