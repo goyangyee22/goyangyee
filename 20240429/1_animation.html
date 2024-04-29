@@ -138,11 +138,17 @@ transition vs animation
       background-color: red;
       margin-bottom: 10px;
       position: relative;
-      animation-name: myanimation2;
+      /* animation-name: myanimation2;
       animation-duration: 2s;
       animation-timing-function: linear;
       animation-iteration-count: 1;
-      animation-delay: 2s;
+      animation-delay: 2s; */
+      /* animation-play-state: paused, running; */
+      
+      /* animation: name duration timing-function delay iteration-count direction fill-mode play-state; 
+         기본값      none    0          ease         0         1           normal    none     running 
+      */
+    animation: myanimation2 2s linear 2s;
     }
 
     /* animation-fill-mode: 애니메이션 미실행 시(대기 또는 종료) 요소의 스타일을 지정한다.
