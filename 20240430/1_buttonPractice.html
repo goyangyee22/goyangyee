@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>버튼 연습</title>
+    <title>버튼연습</title>
   </head>
   <style>
     * {
@@ -19,8 +19,6 @@
       height: 100%;
     }
     #wrapper {
-      width: 100%;
-      height: 100%;
       padding: 1rem;
     }
     a {
@@ -28,97 +26,115 @@
       font-size: 22px;
       padding: 20px 60px;
       color: white;
-      text-decoration: none;
       border-radius: 6px;
+      text-decoration: none;
     }
-    .fill {
+
+    .fillUpBtn {
       border: 2px solid #4dbde5;
       color: #4dbde5;
       position: relative;
       transition: 0.3s;
-      overflow:hidden;
+      overflow: hidden;
     }
-    .fill::after {
-      content: '';
-      width: 100%;
-      height: 100%;
+
+    .fillUpBtn::before {
+      content: "";
       display: inline-block;
+      width: 100%;
+      height: 200%;
       position: absolute;
-      top:100%;
-      left:0;
-      background:#4dbde5;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      background-color: #4dbde5;
       transform: scaleY(0);
       transition: 0.3s;
-      z-index:-1;
     }
-    .fill:hover{
-        color:white;
+
+    .fillUpBtn:hover {
+      color: white;
     }
-    .fill:hover::after{
-        transform:scaleY(3);
+
+    .fillUpBtn:hover::before {
+      transform: scaleY(1);
     }
-    .pulse {
+
+    .pulseBtn {
       border: 2px solid #4dbde5;
       color: white;
-      background-color: transparent;
-      position: relative;
+      background-color: #4dbde5;
       transition: 0.3s;
+      /* box-shadow: 0 0 0 5px gray; */
     }
-    .pulse::after{
-        content:'';
-        width:100%;
-        height:100%;
-        display:inline-block;
-        background: #4dbde5;
-        color:white;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition:all .3s ease;
-        z-index: -1;
+
+    .pulseBtn:hover {
+      animation: pulse 0.5s;
     }
-    .pulse:hover{
-        color:white;
-        background: #4dbde5;
+
+    @keyframes pulse {
+      from {
+        box-shadow: 0 0 0 0 #4dbde5;
+      }
+      to {
+        box-shadow: 0 0 0 18px transparent;
+      }
     }
-    .pulse:hover::after{
-        transform:scale(1.3);
-        opacity: 0.5;
-        border-radius: 6px;
-        /* z-index: -2; */
+
+    .test {
+      box-shadow: 0 0 0 0 gray;
+      border: none;
+      background-image: linear-gradient(90deg, #4dbde5, white);
     }
-    .line{
-        color:#4dbde5;
-        position:relative;
-        transition:0.3s;
+
+    .lineBtn {
+      color: #4dbde5;
+      transition: 0.3s;
+      position: relative;
     }
-    .line::after{
-        content:'';
-        width:100%;
-        height:100%;
-        display:inline-block;
-        position: absolute;
+    .lineBtn::before,
+    .lineBtn::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #4dbde5;
+      opacity: 0;
+      transform: scaleX(0);
+      transition: 0.4s ease-in-out;
     }
-    .line:hover{
-        border-top: 2px solid #4dbde5;
-        border-bottom: 2px solid #4dbde5;
+    .lineBtn::before {
+      top: 0;
     }
-    .line:hover::after{
+    .lineBtn::after {
+      bottom: 0;
+    }
+    .lineBtn:hover {
+      letter-spacing: 5px;
+      color: #4dbde5;
+      background: transparent;
+    }
+    .lineBtn:hover::before,
+    .lineBtn:hover::after {
+      opacity: 1;
+      transform: scaleX(1.2);
     }
   </style>
   <body>
     <div id="wrapper">
       <div class="content">
-        <h2>Fill Up button</h2>
-        <a href="#" class="fill">Fill Up</a>
+        <h2>Fill Up Button</h2>
+        <a href="#" class="fillUpBtn">Fill Up</a>
       </div>
       <div class="content">
-        <h2>Pulse button</h2>
-        <a href="#" class="pulse">Pulse</a>
+        <h2>Pulse Button</h2>
+        <a href="#" class="pulseBtn">Pulse</a>
+        <a href="#" class="pulseBtn test">Pulse</a>
       </div>
       <div class="content">
-        <h2>Line button</h2>
-        <a href="#" class="line">Line</a>
+        <h2>Line Button</h2>
+        <a href="#" class="lineBtn">Line</a>
       </div>
     </div>
   </body>
