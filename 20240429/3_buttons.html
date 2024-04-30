@@ -17,8 +17,6 @@
     #wrapper {
       width: 100%;
       height: 100%;
-    }
-    #wrapper {
       padding: 1rem;
     }
     a {
@@ -105,37 +103,54 @@
       }
     }
     .gradient {
-      display:inline-block;
-      background-color: #e0e5ec;
-      text-decoration: none;
+      /* background-color: #e0e5ec; */
+      background-color: transparent;
       position: relative;
-<<<<<<< HEAD
-      /* background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%); */
-=======
-      background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
-      overflow:hidden;
-      z-index:1;
->>>>>>> 333a6e8e83b47f20c0b9fe423ac48401cd244f69
+      overflow: hidden;
+      box-shadow:2px 2px 2px 0px rgba(255, 255, 255, .5) inset,
+      7px 7px 20px 0px rgba(0, 0, 0, .1),
+      4px 4px 5px 0px rgba(0, 0, 0, .1);
     }
     .gradient::after {
-      content: "";
-      display: block;
+      content: '';
+      /* 가상요소는 content 필수 */
       position: absolute;
+      z-index: -1;
       border-radius: 6px;
       width: 100%;
       height: 100%;
       top: 0;
-      left: 0%;
-      animation: gradient 0.5s infinite;
+      left: 0;
+      transition: all .3s ease;
       background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
-      transition:left 0.5s;
-      transform-origin:top left;
-      transform:rotate(45deg);
     }
-
-    @keyframes gradient {
-      0%{transform:rotate(0deg);}
-      100%{transform:rotate(360deg);}
+    .gradient:hover::after{
+      transform:scale(2) rotate(180deg);
+    }
+    .openBtn{
+      border: 2px solid #4dbde5;
+      color: #4dbde5;
+      position:relative;
+      transition: 0.3s;
+    }
+    .openBtn::before{
+      content:'';
+      width:100%;
+      height:100%;
+      display:inline-block;
+      position:absolute;
+      top:0;
+      left:0;
+      background:#4dbde5;
+      transform: scaleX(0);
+      transition: 0.3s;
+      z-index:-1;
+    }
+    .openBtn:hover{
+      color:white;
+    }
+    .openBtn:hover::before{
+      transform: scaleX(1);
     }
   </style>
   <body>
@@ -159,6 +174,10 @@
       <div class="content">
         <h2>gradient button</h2>
         <a href="#" class="gradient purpleBlue">Gradient</a>
+      </div>
+      <div class="content">
+        <h2>open button</h2>
+        <a href="#" class="openBtn">Open</a>
       </div>
     </div>
   </body>
