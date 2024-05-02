@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>연산자</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // 수학 연산자
-        // +(덧셈), -(뺄셈), *(곱셈), /(나눗셈), 나머지(%)
-        let result = 0;
-        
-        let a = 5;
-        let b = 10;
-        
-        result = b%3;
-        alert(result);
+      // 수학 연산자
+      // +(덧셈), -(뺄셈), *(곱셈), /(나눗셈), 나머지(%)
+      let result = 0;
 
-        // 문자열 연산
-        let str1 = 'my ';
-        let str2 = 'string ';
-        let checked = true;
+      let a = 5;
+      let b = 10;
 
-        // 문자열과 다른 자료형을 + 연산 하면 다른 자료형은 문자열로 변환되어 연산된다.
-        result = str1+str2+checked;
+      result = b % 3;
 
-        result = '1'+2;
+      // 문자열 연산
+      let str1 = "my ";
+      let str2 = "string ";
+      let checked = true;
 
-        alert(result);
+      // 문자열과 다른 자료형을 + 연산 하면 다른 자료형은 문자열로 변환되어 연산된다.
+      result = str1 + str2 + checked;
+
+      result = "1" + a;
+      result = `1${a}`;
+
+      result = a - "2";
+      result = +"2" + a;
+
+      // 비교 연산자
+      result = a >= b;
+      result = a != b; // !: 부정연산자
+      result = !checked;
+
+      result = "2" < 1; // 문자열이 숫자형으로 형변환된다.
+      result = "01" == 1;
+
+      // truthy한 값들은 1로 변형되고, falsy한 값들은 0으로 변형된다.
+      result = true == 1; // true
+      result = false == 0; // true
+
+      result = "0" == 0; // true
+      result = "0" !== 0; // ===일 때는 값과 타입까지 동일해야 true가 된다.
+
+      // null, undefined 비교
+      // ==, !=: 동등 비교 연산
+      // ===, !==: 일치 비교 연산
+      // <, <=, >, >=: 기타 비교 연산
+      result = null > 0;
+      result = null == 0;
+
+      alert(result);
     </script>
-</body>
+  </body>
 </html>
