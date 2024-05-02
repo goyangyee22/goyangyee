@@ -49,8 +49,9 @@
       // ==, !=: 동등 비교 연산
       // ===, !==: 일치 비교 연산
       // <, <=, >, >=: 기타 비교 연산
-      result = null > 0;
-      result = null == 0;
+      result = null > 0; // false
+      result = null == 0; // false
+      result = null >= 0; // true
 
       alert(result);
     </script>
