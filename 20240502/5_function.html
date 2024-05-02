@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수</title>
+  </head>
+  <body>
+    <script>
+      // 함수 선언
+      function showMessage() {
+        // 함수의 내용
+        console.log("showMessage 함수 호출");
+      }
+      // showMessage();
+      function name(a, b) {
+        // a, b는 함수의 매개변수
+        // 매개변수는 함수 안에서만 사용할 수 있다.
+        // console.log(`${a}부장님, ${b}차장님`);
+        document.write(`<h1>${a} 부장님, ${b} 차장님 환영합니다!</h1>`);
+      }
+      name("홍길동", "임꺽정");
+      name("강원기", "김창섭");
+
+      function add(num1, num2) {
+        let sum = 0;
+        sum = num1 + num2;
+        return sum; // 반환값
+      }
+      add(5, 17);
+    </script>
+  </body>
+</html>
