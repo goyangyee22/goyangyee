@@ -49,11 +49,28 @@
       // ==, !=: 동등 비교 연산
       // ===, !==: 일치 비교 연산
       // <, <=, >, >=: 기타 비교 연산
-      result = null > 0; // false
-      result = null == 0; // false
-      result = null >= 0; // true
+      result = null > 0; // (1) false
+      result = null == 0; // (2) false
+      result = null >= 0; // (3) true
+    // 동등 연산자와 기타 비교 연산자의 동작 방식이 다르기 때문에
+    // (1)과 (3)에서 null이 숫자형으로 변환돼 0이 된다.
+    // 그런데 동등 연산자는 피연산자가 undefined이거나 null일 때 형변환을 하지 않는다.
+    // undefined와 null을 비교하는 경우에만 true를 반환하고 그 외의 경우에는 false를 반환한다.
 
-      alert(result);
+    // 증감 연산자
+    let counter = 2;
+    counter=counter+1;
+    console.log(counter);
+
+    result = counter;
+    
+    // console.log(1+true+false+2+'문자열');
+    console.log(a+b+3); 
+    console.log(str1+" number is "); 
+    console.log("my number is "+a); 
+
+    console.log('result:' + result);
+    console.log(`result:${result}`);
     </script>
   </body>
 </html>
