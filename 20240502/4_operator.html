@@ -59,17 +59,34 @@
 
     // 증감 연산자
     let counter = 2;
-    counter=counter+1;
-    console.log(counter);
-
+    // counter=counter+1;
+    // console.log(counter);
     result = counter;
     
-    // console.log(1+true+false+2+'문자열');
-    console.log(a+b+3); 
-    console.log(str1+" number is "); 
-    console.log("my number is "+a); 
+    // 후위형: 증가, 감소 전의 기존 값을 반환한다.
+    counter++;
+    counter--;
+    
+    // 전위형: 증가, 감소 후의 새로운 값을 반환한다.
+    ++counter;
+    --counter;
 
-    console.log('result:' + result);
+    let c = ++counter;
+    result = c;
+    
+    // console.log(1+true+false+2+'문자열');
+    // console.log(a+b+3); 
+    // console.log(str1+" number is "); 
+    // console.log("my number is "+a); 
+
+   /*
+    ""+1+0 // 10
+    ""-1+0 // -1
+    true+false // 1
+    6/"3" // 2
+    "2"*"3" // 6
+    */
+
     console.log(`result:${result}`);
     </script>
   </body>
