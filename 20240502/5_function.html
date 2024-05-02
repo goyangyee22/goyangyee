@@ -8,9 +8,9 @@
   <body>
     <script>
       // 함수 선언
-      function showMessage() {
+      function showMessage(message) {
         // 함수의 내용
-        console.log("showMessage 함수 호출");
+        console.log(message);
       }
       // showMessage();
       function name(a, b) {
@@ -22,12 +22,18 @@
       name("홍길동", "임꺽정");
       name("강원기", "김창섭");
 
-      function add(num1, num2) {
+      function add(num1 = 0, num2 = 0) {
         let sum = 0;
         sum = num1 + num2;
         return sum; // 반환값
       }
-      add(5, 17);
+      let result = add(20, 17);
+      let str = name('고길동', '또치');
+      showMessage(str);
+      document.write(result);
+
+      result = add();
+      showMessage(result);
     </script>
   </body>
 </html>
