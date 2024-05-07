@@ -31,9 +31,18 @@
       for (let i = 1; i <= 20; i++) {
         // 짝수만 골라내는 조건문
         if (i % 2 == 0) {
-          document.write(`${i} `);
+          document.write(`<h2>${i}<br></h2>`);
         }
       }
+      document.write(`<hr>`);
+      // 1 ~ 100까지 숫자 중 홀수들의 합을 구하세요.
+      let sum2 = 0; // 전체 합을 누적해서 저장할 변수
+      for (let i = 1; i <= 100; i++) {
+        if (i % 2 != 0) {
+          sum2 += i;
+        }
+      }
+      document.write(`<h2>1 ~ 100까지의 홀수들의 합 : ${sum2}</h2>`);
     </script>
   </body>
 </html>
