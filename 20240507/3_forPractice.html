@@ -12,22 +12,22 @@
     &nbsp;****<br />
     *****<br /> -->
     <script>
-      //   document.write(`<hr>`);
-      //   for (let i = 1; i <= 5; i++) {
-      //     for (let j = 1; j <= 5; j++) {
-      //       document.write(`*`);
-      //     }
-      //     document.write(`<br>`);
-      //   }
-      //   document.write(`<hr>`);
-      //   for (let i = 1; i <= 5; i++) {
-      //     for (let j = 1; j <= i; j++) {
-      //       document.write(`*`);
-      //     }
-      //     document.write(`<br>`);
-      //   }
-      //   document.write(`<hr>`);
-      //   for (let i = 1; i <= 5; i++) {
+        document.write(`<hr>`);
+        for (let i = 1; i <= 5; i++) {
+          for (let j = 1; j <= 5; j++) {
+            document.write(`*`);
+          }
+          document.write(`<br>`);
+        }
+        document.write(`<hr>`);
+        for (let i = 1; i <= 5; i++) {
+          for (let j = 1; j <= i; j++) {
+            document.write(`*`);
+          }
+          document.write(`<br>`);
+        }
+        document.write(`<hr>`);
+        for (let i = 1; i <= 5; i++) {
       // 공백 4 3 2 1 0
       // i       k
       // 1       4, 3, 2, 1
@@ -35,71 +35,74 @@
       // 3       4, 3
       // 4       4
       // 5       false
-      //     for (let k = 4; k >= i; k--) document.write(`&nbsp;`);
-      //     for (let j = 1; j <= i; j++) {
-      //       document.write(`*`);
-      //     }
-      //     document.write(`<br>`);
-      //   }
-      //   document.write(`<hr>`);
+          for (let k = 4; k >= i; k--) document.write(`&nbsp;`);
+          for (let j = 1; j <= i; j++) {
+            document.write(`*`);
+          }
+          document.write(`<br>`);
+        }
+        document.write(`<hr>`);
 
       // *****
       // ****
       // ***
       // **
       // *
-      //   for (let i = 1; i <= 5; i++) {
-      //     for (let j = 5; j >= i; j--) {
-      //       document.write(`*`);
-      //     }
-      //     document.write(`<br>`);
-      //   }
-      //   document.write(`<hr>`);
+        for (let i = 1; i <= 5; i++) {
+          for (let j = 5; j >= i; j--) {
+            document.write(`*`);
+          }
+          document.write(`<br>`);
+        }
+        document.write(`<hr>`);
 
       // *****
       //  ****
       //   ***
       //    **
       //     *
-      //   for (let i = 1; i <= 5; i++) {
-      //     for (let k = 1; k <= i - 1; k++) {
-      //       document.write(`&nbsp;`);
-      //     }
-      //     for (let j = 5; j >= i; j--) {
-      //       document.write(`*`);
-      //     }
-      //     document.write(`<br>`);
-      //   }
-      //   document.write(`<hr>`);
+        for (let i = 1; i <= 5; i++) {
+          for (let k = 1; k <= i - 1; k++) {
+            document.write(`&nbsp;`);
+          }
+          for (let j = 5; j >= i; j--) {
+            document.write(`*`);
+          }
+          document.write(`<br>`);
+        }
+        document.write(`<hr>`);
 
       // 1부터 사용자가 입력한 숫자까지의 합을 더해서 화면에 출력하세요.
       // 1. 사용자에게 값을 입력받는다.
-      //   let range = +prompt("숫자를 입력하세요");
-      //   let sum = 0; // NaN sum = sum + i;
+        let range = +prompt("숫자를 입력하세요");
+        let sum = 0; // NaN sum = sum + i;
       // 2. 1부터 사용자가 입력한 숫자까지의 합을 계산한다.
-      //   let i = 0;
-      //   while (i <= range) {
-      //     sum += i;
-      //     i++;
-      //   }
+        let i = 0;
+        while (i <= range) {
+          sum += i;
+          i++;
+        }
       // 3. 계산된 합을 화면에 출력한다.
-      //   document.write(`사용자가 입력한 숫자 : ${range}, 총 합 : ${sum}`);
-      //   document.write(`<hr>`);
+        document.write(`사용자가 입력한 숫자 : ${range}, 총 합 : ${sum}`);
+        document.write(`<hr>`);
       //       *
       //      ***
       //     *****
       //    *******
       //   *********
       for (let i = 1; i <= 5; i++) {
-        for (let j = 5; j <= i; j--) {
-          document.write(`&nbsp;`);
-          for (let k = 9; k <= i; k--) {
-            document.write(`*`);
-            k--;
-          }
+        for (let j = 4; j >= i-1; j--){
+            document.write('&nbsp;');
         }
-        document.write(``);
+        for (let k = 1; k <= i; k++){
+            document.write(`*`);
+            if(k>1){
+                document.write(`*`);
+            }
+        }
+        document.write(`<br>`);
       }
+      document.write(`<hr>`);
     </script>
   </body>
 </html>
