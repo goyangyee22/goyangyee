@@ -6,7 +6,13 @@
     <title>for practice</title>
 </head>
 <body>
+    &nbsp;&nbsp;&nbsp;&nbsp;*<br>
+    &nbsp;&nbsp;&nbsp;**<br>
+    &nbsp;&nbsp;***<br>
+    &nbsp;****<br>
+    *****<br>
     <script>
+        document.write(`<hr>`);
     for (let i = 1; i <= 5; i++){
         for (let j = 1; j <= 5; j++){
             document.write(`*`);
@@ -22,7 +28,45 @@
     }
     document.write(`<hr>`);
     for (let i = 1; i <= 5; i++){
+        // 공백 4 3 2 1 0
+        // i       k
+        // 1       4, 3, 2, 1
+        // 2       4, 3, 2
+        // 3       4, 3
+        // 4       4
+        // 5       false 
+        for (let k = 4; k >= i;k--)
+        document.write(`&nbsp;`);
         for (let j = 1; j <= i; j++){
+            document.write(`*`);
+        }
+        document.write(`<br>`);
+    }
+    document.write(`<hr>`);
+
+    // *****
+    // ****
+    // ***
+    // **
+    // *
+    for (let i = 1; i <= 5; i++){
+        for (let j = 5; j >= i; j--){
+            document.write(`*`);
+        }
+        document.write(`<br>`);
+    }
+    document.write(`<hr>`);
+
+    // *****
+    //  ****
+    //   ***
+    //    **
+    //     *
+    for (let i = 1; i <= 5; i++){
+        for (let k = 1; k <= i-1; k++){
+            document.write(`&nbsp`);
+        }
+        for (let j = 5; j >= i; j--){
             document.write(`*`);
         }
         document.write(`<br>`);
