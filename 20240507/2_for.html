@@ -43,6 +43,7 @@
         }
       }
       document.write(`<h2>1 ~ 100까지의 홀수들의 합 : ${sum2}</h2>`);
+      document.write(`<hr>`);
 
       // 중첩반복문(nested Loop)
       let i = 0;
@@ -54,9 +55,13 @@
         }
       }
 
-      for (i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {}
+      let sum3 = 0;
+      for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+          sum3 = i * j;
+        }
       }
+      document.write(`<h2>${i}*${j}=${sum3}</h2>`);
     </script>
   </body>
 </html>
