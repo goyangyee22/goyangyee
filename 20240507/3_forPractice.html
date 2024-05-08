@@ -74,13 +74,16 @@
 
       // 1부터 사용자가 입력한 숫자까지의 합을 더해서 화면에 출력하세요.
       // 1. 사용자에게 값을 입력받는다.
+      let range = +prompt("숫자를 입력하세요");
+      let sum = 0; // NaN sum = sum + i;
       // 2. 1부터 사용자가 입력한 숫자까지의 합을 계산한다.
-      // 3. 계산된 합을 화면에 출력한다.
-      let num = prompt('숫자를 입력하세요', '');
-      for (let i = 0; i <= num; i++) {
-        num += i;
+      let i = 0;
+      while (i <= range) {
+        sum += i;
+        i++;
       }
-      document.write(`합은 ${num}입니다.`)
+      // 3. 계산된 합을 화면에 출력한다.
+      document.write(`사용자가 입력한 숫자 : ${range}, 총 합 : ${sum}`);
     </script>
   </body>
 </html>
