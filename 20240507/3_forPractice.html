@@ -91,18 +91,31 @@
       //    *******
       //   *********
       for (let i = 1; i <= 5; i++) {
-        for (let j = 4; j >= i-1; j--){
+        for (let j = 4; j >= i; j--){
             document.write('&nbsp;');
         }
-        for (let k = 1; k <= i; k++){
+        for (let k = 1; k <= 2*i-1; k++){
             document.write(`*`);
-            if(k>1){
-                document.write(`*`);
-            }
         }
         document.write(`<br>`);
       }
       document.write(`<hr>`);
+
+    //  ********* 
+    //   *******
+    //    *****
+    //     ***
+    //      *
+    for(let i = 1; i <= 5; i++){
+        for(let j = 0; j <= i-1; j++){
+            document.write('&nbsp;');
+        }
+        for(let k = 9; k >= 2*i-1; k--){
+            document.write(`*`);
+        }
+        document.write(`<br>`);
+    }
+    document.write(`<hr>`);
     </script>
   </body>
 </html>
