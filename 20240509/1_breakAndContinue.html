@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>break & continue</title>
+</head>
+<body>
+    <script>
+        document.write(`<h1>&lt;break&gt;</h1>`);
+        for (let i = 0; i < 10; i++){
+            if (i == 3){
+                break;
+            }
+            document.write(`<h3>${i}</h3>`);
+        }
+        document.write(`<hr>`);
+        let j = 0;
+        while(true){
+            document.write(`<h3>${j}</h3>`);
+            j++;
+            if(j == 5){
+                break;
+            }
+        }
+        document.write(`<hr>`);
+        document.write(`<h1>&lt;continue&gt;</h1>`);
+        for (let i = 0; i < 10; i++){
+            if (i == 3){
+                continue;
+            }
+            document.write(`<h3>${i}</h3>`);
+        }
+        document.write(`<hr>`);
+        j = 0;
+        while(true){
+            document.write(`<h3>${j}</h3>`);
+            j++;
+            if(j == 5){
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
