@@ -23,18 +23,37 @@
         // 둘리네 반 친구들의 키가 담긴 정수 배열과 둘리의 키가 파라미터로 주어질 때,
         // 둘리보다 키가 큰 사람의 수를 return 해주는 함수를 작성해보세요.
         function solution(array, height) {
-            let answer = 0;
-            const stringArr = array.toString();
+           let answer = 0;
+           let arr = []
+           for(let i = 0; i < array.length; i++){
+            if(array[i] > height){
+                // answer += 1;
+                arr.push(array[i]);
+            }
+           }
+        // console.log(answer);
+        // return answer;
+        return arr;
+        }
+        // let result = solution([149, 180, 192, 178, 160], 165);
+        // console.log(result);
+        console.log(solution([149, 180, 192, 178, 160], 165));
+
+        // 2. [1, 2, 3, ..., 10]인 배열을 선언 하고 해당 배열에서 짝수만 골라
+        // 새로운 배열로 만들어 콘솔창에 출력하세요.(push 사용)
+        // 2.1 배열 선언(1~10까지 들어있는)
+        // 2.2 선언된 배열 까대기하면서 짝수만 골라 새로운 배열을 생성
+        // 2.3 새로 생성된 배열 콘솔창에 출력
+        function solution2(array){
+            let arr = []
             for(let i = 0; i < array.length; i++){
-                if (height < stringArr[i]){
-                    answer++;
+                if(array[i]%2==0){
+                    arr.push(array[i]);
                 }
             }
-            return answer;
+            return arr;
         }
-        let result = answer();
-        solution([149, 180, 192, 178, 160], 165);
-        document.write(`값 : ${answer}`);
+        console.log(solution2([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
     </script>
 </body>
 </html>
