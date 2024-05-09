@@ -127,22 +127,23 @@
       //      ***
       //       *
       for (let i = 1; i <= 5; i++) {
-        for (let j = 4; j > i; j--) {
+        for (let j = 4; j >= i; j--) {
           document.write("&nbsp;");
         }
-        for (let k = 1; k <= 2 * i-1; k++) {
-          document.write(`*`);
-        }
-        document.write(`<br>`);
-        for (let j = 1; j < i; j++) {
-          document.write("&nbsp;");
-        }
-        for (let k = 9; k >= 2 * i-1; k--) {
+        for (let k = 1; k <= 2*i-1; k++) {
           document.write(`*`);
         }
         document.write(`<br>`);
       }
-      document.write(`<hr>`);
+      for (let a = 1; a <= 4; a++){
+        for (let b = 1; b <= a; b++){
+          document.write("&nbsp;");
+        }
+        for (let c = 7; c >= 2*a-1; c--){
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
     </script>
   </body>
 </html>
