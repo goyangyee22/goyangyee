@@ -58,7 +58,7 @@
       // 3. 정수 배열 numbers가 매개변수로 주어질 때
       // numbers의 각 원소에 두배한 원소를
       // 가진 배열을 return 하는 함수를 작성하세요.
-    //   function doubleMultiply(numbers) {
+    //   function doubleMultiply(numbers){
     //     const answer = [];
     //     for (let i = 0; i < numbers.length; i++) {
     //       answer.push(numbers[i] * 2);
@@ -70,70 +70,74 @@
 
       // 1. 아래 배열의 마지막에 "banana"를 추가 후 반환하세요.
       const arr1 = ["apply", "pie", "fig", "melon", "pear", "peach"];
-      function solution1(inputValue){
-        arr1.push["banana"];
+      function solution1(){
+        arr1.push("banana");
         return arr1;
       }
-      console.log(solution1(arr1));
+      let result1 = solution1();
+      console.log(result1);
       
       // ----------------------------------------------------------
 
       // 2. 아래 배열의 처음에 "banana"를 추가 후 반환하세요.
-      // const arr2 = ["apply", "pie", "fig", "melon", "pear", "peach"];
-
-      // function soution2(inputValue){
-      //     // 소스코드 작성
-      // }
-
-      // // 함수 실행 코드
-      // console.log(solution(arr2));
+      const arr2 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+      function solution2(inputValue){
+        arr2.unshift("banana");
+        return arr2;
+      }
+      let result2 = solution2();
+      console.log(result2);
 
       // ----------------------------------------------------------
 
       // 3. 입력 받은 배열의 길이를 반환하는 함수를 작성하여 배열의 길이를 출력하세요.
-      // const arr3 = ["apply", "pie", "fig", "melon", "pear", "peach"];
-
-      // function soution3(inputValue){
-      //     // 소스코드 작성
-      // }
-
-      // // 함수 실행 코드
-      // console.log(solution(arr3));
+      const arr3 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+      function solution3(inputValue){
+        return inputValue.length;
+      }
+      let result3 = solution3(arr3);
+      console.log(result3);
 
       // ----------------------------------------------------------
 
       // 4. 입력 받은 배열의 마지막 값을 제거(삭제)후 반환하세요.
-      // const arr4 = ["apply", "pie", "fig", "melon", "pear", "peach"];
-      // console.log(arr4);
-      // document.write(`${arr4.pop()}`);
+      const arr4 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+      function solution4(){
+      arr4.pop();
+      return arr4;
+      }
+      let result4 = arr4;
+      console.log(result4);
 
       // ----------------------------------------------------------
 
       // 5. 입력 받은 배열의 첫번째 값을 제거(삭제) 후 반환하세요.
-      // const arr5 = ["apply", "pie", "fig", "melon", "pear", "peach"];
-
-      // function soution5(inputValue){
-      //     // 소스코드 작성
-      // }
-
-      // // 함수 실행 코드
-      // console.log(solution(arr5));
+      const arr5 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+      function solution5(){
+        arr5.shift();
+        return arr5;
+      }
+      let result5 = solution5();
+      console.log(result5);
 
       // ----------------------------------------------------------
 
-      // 6. 입력 받은 배열을 참조하여 ["pie", "fig", "melon"] 배열을 반환하세요. splice
-      // const arr6 = ["apply", "pie", "fig", "melon", "pear", "peach"];
-      // console.log(arr6);
+      // 6. 입력 받은 배열을 참조하여 ["pie", "fig", "melon"] 배열을 반환하세요.
+      const arr6 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+      function solution6(){
+        const slice = arr6.slice(1, 4);
+        return slice;
+      }
+      let result6 = solution6(arr6);
+      console.log(result6);
 
-      // 7. 입력받은 2개의 배열을 합쳐서 반환하세요. concat
-      // const arr7 = ["apple", "pie", "fig"];
-      // const arr8 = ["melon", "pear", "peach"];
-      // function solution7(inputValue1, inputValue2) {
-            // 소스코드 작성
-        // }
-
-        // 함수 실행 코드
-        // console.log(solution7(arr7, arr8));
+      // 7. 입력받은 2개의 배열을 합쳐서 반환하세요.
+      const arr7 = ["apple", "pie", "fig"];
+      const arr8 = ["melon", "pear", "peach"];
+      function solution7(a, b) {
+        return a.concat(b);
+        }
+        console.log(solution7(arr7, arr8));
 
     </script>
   </body>
