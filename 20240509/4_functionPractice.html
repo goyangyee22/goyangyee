@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 연습</title>
+</head>
+<body>
+    <button onclick="inputPrompt()">Click</button>
+    <script>
+        function sum(a, b){
+            console.log(`a : ${a}, b : ${b}`);
+            return a + b;
+        }
+        function inputPrompt(){
+            const x = +prompt("숫자를 입력하세요.");
+            const y = +prompt("숫자를 입력하세요.");
+            let result = sum(x, y);
+            console.log(`sum 함수의 return 값 : ${result}`);
+        }
+
+        // 1. 둘리가 학교에서 키 순으로 줄을 설 때 몇번째로 서야 하는지 궁금해졌다.
+        // 둘리네 반 친구들의 키가 담긴 정수 배열과 둘리의 키가 파라미터로 주어질 때,
+        // 둘리보다 키가 큰 사람의 수를 return 해주는 함수를 작성해보세요.
+        function solution(array, height) {
+            let answer = 0;
+            const stringArr = array.toString();
+            for(let i = 0; i < array.length; i++){
+                if (height < stringArr[i]){
+                    answer++;
+                }
+            }
+            return answer;
+        }
+        let result = answer();
+        solution([149, 180, 192, 178, 160], 165);
+        document.write(`값 : ${answer}`);
+    </script>
+</body>
+</html>
