@@ -24,9 +24,9 @@
     function reset() {
       count = 0;
       randNum = getRandom();
+      input.value = "";
       pTag.innerHTML = "";
       resStr = "";
-      input.value = "";
     }
 
     // 1. 랜덤숫자를 추출한다(1~100)
@@ -40,7 +40,7 @@
     function clickFn() {
       if (count == MAX_COUNT) {
         reset();
-        return false; // return만 쓸 수도 있으나 return 옆에 값을 명시하지 않으면 undefined가 생길 수 있음
+        return false;
       }
       let inputNum = input.value;
       if (randNum == inputNum) {
@@ -49,7 +49,7 @@
         reset();
       } else {
         count++;
-        if (randNum >= inputNum) {
+        if (randNum > inputNum) {
           resStr = `입력하신 숫자보다 큽니다. 입력하신 숫자 : ${inputNum}<br>`;
         } else {
           resStr = `입력하신 숫자보다 작습니다. 입력하신 숫자 : ${inputNum}<br>`;
