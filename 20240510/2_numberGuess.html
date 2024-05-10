@@ -34,12 +34,15 @@
       let inputNum = input.value;
       if (randNum == inputNum) {
         resStr = `정답입니다!!!`;
-      } else if (randNum > inputNum) {
+      }
+      else{
+        count++;
+      if (randNum > inputNum) {
         resStr = `입력하신 숫자보다 큽니다. 입력하신 숫자 : ${inputNum}`;
       } else {
         resStr = `입력하신 숫자보다 작습니다. 입력하신 숫자 : ${inputNum}`;
       }
-      pTag.innerHTML = resStr;
+      // pTag.innerHTML = resStr;
     }
     // 2.2 접근한 input 요소의 값을 가져온다.
 
