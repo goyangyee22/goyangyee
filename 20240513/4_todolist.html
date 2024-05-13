@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<style>
+    div{
+        width: 300px;
+        height: 600px;
+        border: 2px solid #c5c5c5;
+        position: absolute;
+        left: 200px;
+        top: 100px;
+        padding: 0 10px;
+        border-radius: 10px;
+    }
+    p{
+        padding: 10px 5px;
+        border-radius: 10px;
+        border: 1px solid white;
+    }
+</style>
+<body>
+    <input id="input" placeholder="Add to do List">
+    <button onclick="addTodoList()">CLICK</button>
+    <div>
+        <p></p>
+    </div>
+</body>
+<script>
+    const arr = [];
+    function addTodoList(){
+        // 1. input창에 입력된 값을 가져온다.
+        const input = document.querySelector("#input");
+        // 2. p태그 생성 후 가져온 값을 넣어준다.
+        const inputValue = input.value;
+        arr.push(inputValue);
+        // 3. p태그의 배경색상을 변경한다.
+        const colorArr = [];
+        for(let i = 0; i < 3; i++){
+            const randNum = parseInt(Math.random()*256);
+            colorArr.push(randNum);
+        }
+        const divEl = document.querySelector("#text");
+        divEl.style.backgroundColor = `rgb(${colorArr.toString()})`;
+        // 4. div태그에 p태그를 넣어준다.
+        const pTag = document.createElement("p");
+        pTag.innerHTML = colorArr.push();
+        document.querySelector("p").append(pTag); 
+        // 5. input창을 비워준다.
+        input.value = '';
+        input.focus();
+    }
+</script>
+</html>
