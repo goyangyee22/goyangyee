@@ -45,7 +45,7 @@
       // document.querySelector("h1").innerHTML += `<p>${fruits.join(", ")}</p>`;
       const pTag = document.createElement("p");
       pTag.innerHTML = fruits.join(", ");
-      document.querySelector("h1").append = pTag;
+      document.querySelector("h1").append(pTag);
       // 4. 입력된 input 값을 지워준다.
       input.value = "";
       // 5. input창에 커서를 이동시킨다.
