@@ -21,47 +21,47 @@
     const MAX_COUNT = 5;
     let count = 0;
 
-    function reset(){
+    function reset() {
       count = 0;
       randNum = getRandom();
       pTag.innerHTML = "";
       resStr = "";
       input.value = "";
     }
-
     // 1. 랜덤숫자를 추출한다(1~100)
-    function getRandom(){
-      return parseInt(Math.random()*100)+1;
+    function getRandom() {
+      return parseInt(Math.random() * 100) + 1;
     }
     randNum = getRandom();
+
     // 2. 사용자가 input창에 입력한 숫자를 가져온다.
-    function clickFn(){
-      if (count == MAX_COUNT){
+
+    // 2.1 input 요소에 접근한다.
+    function clickFn() {
+      if (count == MAX_COUNT) {
         reset();
         return false;
       }
       let inputNum = input.value;
-      if (randNum == inputNum){
+      if (randNum == inputNum) {
         resStr = `정답입니다.`;
         alert(resStr);
         reset();
-      } else{
+      } else {
         count++;
-        if (randNum > inputNum){
+        if (randNum > inputNum) {
           resStr = `입력하신 숫자보다 큽니다. 입력하신 숫자 : ${inputNum}<br>`;
-        }
-        else{
+        } else {
           resStr = `입력하신 숫자보다 작습니다. 입력하신 숫자 : ${inputNum}<br>`;
         }
         pTag.innerHTML += resStr;
       }
-      if (MAX_COUNT == count){
+      if (MAX_COUNT == count) {
         resStr = `게임에서 패배하셨습니다. 랜덤 숫자는 ${randNum}이었습니다.`;
         pTag.innerHTML = resStr;
       }
     }
-    // 2.1 input 요소에 접근한다.
-   
+
     // 2.2 접근한 input 요소의 값을 가져온다.
 
     // 3. 랜덤숫자와 가져온 값이 일치하는지 비교한다.
