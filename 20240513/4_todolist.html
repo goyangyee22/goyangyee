@@ -1,57 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List</title>
-</head>
-<style>
-    div{
-        width: 300px;
-        height: 600px;
-        border: 2px solid #c5c5c5;
-        position: absolute;
-        left: 200px;
-        top: 100px;
-        padding: 0 10px;
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 600px;
+      border: 2px solid #c5c5c5;
+      position: absolute;
+      left: 200px;
+      top: 100px;
+      padding: 0 10px;
+      border-radius: 10px;
+      overflow: scroll;
+    }
+    /* 
+    ::-webkit-scrollbar : 스크롤바 전체
+    ::-webkit-scrollbar-thumb : 드래그 가능한 스크롤 핸들 막대
+    ::-webkit-scrollbar-track : 스크롤바 트랙(스크롤이 움직이는 영역)
+    ::-webkit-scrollbar-track-piece : 스크롤 핸들 막대 부분을 제외한 남은 빈 공간
+    ::-webkit-scrollbar-button : 스크롤바의 방향 버튼
+    ::-webkit-scrollbar-corner : 수평/수직 스크롤 막대가 만나는 스크롤 막대의 하단 모서리
+    ::-webkit-scrollbar-resizer : 스크롤바 코너에 나타나는 크기 조정 핸들 
+*/
+    div::-webkit-scrollbar {
+      /*
+      width : 세로축 스크롤바 폭 너비 
+      height : 가로축 스크롤바 폭 너비
+       */
+      width: 20px;
+      height: 20px;
+    }
+    div::-webkit-scrollbar-thumb{
+        background-color: #e89a3e;
+        border: 2px solid #9b6a2f;
         border-radius: 10px;
     }
-    p{
-        padding: 10px 5px;
-        border-radius: 10px;
-        border: 1px solid white;
+    div::-webkit-scrollbar-thumb:hover{
+        background-color: #a0a0a5;
     }
-</style>
-<body>
-    <input id="input" placeholder="Add to do List">
+    div::-webkit-scrollbar-track{
+        background-color: #9b6a2f;
+        border-radius: 10px;
+    }
+    p {
+      padding: 10px 5px;
+      border-radius: 10px;
+      background-color: yellow;
+    }
+  </style>
+  <body>
+    <input id="input" placeholder="Add to do List" />
     <button onclick="addTodoList()">CLICK</button>
     <div>
-        <p></p>
+      <!-- <p></p> -->
     </div>
-</body>
-<script>
-    const arr = [];
-    function addTodoList(){
-        // 1. input창에 입력된 값을 가져온다.
-        const input = document.querySelector("#input");
-        // 2. p태그 생성 후 가져온 값을 넣어준다.
-        const inputValue = input.value;
-        arr.push(inputValue);
-        // 3. p태그의 배경색상을 변경한다.
+  </body>
+  <script>
+    const input = document.querySelector("#input");
+    const div = document.querySelector("div");
+    function addTodoList() {
+      // 1. input창에 입력된 값을 가져온다.
+      const inputValue = input.value; // 사용자가 입력한 값
+      // 2. p태그 생성 후 가져온 값을 넣어준다.
+      const el = document.createElement("p");
+      el.innerHTML = inputValue; // <p>inputValue</p>
+      // 3. p태그의 배경색상을 변경한다.
+      chgBkColor(el);
+      //   4. div 태그에 p태그를 넣어준다.
+      div.append(el);
+    //   5. input창을 비워준다.
+      input.value = "";
+      // 1. 3개의 랜덤 rgb값 추출
+      function chgBkColor(tag) {
         const colorArr = [];
-        for(let i = 0; i < 3; i++){
-            const randNum = parseInt(Math.random()*256);
-            colorArr.push(randNum);
+        for (let i = 0; i < 3; i++) {
+          const randNum = parseInt(Math.random() * 256);
+          colorArr.push(randNum);
         }
-        const divEl = document.querySelector("#text");
-        divEl.style.backgroundColor = `rgb(${colorArr.toString()})`;
-        // 4. div태그에 p태그를 넣어준다.
-        const pTag = document.createElement("p");
-        pTag.innerHTML = colorArr.push();
-        document.querySelector("p").append(pTag); 
-        // 5. input창을 비워준다.
-        input.value = '';
-        input.focus();
+        // 2. 태그에 배경색상 적용
+        tag.style.backgroundColor = `rgb(${colorArr.toString()})`;
+      }
+      //   3. 배경색상에 따른 폰트 색상 변경
+      // luma : #000000(검정)색일 때 luma는 0, #FFFFFF(흰색)일 때 luma는 254.99이다.
+      // 0에 가까울수록 어둡고 255에 가까울수록 배경색은 밝은 색이다.
+      const luma =
+        0.2126 * colorArr[0] + 0.7152 * colorArr[1] + 0.0722 * colorArr[2];
+      // luma 155
+      // if(luma<=155){
+      //     tag.style.color = 'white';
+      // } else{
+      //     tag.style.color = 'black';
+      // }
+      // 삼항연산자
+      tag.style.color = luma <= 155 ? 'white' : 'black';
     }
-</script>
+  </script>
 </html>
