@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Date 객체</title>
-</head>
-<body>
-</body>
-<script>
+  </head>
+  <body></body>
+  <script>
     // Date 객체 생성
     const now = new Date();
     document.write(`<h1>${now}</h1>`);
@@ -15,5 +14,15 @@
     // getFullYear() - 년도를 반환하는 함수
     const year = now.getFullYear();
     document.write(`<h1>${year}</h1>`);
-</script>
+
+    // getMonth() - 달을 반환하는 함수
+    let month = now.getMonth();
+    month += 1;
+    // if(month < 10){
+    //     month = "0" + month;
+    // }
+    month = month < 10 ? "0" + month : month;
+    // 조건식 ? 참일때의 값 : 거짓일때의 값;
+    document.write(`<h1>${month}</h1>`);
+  </script>
 </html>
