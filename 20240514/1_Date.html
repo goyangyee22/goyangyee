@@ -36,7 +36,7 @@
     // getDay() - 요일 숫자를 반환하는 함수
     // 일요일 == 0, 월요일 == 1, 화요일 == 2, ... 토요일 = 6;
     const day = now.getDay();
-    const dayArr = ['일', '월', '화', '수', '목', '금', '토'];
+    const dayArr = ["일", "월", "화", "수", "목", "금", "토"];
     document.write(`<h1>${dayArr[day]}</h1>`);
     document.write(`<h1>${year}년${month}월${date}일 (${dayArr[day]})</h1>`);
 
@@ -57,7 +57,9 @@
 
     const newDate = new Date();
     const setFullYear = newDate.setFullYear(2021);
-    document.write(`<h1>newDate : ${newDate}, setFullYear : ${setFullYear}</h1>`);
+    document.write(
+      `<h1>newDate : ${newDate}, setFullYear : ${setFullYear}</h1>`
+    );
 
     const setMonth = newDate.setMonth(11);
     document.write(`<h1>newDate : ${newDate}, setFullMonth : ${setMonth}</h1>`);
@@ -66,22 +68,34 @@
     document.write(`<h1>newDate : ${newDate}, setDate : ${setDate}</h1>`);
 
     // 년, 월, 일 더하기/빼기
-    const date1 = new Date('2021-05-01');
-    date1.getDate()-1;
+    const date1 = new Date("2021-05-01");
+    date1.setDate(date1.getDate() - 1);
     document.write(`<h1>${date1}</h1>`);
 
-    const date2 = new Date('2021-12-30');
-    document.write(`<h1>${date2}</h1>`);
+    const date2 = new Date("2021-12-30");
+    // date2 ==> 2024년 11월 15일
+    date2.setFullYear(date2.getFullYear() + 3);
+    date2.setMonth(date2.getMonth() - 1);
+    date2.setDate(date2.getDate() - 15);
+    document.write(`<h1>${date2}년</h1>`);
+
+    const diff = date2 - date1;
+    console.log(diff);
+    let diffDay = 24 * 60 * 60 * 1000;
+    // 111888000000 / 1000 ==> 초
+    // 111888000000 / 1000 / 60 ==> 분
+    // 111888000000 / 1000 / 60 / 60 ==> 시
+    // 111888000000 / 1000 / 60 / 60 / 24 ==> 일
 
     let today = new Date();
-    document.write(today.toDateString()+"<br>");
-    document.write(today.toISOString()+"<br>");
-    document.write(today.toJSON()+"<br>");
-    document.write(today.toLocaleDateString()+"<br>");
-    document.write(today.toLocaleTimeString()+"<br>");
-    document.write(today.toLocaleString()+"<br>");
-    document.write(today.toString()+"<br>");
-    document.write(today.toTimeString()+"<br>");
-    document.write(today.toUTCString()+"<br>");
+    document.write(today.toDateString() + "<br>");
+    document.write(today.toISOString() + "<br>");
+    document.write(today.toJSON() + "<br>");
+    document.write(today.toLocaleDateString() + "<br>");
+    document.write(today.toLocaleTimeString() + "<br>");
+    document.write(today.toLocaleString() + "<br>");
+    document.write(today.toString() + "<br>");
+    document.write(today.toTimeString() + "<br>");
+    document.write(today.toUTCString() + "<br>");
   </script>
 </html>
