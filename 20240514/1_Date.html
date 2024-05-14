@@ -24,5 +24,64 @@
     month = month < 10 ? "0" + month : month;
     // 조건식 ? 참일때의 값 : 거짓일때의 값;
     document.write(`<h1>${month}</h1>`);
+
+    // getDate() - 일을 반환하는 함수
+    let date = now.getDate();
+    date = date < 10 ? "0" + date : date;
+    document.write(`<h1>${date}</h1>`);
+
+    document.write(`<h1>${year}년${month}월${date}일</h1>`);
+    document.write(`<h1>${year}-${month}-${date}</h1>`);
+
+    // getDay() - 요일 숫자를 반환하는 함수
+    // 일요일 == 0, 월요일 == 1, 화요일 == 2, ... 토요일 = 6;
+    const day = now.getDay();
+    const dayArr = ['일', '월', '화', '수', '목', '금', '토'];
+    document.write(`<h1>${dayArr[day]}</h1>`);
+    document.write(`<h1>${year}년${month}월${date}일 (${dayArr[day]})</h1>`);
+
+    // getHours() - 시간을 반환하는 함수
+    // getMinutes() - 분을 반환하는 함수
+    // getSeconds() - 초를 반환하는 함수
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    document.write(`<h1>${hours}:${minutes}:${seconds}</h1>`);
+
+    // getTime() - 기준시간(1970년 1월 1일)으로부터의 경과시간을 반환한다.
+    const time = now.getTime();
+    document.write(`<h1>${time}</h1>`);
+
+    const newDate = new Date();
+    const setFullYear = newDate.setFullYear(2021);
+    document.write(`<h1>newDate : ${newDate}, setFullYear : ${setFullYear}</h1>`);
+
+    const setMonth = newDate.setMonth(11);
+    document.write(`<h1>newDate : ${newDate}, setFullMonth : ${setMonth}</h1>`);
+
+    const setDate = newDate.setDate(25);
+    document.write(`<h1>newDate : ${newDate}, setDate : ${setDate}</h1>`);
+
+    // 년, 월, 일 더하기/빼기
+    const date1 = new Date('2021-05-01');
+    date1.getDate()-1;
+    document.write(`<h1>${date1}</h1>`);
+
+    const date2 = new Date('2021-12-30');
+    document.write(`<h1>${date2}</h1>`);
+
+    let today = new Date();
+    document.write(today.toDateString()+"<br>");
+    document.write(today.toISOString()+"<br>");
+    document.write(today.toJSON()+"<br>");
+    document.write(today.toLocaleDateString()+"<br>");
+    document.write(today.toLocaleTimeString()+"<br>");
+    document.write(today.toLocaleString()+"<br>");
+    document.write(today.toString()+"<br>");
+    document.write(today.toTimeString()+"<br>");
+    document.write(today.toUTCString()+"<br>");
   </script>
 </html>
