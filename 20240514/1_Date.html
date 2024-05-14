@@ -99,6 +99,14 @@
 
     date1.setDate(date1.getDate() + 30);
     date1.toLocaleString(); // yyyy . mm. dd. 오전 hh:mm:ss
+    const options = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        weekday: "long"
+    };
+    date1.toLocaleString("ko-KR", {month: 'numeric'});
+    document.write(`<h1>${date1.toLocaleString('ko-KR', options)}</h1>`);
 
     let today = new Date();
     document.write(today.toDateString() + "<br>");
