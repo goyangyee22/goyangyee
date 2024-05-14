@@ -8,8 +8,8 @@
   <body></body>
   <script>
     // 1. 변수 두개를 선언하고 각각 초기값을 3, 4로 할당하세요.
-    let a = 3;
-    let b = 4;
+    const a = 3;
+    const b = 4;
 
     // 2. 위의 두 변수의 합, 차, 곱, 나누기한 값을 콘솔창에 출력해보세요.
     console.log(a + b);
@@ -40,33 +40,32 @@
     console.log(num2);
 
     // 8. 비어있는 배열을 선언하고 그 배열에 1부터 10까지 숫자를 추가해보세요. 선언 이후에 값을 넣는 방법 사용
-   function arr1(array){
-    const arr = [];
-    for(let i = 1; i <= 10; i++){
+    function arr1(array) {
+      const arr = [];
+      for (let i = 1; i <= 10; i++) {
         arr.push(array[i]);
+      }
     }
-   }
-   console.log(arr1);
+    console.log(arr1);
     // 9. 비어있는 배열을 선언하고 1 ~ 100까지의 숫자를 추가해보세요. 반복문 사용
-    
+
     // 10. 비어있는 배열을 선언하고 1 ~ 100까지의 숫자중 짝수만 추가해보세요. 반복문 사용
     const arr3 = [];
-    function arr33(){
-        for(let i = 1; i <= 100; i++){
-            if(i%2 ==1){
-                continue;
-            }
+    function arr33() {
+      for (let i = 1; i <= 100; i++) {
+        if (i % 2 == 1) {
+          continue;
         }
-        return arr3;
+      }
+      return arr3;
     }
     console.log(arr33);
     // 11. 함수를 생성하고 함수를 호출하면 '안녕하세요!'라는 alert 창이 출력되도록 작성해보세요.
-    function showAlert(param){
-        alert(param);
+    function showAlert(param) {
+      alert(param);
     }
     showAlert(`안녕하세요!`);
 
     // 12. 함수를 호출하면 body 태그에 p태그를 추가하고 font 색상과 background-color가 변경된 요소가 화면에 출력되는 함수를 작성하세요.
-
   </script>
 </html>
