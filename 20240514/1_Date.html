@@ -74,18 +74,31 @@
 
     const date2 = new Date("2021-12-30");
     // date2 ==> 2024년 11월 15일
-    date2.setFullYear(date2.getFullYear() + 3);
-    date2.setMonth(date2.getMonth() - 1);
-    date2.setDate(date2.getDate() - 15);
-    document.write(`<h1>${date2}년</h1>`);
+    // date2.setFullYear(date2.getFullYear() + 3);
+    // date2.setMonth(date2.getMonth() - 1);
+    // date2.setDate(date2.getDate() - 15);
+    // document.write(`<h1>${date2}년</h1>`);
 
     const diff = date2 - date1;
     console.log(diff);
     let diffDay = 24 * 60 * 60 * 1000;
+    let diffMonth = diffDay * 30;
+    let diffYear = diffMonth * 12;
+    document.write(`<h1>두개의 날짜 : ${date1}, ${date2}</h1>`);
+    document.write(`<h1>일수 차이 : ${parseInt(diff / diffDay)}일</h1>`);
+    document.write(`<h1>월수 차이 : ${parseInt(diff / diffMonth)}개월</h1>`);
+    document.write(`<h1>년수 차이 : ${parseInt(diff / diffYear)}년</h1>`);
     // 111888000000 / 1000 ==> 초
     // 111888000000 / 1000 / 60 ==> 분
     // 111888000000 / 1000 / 60 / 60 ==> 시
     // 111888000000 / 1000 / 60 / 60 / 24 ==> 일
+
+    document.write(`<h1>${date1.toLocaleString()}</h1>`);
+    document.write(`<h1>${date1.toLocaleDateString()}</h1>`);
+    document.write(`<h1>${date1.toLocaleTimeString()}</h1>`);
+
+    date1.setDate(date1.getDate() + 30);
+    date1.toLocaleString(); // yyyy . mm. dd. 오전 hh:mm:ss
 
     let today = new Date();
     document.write(today.toDateString() + "<br>");
