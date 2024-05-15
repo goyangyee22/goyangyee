@@ -75,5 +75,13 @@
     showAlert(`안녕하세요!`);
 
     // 12. 함수를 호출하면 body 태그에 p태그를 추가하고 font 색상과 background-color가 변경된 요소가 화면에 출력되는 함수를 작성하세요.
+    function bodyp(){
+      const bodybody = document.createElement("p");
+      bodybody.textContent = "안녕하세요.";
+      bodybody.style.color = "blue";
+      bodybody.style.backgroundColor = "yellow";
+     document.body.append(bodybody);
+    }
+    bodyp();
   </script>
 </html>
