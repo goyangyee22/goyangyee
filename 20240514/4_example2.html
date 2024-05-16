@@ -17,7 +17,7 @@
         padding: 20px;
         height: 100%;
     }
-    div{
+    body > div{
         display:flex;
         gap: 10px;
         height: 80px;
@@ -34,22 +34,22 @@
   </style>
   <body>
     <div id="birthCalc">
-      <input type="text" placeholder="출생년도를 입력하세요." />
+      <input type="text" pattern="[0-9]{4}" placeholder="출생년도를 입력하세요." required oninput="this.value = this.value.replace(/[^0-9]$/g, '')" />
       <button onclick="calc()">나이 계산</button>
       <div class="result"></div>
     </div>
     <hr />
     <div id="square">
-        <input type="text" id="squareWidth" placeholder="가로 너비를 입력하세요. "/>
-        <input type="text" id="squareHeight" placeholder="세로 높이를 입력하세요. "/>
-        <button onclick="squareCalc()">사각형 넓이 계산</button>
+        <input type="text" placeholder="가로 너비를 입력하세요. " required oninput="this.value = this.value.replace(/[^0-9]$/g, '')"/>
+        <input type="text" placeholder="세로 높이를 입력하세요. " required oninput="this.value = this.value.replace(/[^0-9]$/g, '')"/>
+        <button onclick="area()">사각형 넓이 계산</button>
         <div class="result"></div>
     </div>
     <hr />
     <div id="discount">
-        <input type="text" id="price" placeholder="할인 전 가격" />
-        <input type="text" id="rate" placeholder="할인율" />
-        <button onclick="discountCalc()">할인 가격 계산</button>
+        <input type="text" id="price" placeholder="할인 전 가격" required oninput="this.value = this.value.replace(/[^0-9]$/g, '')"/>
+        <input type="text" id="rate" placeholder="할인율" required oninput="this.value = this.value.replace(/[^0-9]$/g, '')"/>
+        <button onclick="discount()">할인 가격 계산</button>
         <div class="result"></div>
     </div>
   </body>
@@ -62,14 +62,15 @@
       const currentYear = new Date().getFullYear();
       
       // 1.2 사용자가 입력한 값을 가져온다.
-      // const input = document.querySelector("#birthCalc > input");
-      // const inputValue = input.value;
-      const inputValue = document.querySelector('#birthCalc > input').value;
+      const input = document.querySelector("#birthCalc > input");
+      const inputValue = input.value;
+      // const inputValue = document.querySelector('#birthCalc > input').value;
       
       // 1.3 나이 계산
       const age = currentYear - inputValue;
       if (age < 0){
-        alert("유효하지 않은 값입니다.");
+        alert("출생년도는 현재년도보다 클 수 없습니다.");
+        input.value = '';
         return false;
       }
       
@@ -78,25 +79,31 @@
     }
     
     // 2. 사각형의 가로 너비와 세로 높이를 입력하여 사각형의 넓이를 계산하는 함수를 작성하세요. result div에 결과 표시
-    function squareCalc(){
-      const widthInput = document.getElementById("squareWidth");
-      const squareWidth = parseInt(widthInput.value);
-      const heightInput = document.getElementById("squareHeight");
-      const squareHeight = parseInt(heightInput.value);
-      const area = squareWidth * squareHeight;
-      const resultDiv = document.querySelector("#square .result");
-      resultDiv.textContent = area;
+    function area(){
+      // 2.1 가로 너비&세로 높이를 가져온다.
+      const inputs = document.querySelectorAll("#square > input");
+      const width = inputs[0].value;
+      const height = inputs[1].value;
+     
+      // 2.2 넓이 계산
+      const area = width * height;
+      
+      // 2.3 result div에 결과 출력
+      document.querySelector("#square > .result").innerHTML = `${area}m<sup>2</sup>`;
     }
     
     // 3. 원래 가격과 할인율을 입력하면 할인 가격을 게산해주는 함수를 작성하세요. 할인된 가격은 정수로 표현하세요. result div에 결과 표시
-    function discountCalc(){
-      const priceInput = document.getElementById("price");
-      const priceprice = parseInt(priceInput.value);
-      const rateInput = document.getElementById("rate");
-      const raterate = parseInt(rateInput.value);
-      const discountPrice = priceprice * (100 - raterate) / 100;
-      const resultDiv = document.querySelector("#discount .result");
-      resultDiv.textContent = discountPrice;
+    function discount(){
+      // 3.1 원래 가격과 할인율을 가져온다.
+      const inputs = document.querySelectorAll("#discount > input");
+      const oldPrice = inputs[0].value;
+      const dicRate = inputs[1].value;
+      
+      // 3.2 할인율을 계산한다.
+      const newPrice = oldPrice * (1- dicRate / 100);
+      
+      // 3.3 할인가격을 계산하여 결과 출력
+      document.querySelector("#discount > div.result").innerHTML = `${newPrice}원`;
     }
   </script>
 </html>

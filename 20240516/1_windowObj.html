@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window 객체</title>
+</head>
+<body>
+    <button onclick="openPopup()">게임하러가기</button>
+</body>
+<script>
+    function openPopup(){
+        // open("팝업을 띄울 화면의 경로", "새로운 창", "새로운 창의 넓이");
+        window.open(
+            '../20240510/2_numberGuess.html', 
+            '_blank', 
+            'width=1000, height=500, location=no, resizable=no, toolbar=no'
+        );
+    }
+</script>
+</html>
