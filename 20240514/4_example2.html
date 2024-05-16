@@ -26,12 +26,16 @@
         width:100px;
         height:100%;
         border: 2px solid red;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        font-weight:600;
     }
   </style>
   <body>
     <div id="birthCalc">
-      <input type="text" id="birthYear" placeholder="출생년도를 입력하세요." />
-      <button onclick="birthCalc()">나이 계산</button>
+      <input type="text" placeholder="출생년도를 입력하세요." />
+      <button onclick="calc()">나이 계산</button>
       <div class="result"></div>
     </div>
     <hr />
@@ -51,14 +55,28 @@
   </body>
   <script>
     // 1. 나이 계산 버튼을 누르면 사용자가 입력한 출생년도를 참고하여 나이를 계산하는 함수를 작성하세요. result div에 결과 표시
-    function birthCalc(){
-      const birthYearInput = document.getElementById("birthYear");
-      const birthYear = parseInt(birthYearInput.value);
+    function calc(){
+      // 1.1 올해년도 가져오기
+      // const now = new Date();
+      // const currentYear = now.getFullYear();
       const currentYear = new Date().getFullYear();
-      const age = currentYear - birthYear;
-      const resultDiv = document.querySelector("#birthCalc .result");
-      resultDiv.textContent = "나이는 " + age + "세 입니다.";
+      
+      // 1.2 사용자가 입력한 값을 가져온다.
+      // const input = document.querySelector("#birthCalc > input");
+      // const inputValue = input.value;
+      const inputValue = document.querySelector('#birthCalc > input').value;
+      
+      // 1.3 나이 계산
+      const age = currentYear - inputValue;
+      if (age < 0){
+        alert("유효하지 않은 값입니다.");
+        return false;
+      }
+      
+      // 1.4 result div에 결과 출력
+      document.querySelector('#birthCalc > div.result').innerHTML = age;
     }
+    
     // 2. 사각형의 가로 너비와 세로 높이를 입력하여 사각형의 넓이를 계산하는 함수를 작성하세요. result div에 결과 표시
     function squareCalc(){
       const widthInput = document.getElementById("squareWidth");
@@ -69,6 +87,7 @@
       const resultDiv = document.querySelector("#square .result");
       resultDiv.textContent = area;
     }
+    
     // 3. 원래 가격과 할인율을 입력하면 할인 가격을 게산해주는 함수를 작성하세요. 할인된 가격은 정수로 표현하세요. result div에 결과 표시
     function discountCalc(){
       const priceInput = document.getElementById("price");

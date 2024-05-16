@@ -68,20 +68,26 @@
     return arr;
   }
   console.log(arr3());
-    // 11. 함수를 생성하고 함수를 호출하면 '안녕하세요!'라는 alert 창이 출력되도록 작성해보세요.
-    function showAlert(param) {
-      alert(param);
+    
+  // 11. 함수를 생성하고 함수를 호출하면 '안녕하세요!'라는 alert 창이 출력되도록 작성해보세요.
+    function showAlert() {
+      alert('안녕하세요!');
     }
-    showAlert(`안녕하세요!`);
+    showAlert();
 
     // 12. 함수를 호출하면 body 태그에 p태그를 추가하고 font 색상과 background-color가 변경된 요소가 화면에 출력되는 함수를 작성하세요.
-    function bodyp(){
-      const bodybody = document.createElement("p");
-      bodybody.textContent = "안녕하세요.";
-      bodybody.style.color = "blue";
-      bodybody.style.backgroundColor = "yellow";
-     document.body.append(bodybody);
+    function createEl(){
+      // 1. p태그 생성
+      const pTag = document.createElement('p');
+      // 2. p태그의 font와 background-color 프로퍼티 값 변경
+      pTag.innerHTML = "안녕하세요.";
+      pTag.style.color = "blue";
+      pTag.style.backgroundColor = "yellow";
+      // 3. p태그를 body태그에 추가
+      // document.write(), innerHTML = ==> write 함수와 innerHTML 프로퍼티에 전달되는 값은 문자열이어야 한다.
+      // document.querySelector('body').innerHTML = pTag;
+     document.querySelector('body').append(pTag);
     }
-    bodyp();
+    createEl();
   </script>
 </html>
