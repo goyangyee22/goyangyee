@@ -29,10 +29,47 @@
     // 대상객체.addEventListener(이벤트명, 실행할이벤트리스너, 이벤트전파방식)
 
     // 마우스 이벤트
-    const pTag = document.querySelector("pTag");
+    const pTag = document.querySelector("#pTag");
     // click
-    pTag.addEventListener("click", function () {
-      alert("click 이벤트 발생");
+    // pTag.addEventListener("click", function () {
+    //   alert("click 이벤트 발생");
+    // });
+
+    // dblclick 이벤트
+    // pTag.addEventListener("dblclick", function () {
+    //   alert("dblclick 이벤트 발생");
+    // });
+
+    // mousedown 이벤트
+    // pTag.addEventListener("mousedown", function () {
+    //   console.log("mousedown 이벤트 발생");
+    // });
+
+    // mouseup 이벤트
+    // pTag.addEventListener("mouseup", function () {
+    //   console.log("mouseup 이벤트 발생");
+    // });
+
+    // mousemove
+    // pTag.addEventListener("mousemove", function(){
+    //     console.log("mousemove 이벤트 발생");
+    // });
+
+    // mouseover - 마우스를 해당 요소 바깥에서 안으로 옮겼을 때
+    // pTag.addEventListener("mouseover", function(){
+    //     alert("mouseover 이벤트 발생");
+    // });
+
+    // mouseout - 마우스를 해당 요소 안에서 바깥으로 옮겼을 때
+    // pTag.addEventListener("mouseout", function () {
+    //   alert("mouseout 이벤트 발생");
+    // });
+
+    // contextmenu - 마우스 오른쪽버튼을 눌렀을 때
+    pTag.addEventListener("contextmenu", function(event){
+        // alert("contextmenu 이벤트 발생");
+        event.preventDefault(); // 기존 이벤트(기능)를 막는 역할
+        alert("마우스 우클릭이 방지된 사이트입니다.");
     });
   </script>
 </html>
