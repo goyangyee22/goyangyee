@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event</title>
+  </head>
+  <style>
+    p {
+      background: yellow;
+      height: 200px;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  </style>
+  <body>
+    <p id="pTag">이벤트 리스너 테스트</p>
+  </body>
+  <script>
+    // ** 이벤트 리스너(event listener) **
+    // 이벤트 리스너란 이벤트가 발생했을 때 그 처리를 담당하는 함수를 가리기며 이벤트 핸들러(event Handler)라고도 한다.
+    // 지정된 타입의 이벤트가 특정 요소에서 발생하면, 그 요소의 리스너를 실행시킨다.
+
+    // ** 이벤트 리스너 등록 방법 **
+    // 1. HTML 태그에 속성으로 등록
+    // 2. javascript에서 프로퍼티로 등록
+
+    // addEventListener() 함수 사용
+    // 대상객체.addEventListener(이벤트명, 실행할이벤트리스너, 이벤트전파방식)
+
+    // 마우스 이벤트
+    const pTag = document.querySelector("pTag");
+    // click
+    pTag.addEventListener("click", function () {
+      alert("click 이벤트 발생");
+    });
+  </script>
+</html>
