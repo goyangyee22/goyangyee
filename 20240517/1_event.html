@@ -198,5 +198,17 @@
     formEl.addEventListener('reset', function(){
       alert("reset 이벤트 발생");
     });
-  </script>
+
+    // cut, copy, paste
+    const textareaEl = document.querySelector("textarea");
+    textareaEl.addEventListener("cut", function(){
+      alert("cut 이벤트 발생");
+    });
+    textareaEl.addEventListener("copy", function(){
+      alert("copy 이벤트 발생");
+    });
+    textareaEl.addEventListener("paste", function(){
+      alert("paste 이벤트 발생");
+    });
+    </script>
 </html>
