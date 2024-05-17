@@ -76,43 +76,52 @@
     const tempMin = numArr.map(function (v) {
       return v - 5;
     });
+    document.write(`<h3>tempMin : [${tempMin}]</h3>`);
     const strArr = ["apple", "banana", "watermelon"];
     // [5, 6, 10]
-    const newstrArr = strArr.map(function(v){
-        return v.length;
+    const newstrArr = strArr.map(function (v) {
+      return v.length;
     });
-    document.write(`<h3>newstrArr = [${newstrArr}]</h3>`);
-    
+    document.write(`<h3>newstrArr : [${newstrArr}]</h3>`);
+
     const strArr2 = ["hello", "world", "javascript"];
-    const newstrArr2 = strArr2.map(function(v){
-        return `${v.toUpperCase()}`;
+    const newstrArr2 = strArr2.map(function (v) {
+      return `${v.toUpperCase()}`;
     });
-    document.write(`<h3>newstrArr2 = [${newstrArr2}]</h3>`);
+    document.write(`<h3>newstrArr2 : [${newstrArr2}]</h3>`);
 
     const numArr2 = [10, 20, 30, 40, 50];
-    const newnumArr2 = numArr2.map(function(v, index){
-        return `Index ${index}: ${v}`;
-    })
-    document.write(`<h3>newnumArr2 = [${newnumArr2}]</h3>`);
+    const newnumArr2 = numArr2.map(function (v, index) {
+      return `Index ${index}: ${v}`;
+    });
+    document.write(`<h3>newnumArr2 : [${newnumArr2}]</h3>`);
 
     const users2 = [
-        {id:1, name:"김덕배"},
-        {id:2, name:"최덕배"},
-        {id:3, name:"이덕배"}
-    ]
-    const newUsers2 = users2.map(function(v){
-        return `${v.name}`;
-    })
-    document.write(`<h3>newUsers2 = [${newUsers2}]</h3>`);
+      { id: 1, name: "김덕배" },
+      { id: 2, name: "최덕배" },
+      { id: 3, name: "이덕배" },
+    ];
+    const newUsers2 = users2.map(function (v) {
+      return `${v.name}`;
+    });
+    document.write(`<h3>newUsers2 : [${newUsers2}]</h3>`);
 
     const users3 = [
-        {id:1, name:'김덕배', contact: {email: 'kim@gmail.com'}},
-        {id:2, name:'최덕배', contact: {email: 'choi@gmail.com'}},
-        {id:3, name:'이덕배', contact: {email: 'lee@gmail.com'}}
-    ]
-    const newUsers3 = users3.map(function(v){
-        return `${v.contact.email}`;
-    })
-    document.write(`<h3>newUsers3 = [${newUsers3}]</h3>`);
+      { id: 1, name: "김덕배", contact: { email: "kim@gmail.com" } },
+      { id: 2, name: "최덕배", contact: { email: "choi@gmail.com" } },
+      { id: 3, name: "이덕배", contact: { email: "lee@gmail.com" } },
+    ];
+    const newUsers3 = users3.map(function (v) {
+      return `${v.contact.email}`;
+    });
+    document.write(`<h3>newUsers3 : [${newUsers3}]</h3>`);
+
+    // [1, 2, 3],
+    // [4, 5, 6],
+    // [7, 8, 9],
+    const newsumArr2 = doubleArr.map(function (v, index, array) {
+      return doubleArr * 2;
+    });
+    document.write(`<h3>newsumArr2 : [${newsumArr2}]</h3>`);
   </script>
 </html>
