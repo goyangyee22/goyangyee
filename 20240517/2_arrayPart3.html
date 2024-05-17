@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Array part3</title>
-</head>
-<body>
-</body>
-<script>
+  </head>
+  <body></body>
+  <script>
     // 1. forEach() 함수
     // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한다.
     document.write(`<h1>1. forEach() 함수</h1>`);
     const arr = [1, true, "Javascript"];
-    function printArr(value, index, array){
-        console.log(`value : ${value}, index : ${index}, array : ${array}`);
+    function printArr(value, index, array) {
+      console.log(`value : ${value}, index : ${index}, array : ${array}`);
     }
     arr.forEach(printArr);
     // console.log(typeof printArr); // ()가 없으면 함수 자체를 의미
@@ -25,9 +24,9 @@
     // let tempArr = arr2.forEach(function (v){
     //         tempArr.push(v*2);
     // });
-   
-    let modifiedArr = arr2.map(function(element, index, array){
-        return element*2;
+
+    let modifiedArr = arr2.map(function (element, index, array) {
+      return element * 2;
     });
     document.write(`<h1>2. map() 함수</h1>`);
     document.write(`<h3>arr2 : [${arr2}]</h3>`);
@@ -35,20 +34,20 @@
     // emptyArr = arr2.map((v) => v*2);
 
     const users = [
-        {firstName : "베컴", lastName : "데이비드"},
-        {firstName : "더브라위너", lastName : "케빈"},
-        {firstName : "홀란드", lastName : "엘링"},
+      { firstName: "베컴", lastName: "데이비드" },
+      { firstName: "더브라위너", lastName: "케빈" },
+      { firstName: "홀란드", lastName: "엘링" },
     ];
     // ["데이비드 베컴", "케빈 더브라위너", "엘링 홀란드"]
-    const nameArr = users.map(function(v){
-        return `${v.lastName} ${v.firstName}`;
-    })
+    const nameArr = users.map(function (v) {
+      return `${v.lastName} ${v.firstName}`;
+    });
     document.write(`<h3>users : [${users}]</h3>`);
     document.write(`<h3>nameArr : [${nameArr}]</h3>`);
 
     const numberArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    function multiplyThree(number){
-        return number*3;
+    function multiplyThree(number) {
+      return number * 3;
     }
 
     const newNumberArr = numberArr.map(multiplyThree);
@@ -56,20 +55,64 @@
     document.write(`<h3>newNumberArr : [${newNumberArr}]</h3>`);
 
     const doubleArr = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9]
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
     ];
 
     // [6, 15, 24]
-    function sumArr(array){
-        let sum = 0;
-        for(let i = 0; i < array.length; i++){
-            sum += array[i];
-        }
-        return sum;
+    function sumArr(array) {
+      let sum = 0;
+      for (let i = 0; i < doubleArr.length; i++) {
+        sum += array[i];
+      }
+      return sum;
     }
     const newsumArr = doubleArr.map(sumArr);
     document.write(`<h3>newsumArr : [${newsumArr}]</h3>`);
-</script>
+
+    const numArr = [5, 10, 15, 20];
+    // [0, 5, 10, 15];
+    const tempMin = numArr.map(function (v) {
+      return v - 5;
+    });
+    const strArr = ["apple", "banana", "watermelon"];
+    // [5, 6, 10]
+    const newstrArr = strArr.map(function(v){
+        return v.length;
+    });
+    document.write(`<h3>newstrArr = [${newstrArr}]</h3>`);
+    
+    const strArr2 = ["hello", "world", "javascript"];
+    const newstrArr2 = strArr2.map(function(v){
+        return `${v.toUpperCase()}`;
+    });
+    document.write(`<h3>newstrArr2 = [${newstrArr2}]</h3>`);
+
+    const numArr2 = [10, 20, 30, 40, 50];
+    const newnumArr2 = numArr2.map(function(v, index){
+        return `Index ${index}: ${v}`;
+    })
+    document.write(`<h3>newnumArr2 = [${newnumArr2}]</h3>`);
+
+    const users2 = [
+        {id:1, name:"김덕배"},
+        {id:2, name:"최덕배"},
+        {id:3, name:"이덕배"}
+    ]
+    const newUsers2 = users2.map(function(v){
+        return `${v.name}`;
+    })
+    document.write(`<h3>newUsers2 = [${newUsers2}]</h3>`);
+
+    const users3 = [
+        {id:1, name:'김덕배', contact: {email: 'kim@gmail.com'}},
+        {id:2, name:'최덕배', contact: {email: 'choi@gmail.com'}},
+        {id:3, name:'이덕배', contact: {email: 'lee@gmail.com'}}
+    ]
+    const newUsers3 = users3.map(function(v){
+        return `${v.contact.email}`;
+    })
+    document.write(`<h3>newUsers3 = [${newUsers3}]</h3>`);
+  </script>
 </html>
