@@ -21,10 +21,56 @@
 
     // 2. map() 함수 ⭐⭐⭐⭐⭐
     // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한 후 그 실행 결과를 새로운 배열에 담아 반환한다.
-    document.write(`<h1>2. map() 함수</h1>`);
     const arr2 = [3, 4, 5, 6];
-    const tempArr = [];
-    // 
-    
+    // let tempArr = arr2.forEach(function (v){
+    //         tempArr.push(v*2);
+    // });
+   
+    let modifiedArr = arr2.map(function(element, index, array){
+        return element*2;
+    });
+    document.write(`<h1>2. map() 함수</h1>`);
+    document.write(`<h3>arr2 : [${arr2}]</h3>`);
+    document.write(`<h3>arr2의 원소에 *2 : [${modifiedArr}]</h3>`);
+    // emptyArr = arr2.map((v) => v*2);
+
+    const users = [
+        {firstName : "베컴", lastName : "데이비드"},
+        {firstName : "더브라위너", lastName : "케빈"},
+        {firstName : "홀란드", lastName : "엘링"},
+    ];
+    // ["데이비드 베컴", "케빈 더브라위너", "엘링 홀란드"]
+    const nameArr = users.map(function(v){
+        return `${v.lastName} ${v.firstName}`;
+    })
+    document.write(`<h3>users : [${users}]</h3>`);
+    document.write(`<h3>nameArr : [${nameArr}]</h3>`);
+
+    const numberArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    function multiplyThree(number){
+        return number*3;
+    }
+
+    const newNumberArr = numberArr.map(multiplyThree);
+    document.write(`<h3>numberArr : [${numberArr}]</h3>`);
+    document.write(`<h3>newNumberArr : [${newNumberArr}]</h3>`);
+
+    const doubleArr = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ];
+
+    // [6, 15, 24]
+    function sumArr(number){
+        // return number[0]+number[1]+number[2];
+        let sum = 0;
+        for(let i = 0; i < doubleArr.length; i++){
+            sum += number[i];
+        }
+        return sum;
+    }
+    const newsumArr = doubleArr.map(sumArr);
+    document.write(`<h3>newsumArr : [${newsumArr}]</h3>`);
 </script>
 </html>
