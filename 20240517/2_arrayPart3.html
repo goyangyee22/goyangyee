@@ -7,7 +7,7 @@
   </head>
   <body></body>
   <script>
-    // 1. forEach() 함수
+    // 1. forEach() 함수 ⭐⭐⭐
     // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한다.
     document.write(`<h1>1. forEach() 함수</h1>`);
     const arr = [1, true, "Javascript"];
@@ -29,8 +29,8 @@
       return element * 2;
     });
     document.write(`<h1>2. map() 함수</h1>`);
-    document.write(`<h3>arr2 : [${arr2}]</h3>`);
-    document.write(`<h3>arr2의 원소에 *2 : [${modifiedArr}]</h3>`);
+    console.log(arr2);
+    console.log(modifiedArr);
     // emptyArr = arr2.map((v) => v*2);
 
     const users = [
@@ -42,8 +42,8 @@
     const nameArr = users.map(function (v) {
       return `${v.lastName} ${v.firstName}`;
     });
-    document.write(`<h3>users : [${users}]</h3>`);
-    document.write(`<h3>nameArr : [${nameArr}]</h3>`);
+    console.log(users);
+    console.log(nameArr);
 
     const numberArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     function multiplyThree(number) {
@@ -51,8 +51,8 @@
     }
 
     const newNumberArr = numberArr.map(multiplyThree);
-    document.write(`<h3>numberArr : [${numberArr}]</h3>`);
-    document.write(`<h3>newNumberArr : [${newNumberArr}]</h3>`);
+   console.log(numberArr);
+    console.log(newNumberArr);
 
     const doubleArr = [
       [1, 2, 3],
@@ -69,32 +69,32 @@
       return sum;
     }
     const newsumArr = doubleArr.map(sumArr);
-    document.write(`<h3>newsumArr : [${newsumArr}]</h3>`);
+    console.log(newsumArr);
 
     const numArr = [5, 10, 15, 20];
     // [0, 5, 10, 15];
     const tempMin = numArr.map(function (v) {
       return v - 5;
     });
-    document.write(`<h3>tempMin : [${tempMin}]</h3>`);
+    console.log(tempMin);
     const strArr = ["apple", "banana", "watermelon"];
     // [5, 6, 10]
     const newstrArr = strArr.map(function (v) {
       return v.length;
     });
-    document.write(`<h3>newstrArr : [${newstrArr}]</h3>`);
+    console.log(newstrArr);
 
     const strArr2 = ["hello", "world", "javascript"];
     const newstrArr2 = strArr2.map(function (v) {
       return `${v.toUpperCase()}`;
     });
-    document.write(`<h3>newstrArr2 : [${newstrArr2}]</h3>`);
+    console.log(newstrArr2);
 
     const numArr2 = [10, 20, 30, 40, 50];
-    const newnumArr2 = numArr2.map(function (v, index) {
-      return `Index ${index}: ${v}`;
+    const newnumArr2 = numArr2.map(function (v, i) {
+      return `Index ${i}: ${v}`;
     });
-    document.write(`<h3>newnumArr2 : [${newnumArr2}]</h3>`);
+    console.log(newnumArr2);
 
     const users2 = [
       { id: 1, name: "김덕배" },
@@ -102,9 +102,9 @@
       { id: 3, name: "이덕배" },
     ];
     const newUsers2 = users2.map(function (v) {
-      return `${v.name}`;
+      return v.name;
     });
-    document.write(`<h3>newUsers2 : [${newUsers2}]</h3>`);
+    console.log(newUsers2);
 
     const users3 = [
       { id: 1, name: "김덕배", contact: { email: "kim@gmail.com" } },
@@ -112,18 +112,55 @@
       { id: 3, name: "이덕배", contact: { email: "lee@gmail.com" } },
     ];
     const newUsers3 = users3.map(function (v) {
-      return `${v.contact.email}`;
+      return v.contact.email;
     });
-    document.write(`<h3>newUsers3 : [${newUsers3}]</h3>`);
+    console.log(newUsers3);
 
     // [1, 2, 3],
     // [4, 5, 6],
     // [7, 8, 9],
-    const newsumArr2 = doubleArr.map(function (v, index, array) {
-      const array2 = [];
-      return `[${v}]`;
+    // 결과 ==> [[2, 4, 6], [8, 10, 12], [14, 16, 18]]
+    const newDoubleArr = doubleArr.map(function (v) {
+      // const tempArr = [];
+      // for(let i = 0; i < v.length; i++){
+      //   tempArr.push(v[i]*2);
+      // }
+      // return tempArr;
+      
+     return v.map(function(v){
+      return v*2;
+     })
     });
-    console.log(newsumArr2)
-    document.write(`<h3>newsumArr2 : [${newsumArr2}]</h3>`);
+    console.log(newDoubleArr);
+
+    // 3. filter() 함수 ⭐⭐⭐⭐
+    // 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한 후, 그 결과값이 true인 요소들만을 새로운 배열로 반환한다.
+    document.write(`<h1>3. filter 함수</h1>`);
+    const numberArr2 = [1, 2, 3, 4, 5];
+    // [4, 5]만 들어있는 배열 추출
+    let result = [];
+    // for(let i = 0; i < numberArr2.length; i++){
+    //   if(numberArr2[i] > 3){
+    //     result.push(numberArr2[i]);
+    //   }
+    // }
+   result = numberArr2.filter(function (v){
+    return v > 3;
+   })
+   document.write(`<h3>numberArr2 : [${numberArr2}]</h3>`);
+   document.write(`<h3>result : [${result}]</h3>`);
+
+   const guys = [
+    {name : "덕배", money: 500000},
+    {name : "베컴", money: 700000},
+    {name : "홀란드", money: 600000},
+    {name : "포든", money: 400000},
+   ];
+  // money가 500000보다 더 많이 필요한 사람만을 추출한 배열
+   let guysresult = [];
+   guysresult = guys.filter(function (v){
+    return v.money > 500000;
+   });
+   console.log(guysresult);
   </script>
 </html>
