@@ -35,8 +35,46 @@
 
     // 플래그
     // g : 전역검색
-    const str = "abcabc";
+    let str = "abcabc";
     let result = str.match(/a/g);
     console.log(result);
+
+    // m : 줄바꿈 검색
+    str = "Hello World and \nPower Hello? \nPower Overwhelming!!";
+    result = str.match(/^Hello/); // ^ 문자는 문장 시작점을 의미
+    console.log(result);
+    result = str.match(/^Power/gm);
+    console.log(result);
+
+    // i : 대소문자 구분 없음
+    str = 'abcABC';
+    result = str.match(/a/gi);
+    console.log(result);
+
+    // y : 위치 지정
+    str = 'let varName = "value"';
+    let regexp = /\w+/y; 
+    // + 문자는 최소 하나 혹은 그 이상
+    console.log(regexp);
+    regexp.lastIndex = 3;
+    result = regexp.exec(str);
+    console.log(result);
+
+    // 이메일 검색패턴 예 : OOOOO@OOOOO.OOO => /[0-9a-zA-Z]+@[a-z]+\.[a-z]{2,}/
+    let reg = /^[0-9a-zA-Z]+@[a-z]+\.[a-z]{2,}$/;
+    const email = prompt('이메일을 입력하세요.');
+    console.log(email);
+    console.log(reg.test(email));
+
+    // 아이디 영소문자 3~8자리 + 숫자
+    reg = /^[a-z]{3, 8}[0-9]+$/;
+
+    // [^문자] : 괄호안의 문자를 제외한 것
+    // [^lgEn] ==> l g E n 4개 문자를 제외
+    // ^문자열 : 특정 문자열로 시작(시작점)
+    // 문자열$ : 특정 문자열로 끝(종착점)
+    // ? : 없거나 or 최대 한개만 ==> /apple?/
+    // * : 없거나 or 있거나(여러개) ==> /apple*/
+    // + : 최소 한개 or 여러개 ==> /apple+/
 </script>
 </html>
