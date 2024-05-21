@@ -143,8 +143,9 @@
     }
 
     function downkeyEvent(e){
+        e.preventDefault();
         // 눌린 키에 대한 요소를 가져온다.
-        const el = document.querySelector(`#${e.code}`)
+        const el = document.querySelector(`#${e.code}`);
         console.log(`key: ${e.key}, code: ${e.code}`);
        
         // keydown div에 check 클래스를 추가한다.
@@ -165,7 +166,7 @@
 
     function upkeyEvent(e){
         // 손가락을 뗏을 때의 키 요소를 가져온다.
-        const el = document.querySelector(`#${e.code}`)
+        const el = document.querySelector(`#${e.code}`);
 
         // keyup 요소에 check 클래스를 추가한다.
         keyup.classList.add('check');
