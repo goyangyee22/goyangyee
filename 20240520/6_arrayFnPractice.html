@@ -17,25 +17,27 @@
     ];
 
     // 1. 학생 이름을 대문자로 변환
-    const students1 = students.map(function (v) {
-      return `name: ${v.name.toUpperCase()}, score: ${v.score}`;
-    });
-    console.log(students1);
+    //   let result = students.map(function (v) {
+    //   return v.name.toUpperCase();
+    // });
+    // console.log(result);
+    let result = students.map(v => v.name.toUpperCase());
+    console.log(result);
     // 2. 점수가 7점 이상인 학생 필터링
-    const students2 = students.filter(function (v) {
-      return v.score > 7;
-    });
-    console.log(students2);
+    // result = students.filter(function (v){
+    //   return v.score > 7;
+    // });
+    result = students.filter(v => v.score > 7)
+    console.log(result);
     // 3. 모든 학생의 점수 합계 구하기
-    const students3 = students.reduce(function (x ,y){
-      return students.x.score + students.y.score
-    })
-    console.log(students3);
+    // result = students.reduce(function (acc, cur) {
+    //   return acc + cur.score;
+    // }, 0);
+    result = students.reduce((acc, cur) => acc + cur.score, 0);
+    console.log(result);
     // 4. 모든 학생의 평균 점수 구하기
-    const students4 = students.reduce(function (x, y){
-      return score.x * score.y;
-    })
-    console.log(students4);
+    result = Math.round(result / students.length);
+    console.log(result);
 
     const products = [
       { name: "Laptop", price: 899.99 },
@@ -47,18 +49,30 @@
     ];
 
     // 1. 모든 제품의 가격에 10%의 세금을 추가한 배열을 만드세요.
-    const products1 = products.map(function (v) {
-      return `name: ${v.name}, price: ${v.price * 1.1}`;
-    });
-    console.log(products1);
+    // result = products.map(function (v){
+    //   v.price = v.price * 1.1;
+    //   return v;
+    // });
+    result = products.map((v) => {
+      v.price = v.price * 1.1;
+      return v;
+    })
+    console.log(result);
     // 2. 세금이 추가된 가격이 100달러 이상인 제품들만 필터링하세요.
-    const products2 = products.map(function (v) {
-      if (v.price * 1.1 > 100) {
-        return `${v.name}, ${v.price * 1.1}`;
-      }
-    });
-    console.log(products2);
+    result = result.filter(function (v){
+      return v.price >= 100;
+    })
+    // result = result.filter(v => v.price >= 100)
+    console.log(result);
+    const filteringProd = result.length;
     // 3. 필터링된 제품들의 총 가격을 계산하세요.
+  //  result = result.reduce(function(acc, cur){
+  //   return acc + cur.price; 
+  //  }, 0)
+  result = result.reduce((acc, cur) => acc + cur.price, 0)
+    console.log(result);
     // 4. 필터링된 제품들의 평균 가격을 계산하세요.
+    result = result / filteringProd;
+    console.log(result);
   </script>
 </html>
