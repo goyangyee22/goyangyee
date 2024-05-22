@@ -8,3 +8,20 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.background{
+    width: 100%;
+    max-width: 1200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.container{
+    width: 340px;
+    height: 540px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px #333333;
+    background-color: white;
+}
