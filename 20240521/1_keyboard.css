@@ -92,24 +92,13 @@
 }
 
 .on{
-<<<<<<< HEAD
-    color: wvar(--font-color);
-=======
     color: var(--font-color);
->>>>>>> df012e0280db8d323ceb01c2a2edd5e2393af982
     background-color: var(--main-color);
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
     transform: translateY(1px);
 }
 
-<<<<<<< HEAD
 :root{
     --main-color: white;
     --font-color: white;
 }
-=======
-:root {
-    --main-color: white;
-    --font-color: white;
-  }
->>>>>>> df012e0280db8d323ceb01c2a2edd5e2393af982
