@@ -200,6 +200,8 @@
 
         // 손가락을 뗀 키를 화면상에서 다시 원상복구 시킨다.(on 클래스 삭제)
         el.classList.remove('on');
+
+        // on 클래스가 삭제 될 때 luma값에 의해 "white"값이 된 color값을 black으로 복구합니다.
         el.style.color = "black";
 
         // check 클래스 0.3초 이후에 제거
