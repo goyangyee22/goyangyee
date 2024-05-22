@@ -86,7 +86,7 @@
       }
       
       let changeMessage = newMessage.replaceAll(" ", "&nbsp;");
-      changeMessage = changeMessage.replace('\n', '<br />');
+      changeMessage = changeMessage.replaceAll('\n', '<br />');
       console.log(changeMessage);
 
       // 메세지를 담을 div를 만든다.
