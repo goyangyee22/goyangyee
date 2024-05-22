@@ -164,7 +164,11 @@
         const el = document.querySelector(`#${e.code}`);
         console.log(`key: ${e.key}, code: ${e.code}`);
 
+<<<<<<< HEAD
          // 외부 파일에 대한 엘리먼트 접근
+=======
+        // 외부 파일에 대한 엘리먼트 접근
+>>>>>>> df012e0280db8d323ceb01c2a2edd5e2393af982
       colorArr = [];
       for(let i = 0; i < 3; i++){
         colorArr.push(parseInt(Math.random()*256));
@@ -200,7 +204,11 @@
 
         // 손가락을 뗀 키를 화면상에서 다시 원상복구 시킨다.(on 클래스 삭제)
         el.classList.remove('on');
+<<<<<<< HEAD
         el.style.color = "black";
+=======
+        el.style.color = 'black'
+>>>>>>> df012e0280db8d323ceb01c2a2edd5e2393af982
 
         // check 클래스 0.3초 이후에 제거
         setTimeout(function(){
