@@ -173,7 +173,7 @@
 
       luma = 0.2126 * colorArr[0] + 0.7152 * colorArr[1] + 0.0722 * colorArr[2];
       el.style.color = luma <= 155 ? "white" : "black";
-      el.style.setProperty('--font-color', `luma`);
+      el.style.setProperty('--font-color', `${luma}`);
        
         // keydown div에 check 클래스를 추가한다.
         keydown.classList.add('check');
