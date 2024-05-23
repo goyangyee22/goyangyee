@@ -60,7 +60,7 @@
     const input = document.querySelector("#input");
 
     // button 요소
-    const send = document.querySelector("#sendBtn");
+    const sendBtn = document.querySelector("#sendBtn");
 
     function sendMyText() {
       // 작성된 메세지를 가져온다.
@@ -106,7 +106,7 @@
       }
     }
 
-    send.addEventListener("click", sendMyText);
+    sendBtn.addEventListener("click", sendMyText);
     input.addEventListener("keypress", sendMyTextByEnter);
   </script>
 </html>
