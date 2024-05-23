@@ -120,8 +120,24 @@
     });
 
     // 단어들을 내려오게 하는 부분
-    function wordRain() {}
+    function wordRain() {
+      const test = document.querySelector("#DW");
+
+      // getBoundingClientRect : 최종 렌더링된 크기 반환 (현재 뷰포트에서의 요소의 상대적인 위치))
+      // offset-, client-, scroll- : 레이아웃 크기를 반환
+      // test.style.top = "0px";
+      // console.log(test.offsetWidth, test.offsetHeight);
+      // span.style.top = -75
+      console.log(test.style.top);
+      setInterval(function(){
+        const rectSize = test.getBoundingClientRect();
+        test.style.top = `${rectSize.top + 30}px`;
+        console.log(test.style.top);
+      }, 1000)
+      // test.style.top = test.style.top + '30px';
+    }
 
     init();
+    wordRain();
   </script>
 </html>
