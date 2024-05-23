@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +9,6 @@
     * {
       box-sizing: border-box;
     }
-
     body {
       margin: 0;
       padding: 0;
@@ -21,16 +20,14 @@
       justify-content: center;
       align-items: center;
     }
-
     #container {
       width: 90%;
       height: 80%;
       position: relative;
       /* display: flex;
-        justify-content: center;
-        align-items: flex-end; */
+      justify-content: center;
+      align-items: flex-end; */
     }
-
     #input {
       width: 180px;
       height: 45px;
@@ -42,19 +39,17 @@
       bottom: 0;
       transform: translateX(-50%);
     }
-
     .word {
       color: #ffffff;
       font-size: 30px;
       font-weight: 500;
       position: absolute;
     }
-
-    .score{
-      position: absolute;
+    .score {
       color: #ffffff;
       font-size: 40px;
       font-weight: 600;
+      position: absolute;
       top: 0;
       right: 0;
       padding: 15px;
@@ -98,7 +93,7 @@
         // words 배열에 있는 단어를 생성한 span 태그에 넣어준다.
         span.innerHTML = el;
 
-        // span 태그의 클래스를 추가한다.(word);
+        // span 태그에 클래스를 추가한다.(word)
         span.classList.add("word");
 
         // span 태그에 아이디 속성을 추가한다.
@@ -108,61 +103,51 @@
         span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
         span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
 
-        // container div에 span 태그를 추가한다.
+        // container div 에 span 태그를 추가한다.
         container.append(span);
       });
     }
 
-    // 사용자와 입력한 텍스트와 동일한 id를 가진 span 태그를 제거한다.
+    // 사용자가 입력한 텍스트와 동일한 id를 가진 span 태그를 제거한다.
     input.addEventListener("change", function () {
       const word = document.querySelector(`span[id=${input.value}]`);
-      console.log(word);
       if (word != null) {
         word.remove();
         score = score + 100;
         scorePanel.innerHTML = `총점 : ${score}`;
         count++;
-      }
 
-      // 게임 클리어
-      if (count == words.length) {
-        alert("Clear!!👏");
-        if (confirm("재도전??")) {
-          window.location.reload();
+        // 게임 클리어
+        if (count == words.length) {
+          alert("Clear!!👏");
+          if (confirm("재도전??")) {
+            window.location.reload();
+          }
         }
       }
       input.value = "";
     });
 
-    // 단어들을 내려오게 하는 부분
+    // 단어들을 내려오게하는 부분
     function wordRain() {
-      // HTMLCollection과 NodeList는 모두 유사배열이지만 HTMLCollection은 배열 함수를 사용할 수 없다.
+      // HTMLCollection과 NodeList 는 모두 유사배열이지만 HTMLCollection 은 배열 함수를 사용할 수 없다.
       const words = document.querySelectorAll(".word");
-      console.log(words);
-      // getBoundingClientRect : 최종 렌더링된 크기 반환 (현재 뷰포트에서의 요소의 상대적인 위치))
+      // getBoundingClientRect : 최종 렌더링된 크기 반환(현재 뷰포트에서의 요소의 상대적인 위치)
       // offset-, client-, scroll- : 레이아웃 크기를 반환
-      // test.style.top = "0px";
-      // console.log(test.offsetWidth, test.offsetHeight);
-      // span.style.top = -75
-      console.log(test.style.top);
       console.log(container.getBoundingClientRect().bottom - 45);
-      console.log("input 높이: " + input.style.height.split("px")[0]);
-      setInterval(function(){
-        words.forEach(function(el){
+      setInterval(function () {
+        words.forEach(function (el) {
           const rectSize = el.getBoundingClientRect();
-        el.style.top = `${rectSize.top - 75}px`;
-        console.log(input.style.height);
-        console.log(getComputedStyle(input).height.split("px")[0]);
-        if(
-          el.getBoundingClientRect().bottom > 
-          container.getBoundingClientRect().bottom - 
-        parseInt(getComputedStyle(input).height.split("px")[0]))
-      {
-        el.remove();
-      }
-        })
-       }, 1000)
-      // test.style.top = test.style.top + '30px';
+          el.style.top = `${rectSize.top - 75}px`;
+          if (
+            el.getBoundingClientRect().bottom >
+            container.getBoundingClientRect().bottom -
+              parseInt(getComputedStyle(input).height.split("px")[0])
+          ) {
+            el.remove();
+          }
+        });
+      }, 1000);
     }
 
     init();
