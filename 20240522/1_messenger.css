@@ -35,6 +35,7 @@ body{
 .header{
     display: flex;
     height: 60px;
+    justify-content: space-evenly;
     padding: 12px 5px 8px;
 }
 
@@ -78,17 +79,17 @@ body{
 .friend-bubble{
     background-color: #f3f0f5;
     border-radius: 14px 14px 14px 0;
-    padding: 7px 15px;
     color: #8f00fe;
+    padding: 7px 15px;
 }
 
 .my-bubble{
     background-color: #8f00fe;
     border-radius: 14px 14px 0 14px;
-    padding: 7px 15px;
     color: #f3f0f5;
     /* margin-left: auto; */
     align-self: flex-end;
+    padding: 7px 15px;
 }
 
 .footer{

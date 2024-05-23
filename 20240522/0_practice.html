@@ -7,7 +7,101 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- 배경화면 설정 -->
+    <!-- 배경 사진(.background) -->
     <img class="background" src="../resources/img/background.png" />
+
+    <!-- 화면 전체(.container) -->
+    <div class="container">
+      <!-- 헤더(.header) : 대화 상대의 정보 및 뒤로가기, 통화, 영상 버튼 -->
+      <div class="header">
+        <button class="btn">
+          <img src="../resources/img/left-arrow.png" width="20" height="20" />
+        </button>
+
+        <img
+          class="profile-pic"
+          src="../resources/img/ralo-profile.png"
+          width="40"
+          height="40"
+        />
+
+        <div class="user-info">
+          <p class="username">김찬호</p>
+          <p class="status">23일 전에 활동</p>
+        </div>
+
+        <div class="call-btn">
+          <button class="btn">
+            <img src="../resources/img/phone-call.png" width="20" height="20" />
+          </button>
+          <button class="btn">
+            <img src="../resources/img/video-call.png" width="20" height="20" />
+          </button>
+        </div>
+      </div>
+      <!-- 대화 말풍선(chat-box) -->
+      <div id="chat-box">
+        <p class="bubble friend-bubble">
+          못생긴 년이 담배 피우는 것 만큼 꼴보기 싫은 게 없어.
+        </p>
+        <p class="bubble friend-bubble">넌 살 좀 빼!!</p>
+      </div>
+
+      <!-- 메세지 입력창 및 전송 버튼(footer) -->
+      <div class="footer">
+        <textarea id="input" placeholder="메세지를 입력하세요."></textarea>
+        <button class="btn" id="sendBtn">
+          <img src="../resources/img/send.png" width="30" height="30" />
+        </button>
+      </div>
+    </div>
   </body>
+
+  <script>
+    const chatBox = document.querySelector("#chat-box");
+    const input = document.querySelector("#input");
+    const send = document.querySelector("#sendBtn");
+
+    function sendMyText() {
+      // 메세지를 입력 받습니다.
+      const newMessage = input.value;
+
+      // 문자열이 공백이면 메세지를 출력하지 않음.
+      if (newMessage.length == 0) {
+        return false;
+      }
+
+      // 공백과 개행을 구현합니다.
+      let changeMessage = newMessage.replaceAll(" ", "&nbsp");
+      changeMessage = changeMessage.replaceAll("\n", "<br />");
+
+      // 메세지를 담을 div를 만듭니다.
+      const div = document.createElement("div");
+
+      // 입력 받은 메세지를 div에 넣습니다.
+      div.innerHTML = changeMessage;
+
+      // 입력 받은 메세지를 넣은 div에 클래스(my-bubble)을 추가합니다.
+      changeMessage.classList.add("my-bubble");
+
+      // 추가 된 클래스를 chat-box에 추가합니다.
+      chatBox.append(div);
+
+      // scroll이 생겨도 제일 최근의 메세지 위치로 놓습니다.
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // 메세지를 전송 후 입력창을 초기화합니다.
+      input.value = "";
+    }
+
+    function sendMyTextByEnter(e) {
+      if (e.key == "Enter" && !e.shiftKey) {
+        sendMyText();
+        e.preventDefault();
+      }
+    }
+
+    send.addEventListener("click", sendMyText);
+    input.addEventListener("keypress", sendMyTextByEnter);
+  </script>
 </html>
