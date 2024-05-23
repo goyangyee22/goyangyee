@@ -49,11 +49,22 @@
       font-weight: 500;
       position: absolute;
     }
+
+    .score{
+      position: absolute;
+      color: #ffffff;
+      font-size: 40px;
+      font-weight: 600;
+      top: 0;
+      right: 0;
+      padding: 15px;
+    }
   </style>
   <body>
     <div id="container">
       <input id="input" type="text" placeholder="단어를 입력하세요." />
     </div>
+    <div class="score">총점 : 0</div>
   </body>
   <script>
     const words = [
@@ -66,7 +77,9 @@
       "Event",
     ];
     const input = document.querySelector("#input");
+    const scorePanel = document.querySelector(".score");
     let count = 0;
+    let score = 0;
 
     // 단어들이 뿌려질 container의 범위를 파악한다.
     const container = document.querySelector("#container");
@@ -106,6 +119,8 @@
       console.log(word);
       if (word != null) {
         word.remove();
+        score = score + 100;
+        scorePanel.innerHTML = `총점 : ${score}`;
         count++;
       }
 
@@ -121,19 +136,32 @@
 
     // 단어들을 내려오게 하는 부분
     function wordRain() {
-      const test = document.querySelector("#DW");
-
+      // HTMLCollection과 NodeList는 모두 유사배열이지만 HTMLCollection은 배열 함수를 사용할 수 없다.
+      const words = document.querySelectorAll(".word");
+      console.log(words);
       // getBoundingClientRect : 최종 렌더링된 크기 반환 (현재 뷰포트에서의 요소의 상대적인 위치))
       // offset-, client-, scroll- : 레이아웃 크기를 반환
       // test.style.top = "0px";
       // console.log(test.offsetWidth, test.offsetHeight);
       // span.style.top = -75
       console.log(test.style.top);
+      console.log(container.getBoundingClientRect().bottom - 45);
+      console.log("input 높이: " + input.style.height.split("px")[0]);
       setInterval(function(){
-        const rectSize = test.getBoundingClientRect();
-        test.style.top = `${rectSize.top + 30}px`;
-        console.log(test.style.top);
-      }, 1000)
+        words.forEach(function(el){
+          const rectSize = el.getBoundingClientRect();
+        el.style.top = `${rectSize.top - 75}px`;
+        console.log(input.style.height);
+        console.log(getComputedStyle(input).height.split("px")[0]);
+        if(
+          el.getBoundingClientRect().bottom > 
+          container.getBoundingClientRect().bottom - 
+        parseInt(getComputedStyle(input).height.split("px")[0]))
+      {
+        el.remove();
+      }
+        })
+       }, 1000)
       // test.style.top = test.style.top + '30px';
     }
 
