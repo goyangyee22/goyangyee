@@ -142,63 +142,31 @@ function presskeyEvent(){
 
 function downkeyEvent(e){
   if (
-        e.code == "F1" ||
-        e.code == "F2" ||
-        e.code == "F3" ||
-        e.code == "F4" ||
-        e.code == "F5" ||
-        e.code == "F6" ||
-        e.code == "F7" ||
-        e.code == "F8" ||
-        e.code == "F9" ||
-        e.code == "F10" ||
-        e.code == "Tab"
-      ) {
-        e.preventDefault();
-      }
+    e.code == "F1" ||
+    e.code == "F2" ||
+    e.code == "F3" ||
+    e.code == "F4" ||
+    e.code == "F5" ||
+    e.code == "F6" ||
+    e.code == "F7" ||
+    e.code == "F8" ||
+    e.code == "F9" ||
+    e.code == "F10" ||
+    e.code == "Tab" 
+  ){
+    e.preventDefault();
+  }
 
-      const el = document.querySelector(`#${e.code}`);
-      
-      colorArr = [];
-      for(let i = 0; i < 3; i++){
-        colorArr.push(parseInt(Math.random()*256));
-      }
-      el.style.setProperty("--main-color", `rgb(${colorArr})`);
-
-      luma = 0.2126 * colorArr[0] + 0.7152 * colorArr[1] + 0.0722 * colorArr[2];
-
-      el.style.color = luma <= 155 ? "white" : "black";
-
-      el.style.setProperty("--font-color", `${luma}`);
-
-      keydown.classList.add("check");
-
-      el.classList.add("on");
-
-      key.innerHTML = `key: ${e.key}`;
-      code.innerHTML = `code: ${e.code}`;
-
-      setTimeout(function(){
-        keydown.classList.remove("check");
-      }, 300);
-}
-
-function upkeyEvent(e){
+  // 눌린 키에 대한 요소
   const el = document.querySelector(`#${e.code}`);
 
-  keyup.classList.add("check");
-
-  el.classList.remove("on");
-
-  el.style.color = "black";
-
-  setTimeout(function(){
-    keyup.classList.remove("check");
-  }, 300);
+  // 외부 파일 엘리먼트 접근
+  colorArr = [];
+  for (let i = 0; i < 3; i++){
+    colorArr.push(parseInt(Math.random()*256));
+  }
+  el.style.setProperty("--main-color", `rgb(${colorArr})`);
 }
 
-myInput.addEventListener("keypress", presskeyEvent);
-myInput.addEventListener("keydown", downkeyEvent);
-myInput.addEventListener("keyup", upkeyEvent);
 </script>
 </html>
