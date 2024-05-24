@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>form Practice</title>
-</head>
-<body>
+  </head>
+  <body>
     <form>
       <p>이 름 : <input type="text" name="name" /></p>
       <p>
@@ -44,31 +44,57 @@
     <textarea rows="10" cols="100"></textarea>
   </body>
   <script>
-    const resultBtn = document.getElementById('resultBtn');
-    resultBtn.addEventListener('click', function () {
+    const resultBtn = document.getElementById("resultBtn");
+    resultBtn.addEventListener("click", function () {
       // 이름 input 값 가져오기
       const name = document.querySelector('input[name="name"]').value;
 
       // 성별 input 값 가져오기
       const radioElq = document.querySelectorAll("input[name='gender']");
       //   const radioElc = document.getElementsByName('gender');
-      const radioElc = document.getElementsByClassName('gender');
-      console.log(radioElq[0].value);
-      console.log(radioElc[0].value);
+      const radioElc = document.getElementsByClassName("gender");
+    //   console.log(radioElq[0].value);
+    //   console.log(radioElc[0].value);
       //   radioElq[0].value = '남자';
-      radioElc[0].value = '남자';
-      console.log(radioElc[0].value);
+      radioElc[0].value = "남자";
+    //   console.log(radioElc[0].value);
 
-      console.log(`radioElq.length(NodeList): ${radioElq.length}`);
-      console.log(`radioElc.length(HTMLCollection): ${radioElc.length}`);
+      //   console.log(`radioElq.length(NodeList): ${radioElq.length}`);
+      //   console.log(`radioElc.length(HTMLCollection): ${radioElc.length}`);
+      //   const body = document.querySelector("body");
+      //   const newInput = document.createElement("input");
+      //   newInput.setAttribute("class", "gender");
+      //   newInput.setAttribute("name", "gender");
+      //   newInput.setAttribute("type", "radio");
+      //   body.append(newInput);
+      //   console.log(`radioElq.length(NodeList): ${radioElq.length}`);
+      //   console.log(`radioElc.length(HTMLCollection): ${radioElc.length}`);
+      //   console.log(radioElc);
 
-      //   radioElc.forEach(function (el) {
-      //     console.log('forEach Test');
-      //   });
+      // NodeList : non-live(실시간 반영 안됨)
+      // HTMLCollection : live (실시간 반영됨)
 
+      //   console.log(radioElq);
+      let value;
+      radioElq.forEach(function (el) {
+        if (el.checked) {
+          value = el.value;
+        }
+      });
+        // console.log(value);
+      const checkedRadio = document.querySelector(
+        'input[name="gender"]:checked'
+      ).value;
+      
       // 취미 input 값 가져오기
-
+      const checkedBoxes = document.querySelectorAll("input[name='hobby']:checked"
+      );
+      const checkboxArr = [];
+      checkedBoxes.forEach(el => checkboxArr.push(el.id));
+      
       // 위 세개의 값을 조합해서 textarea에 출력
+      const textArea = document.querySelector('textarea');
+      textArea.value = `${name}씨!\n당신의 성별은 "${checkedRadio}"이고,\n취미는 ${checkboxArr}이군요!`;
     });
   </script>
 </html>
