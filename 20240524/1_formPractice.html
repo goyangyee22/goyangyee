@@ -53,11 +53,11 @@
       const radioElq = document.querySelectorAll("input[name='gender']");
       //   const radioElc = document.getElementsByName('gender');
       const radioElc = document.getElementsByClassName("gender");
-    //   console.log(radioElq[0].value);
-    //   console.log(radioElc[0].value);
+      //   console.log(radioElq[0].value);
+      //   console.log(radioElc[0].value);
       //   radioElq[0].value = '남자';
       radioElc[0].value = "남자";
-    //   console.log(radioElc[0].value);
+      //   console.log(radioElc[0].value);
 
       //   console.log(`radioElq.length(NodeList): ${radioElq.length}`);
       //   console.log(`radioElc.length(HTMLCollection): ${radioElc.length}`);
@@ -81,19 +81,20 @@
           value = el.value;
         }
       });
-        // console.log(value);
+      // console.log(value);
       const checkedRadio = document.querySelector(
         'input[name="gender"]:checked'
       ).value;
-      
+
       // 취미 input 값 가져오기
-      const checkedBoxes = document.querySelectorAll("input[name='hobby']:checked"
+      const checkedBoxes = document.querySelectorAll(
+        "input[name='hobby']:checked"
       );
       const checkboxArr = [];
-      checkedBoxes.forEach(el => checkboxArr.push(el.id));
-      
+      checkedBoxes.forEach((el) => checkboxArr.push(el.id));
+
       // 위 세개의 값을 조합해서 textarea에 출력
-      const textArea = document.querySelector('textarea');
+      const textArea = document.querySelector("textarea");
       textArea.value = `${name}씨!\n당신의 성별은 "${checkedRadio}"이고,\n취미는 ${checkboxArr}이군요!`;
     });
   </script>
