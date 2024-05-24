@@ -7,52 +7,68 @@
 </head>
 <body>
     <form>
-        <p>이름 : <input type="text" name="name" /></p>
-        <p>
-            성별 : 
-            <input type="radio" id="male" name="gender" value="남" class="gender" />
-            <label for="male">남자</label>
-            <input type="radio" id="female" name="gender" value="여" class="gender" />
-            <label for="female">여자</label>
-        </p>
-        <p>
-            취미 :
-            <input type="checkbox" id="travel" name="hobby" />
-            <label for="travel">여행</label>
-            <input type="checkbox" id="reading" name="hobby" />
-            <label for="reading">독서</label>
-            <input type="checkbox" id="WM" name="hobby" />
-            <label for="WM">영화감상</label>
-            <input type="checkbox" id="HTML" name="hobby" />
-            <label for="HTML">HTML 공부</label>
-            <input type="checkbox" id="CSS" name="hobby" />
-            <label for="CSS">CSS 공부</label>
-            <input type="checkbox" id="Javascript" name="hobby" />
-            <label for="Javascript">JavaScript 공부</label>
-            <input type="checkbox" id="jQuery" name="hobby" />
-            <label for="jQuery">jQuery 공부</label>
-        </p>
-        <input type="button" value="결과출력" id="resultBtn" />
+      <p>이 름 : <input type="text" name="name" /></p>
+      <p>
+        성 별 :
+        <input type="radio" id="male" name="gender" value="남" class="gender" />
+        <label for="male">남자</label>
+        <input
+          type="radio"
+          id="female"
+          name="gender"
+          value="여"
+          class="gender"
+        />
+        <label for="female">여자</label>
+      </p>
+      <p>
+        취 미 :
+        <input type="checkbox" id="travel" name="hobby" />
+        <label for="travel">여행</label>
+        <input type="checkbox" id="reading" name="hobby" />
+        <label for="reading">독서</label>
+        <input type="checkbox" id="WM" name="hobby" />
+        <label for="WM">영화감상</label>
+        <input type="checkbox" id="HTML" name="hobby" />
+        <label for="HTML">HTML 공부</label>
+        <input type="checkbox" id="CSS" name="hobby" />
+        <label for="CSS">CSS 공부</label>
+        <input type="checkbox" id="Javascript" name="hobby" />
+        <label for="Javascript">Javascript 공부</label>
+        <input type="checkbox" id="jQuery" name="hobby" />
+        <label for="jQuery">jQuery 공부</label>
+      </p>
+      <input type="button" value="결과출력" id="resultBtn" />
     </form>
     <br />
     <textarea rows="10" cols="100"></textarea>
-</body>
-<script>
-    const resultBtn = document.getElementById("resultBtn");
-    resultBtn.addEventListener("click", function(){
-        // 이름 input 값 가져오기
-        const name = document.querySelector("input[name='name']").value;
+  </body>
+  <script>
+    const resultBtn = document.getElementById('resultBtn');
+    resultBtn.addEventListener('click', function () {
+      // 이름 input 값 가져오기
+      const name = document.querySelector('input[name="name"]').value;
 
-        // 성별 input 값 가져오기
-        const radioElq = document.querySelectorAll("input[name='gender']").value;
-        // const radioElc = document.getElementsByName("gender");
-        const radioElc = document.getElementsByClassName("gender");
-        console.log(radioElq);
-        console.log(radioElc);
+      // 성별 input 값 가져오기
+      const radioElq = document.querySelectorAll("input[name='gender']");
+      //   const radioElc = document.getElementsByName('gender');
+      const radioElc = document.getElementsByClassName('gender');
+      console.log(radioElq[0].value);
+      console.log(radioElc[0].value);
+      //   radioElq[0].value = '남자';
+      radioElc[0].value = '남자';
+      console.log(radioElc[0].value);
 
-        // 취미 input 값 가져오기
+      console.log(`radioElq.length(NodeList): ${radioElq.length}`);
+      console.log(`radioElc.length(HTMLCollection): ${radioElc.length}`);
 
-        // 위 세개의 값을 조합해서 textarea에 출력
-    })
-</script>
+      //   radioElc.forEach(function (el) {
+      //     console.log('forEach Test');
+      //   });
+
+      // 취미 input 값 가져오기
+
+      // 위 세개의 값을 조합해서 textarea에 출력
+    });
+  </script>
 </html>
