@@ -28,7 +28,7 @@
     </div>
 </body>
 <script>
-    // input 요소들 가져오기
+//  input 요소들 가져오기
 const inputs = document.querySelectorAll("input");
 
 // button 요소 가져오기
@@ -42,7 +42,7 @@ inputs.forEach((el, index) => {
         const nextInput = el.nextElementSibling;
         const prevInput = el.previousElementSibling;
 
-        if(currentInput.value.length >=1){
+        if(currentInput.value.length >= 1){
             currentInput.value = currentInput.value.substring(0, 1);
             currentInput.blur();
         }
@@ -51,7 +51,7 @@ inputs.forEach((el, index) => {
             nextInput &&
             nextInput.hasAttribute("disabled") &&
             currentInput.value !== ""
-    ){
+        ){
             nextInput.removeAttribute("disabled");
             nextInput.focus();
         }
@@ -65,13 +65,12 @@ inputs.forEach((el, index) => {
                     if(prevInput) prevInput.focus();
                 }
                 // 첫번째 input은 disabled되면 안됨
-                if(index === 0){
+                if (index === 0){
                     inputs[0].removeAttribute("disabled");
-                    inputs[0].focus();
+                    inputs[0].focus;
                 }
             });
         }
-
         // 네번째 input까지 채워지면 버튼 색상 변경
         if (inputs[inputs.length-1].value !== ""){
             button.classList.add("active");
