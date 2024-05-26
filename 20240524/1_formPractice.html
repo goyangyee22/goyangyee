@@ -82,14 +82,10 @@
         }
       });
       // console.log(value);
-      const checkedRadio = document.querySelector(
-        'input[name="gender"]:checked'
-      ).value;
+      const checkedRadio = document.querySelector('input[name="gender"]:checked').value;
 
       // 취미 input 값 가져오기
-      const checkedBoxes = document.querySelectorAll(
-        "input[name='hobby']:checked"
-      );
+      const checkedBoxes = document.querySelectorAll("input[name='hobby']:checked");
       const checkboxArr = [];
       checkedBoxes.forEach((el) => checkboxArr.push(el.id));
 
