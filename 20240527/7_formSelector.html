@@ -41,7 +41,7 @@
                         <input type="radio" name="gender" id="female"/> 
                         <label for="female">여자</label>
                     </p>
-                    <p>생년월일 : <input type="date" id="date" /></p>
+                    <p>생년월일 : <input type="date"/></p>
                     <p>취미</p>
                         <input type="checkbox" name="hobby" id="baseball"/>
                         <label for="baseball">야구</label>
@@ -68,18 +68,22 @@
     </form>
   </body>
   <script>
-    $("input").css("backgroundColor", "pink")
-    .css("border", "3px solid blue");
-    $("textarea").css("backgroundColor", "pink")
-    .css("border", "3px solid yellowgreen");
-    $(":submit").css("backgroundColor", "green")
-    .css("border", "3px solid yellowgreen");
+    // input 요소 테두리 lime, 배경색 핑크
+    $(":input").css({
+        border: "2px solid lime",
+        backgroundColor: "pink"
+    });
+    
+    // type button인 요소 배경색 노랑
     $(":button").css("backgroundColor", "yellow")
-    .css("border", "3px solid yellowgreen");
-    $(":file").css("border", "3px solid red");
-    $(":reset").css("border", "3px solid yellowgreen");
-    $(":checkbox").css("border", "3px solid yellowgreen");
-    $("#date").css("border", "3px solid yellowgreen");
-    $("#div:text").css("border", "3px solid yellowgreen");
+    
+    // type submit인 요소 배경색 초록
+    $("input:submit").css("backgroundColor", "green")
+    
+    // type text, password, email인 요소의 테두리 파랑 
+    $(":text, :password").css("border", "2px solid blue")
+  
+    // type file인 요소의 테두리 빨강
+    $(":file").css("border", "2px solid red")
     </script>
 </html>
