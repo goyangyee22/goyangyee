@@ -16,10 +16,10 @@
     }
   </style>
   <body>
-    <p>랄로<img src="../resources/img/ralo.png"></p>
-    <p>커피<img src="../resources/img/coffee.jpg"></p>
-    <p>쿠로미<img src="../resources/img/kuromi.jpg"></p>
-    <p>핑크빈<img src="../resources/img/pinkbean.jpg"></p>
+    <p id="ralo">랄로</p>
+    <p id="coffee">커피</p>
+    <p id="kuromi">쿠로미</p>
+    <p id="pinkbean">핑크빈</p>
   </body>
   <script>
     const imgArr = [
@@ -30,6 +30,9 @@
     ];
     $("p").on("click", function(){
         const index = $(this).index();
+        const pTags = $("p");
+        console.log(pTags);
+        // console.log(index);
         // 요소 내부에 추가
         const imgTag = `<img src="../resources/img/${imgArr[index]}" />`;
         // ~에 ~무엇을 ==> append
@@ -45,7 +48,10 @@
         // $(imgTag).prependTo(this);
 
         // 요소 외부에 추가
-        $(this).after(imgTag);
+        // $(this).after(imgTag);
+        // $(imgTag).insertAfter(this);
+        // $(this).before(imgTag);
+        // $(imgTag).insertBefore(this);
     })
   </script>
 </html>
