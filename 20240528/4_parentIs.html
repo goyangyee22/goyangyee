@@ -24,29 +24,35 @@
   </body>
   <script>
     // p 태그들에 클릭 이벤트를 달아준다.
-    $("p").on("click", function () {
-      // 선택된 p 태그를 가져온다.
-      const pTag = $(this); 
-    //   console.log(pTag)
+    // $("p").on("click", function () {
+    //   // 선택된 p 태그를 가져온다.
+    //   const pTag = $(this);
+    //   //   console.log(pTag)
 
-      // 선택된 p 태그의 부모요소를 가져온다.
-      const parent = pTag.parent();
+    //   // 선택된 p 태그의 부모요소를 가져온다.
+    //   const parent = pTag.parent();
 
-      // 부모요소가 div 태그인지 확인한다.
-      const parentEl = parent.prop("tagName").toLowerCase();
-      console.log(parentEl);
+    //   // 부모요소가 div 태그인지 확인한다.
+    //   const parentEl = parent.prop("tagName").toLowerCase();
+    //   console.log(parentEl);
 
-      if(parentEl == "div"){
-        // 부모요소가 div 태그라면 선택된 p 태그의 텍스트를 가져온다.
-        const text = pTag.text();
+    //   if (parentEl == "div") {
+    //     // 부모요소가 div 태그라면 선택된 p 태그의 텍스트를 가져온다.
+    //     const text = pTag.text();
 
-         // 새로운 p 태그를 생성하여 부모요소에 추가한다. (폰트색상 변경 빨강색)
-    parent.append(`<p style="color: red;">${text}</p>`);
-      }
-      // 부모요소가 div 태그가 아니라면 "작업대상이 아닙니다."라는 문구를 출력(alert)
-      else{
-        alert("작업대상이 아닙니다.");
-      }
+    //     // 새로운 p 태그를 생성하여 부모요소에 추가한다. (폰트색상 변경 빨강색)
+    //     // parent.append(`<p style="color: red;">${text}</p>`);
+    //     parent.append(pTag.clone(true).css("color", "red"))
+    //   }
+    //   // 부모요소가 div 태그가 아니라면 "작업대상이 아닙니다."라는 문구를 출력(alert)
+    //   else {
+    //     alert("작업대상이 아닙니다.");
+    //   }
+    // });
+    
+    $("div").on('click', 'p', function(e){
+        const pTag = e.target;
+        $(this).parent('div').append($(pTag).clone().css('color', 'red'));
     });
   </script>
 </html>
