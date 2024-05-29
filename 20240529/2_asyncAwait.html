@@ -7,43 +7,43 @@
   </head>
   <body>
     <h1>Authors</h1>
-    <ul id="authors"></ul>
     <button>posts</button>
     <button>comments</button>
     <button>albums</button>
     <button>photos</button>
     <button>users</button>
     <button>todos</button>
+    <ul id="authors"></ul>
     <script>
-      const url = "https://jsonplaceholder.typicode.com/posts";
-      // fetch 함수는 promise 객체를 반환
-      // promise ==> 비동기 통신에 대한 상태와 결과값을 담고 있는 객체
-      // promise state 값
-      // pending : 진행중
-      // fulfilled : 작업(통신) 성공
-      // rejected : 작업(통신) 실패
-
-      // response.json() : 응답을 JSON 형태로 파싱한다.
-      // response.text() : 응답을 읽고 string 형태로 반환한다.
-      // response.formData() : 응답을 FormData 객체 형태로 반환한다.
-      // response.blob() : 응답을 Blob(바이너리 데이터) 형태로 반환한다.
-
-      // fetch(url)
-      // .then(function (response) {
-      //     console.log(response.json());
-      //   });
-
-      console.log("Start!!!");
-      fetch(url)
-        // .then((response) => response.json())
-        .then((response) => response.text())
-        .then((result) => console.log(JSON.parse(result)));
-      console.log("End!!!");
-
-      // Start 콘솔이 먼저 찍힘
-      // fetch를 만났는데 여기서 리턴하는 Promise의 then 함수로 콜백을 등록
-      // 뒤에 있는 두번째 then 함수도 콜백을 등록(등록만 할 뿐 실행은 하지 않음)
-      // 서버(요청한 쪽)에서 response가 도착하면 then 함수로 등록했던 콜백들이 실행
+      // function 키워드 앞에 붙이는 async
+      // async를 붙이면 무조건 Promise 객체를 반환한다.
+      // await는 async 함수 안에서만 작동한다.
+      // await는 Promise 객체를 리턴하는 코드 앞에 붙인다.
+      // 함수 앞에 async가 붙어 있으면 함수 안에 비동기적으로 실행되는 코드가 있다는 말이다.
+      // await는 뒤에 있는 코드의 Promise가 fullfilled 혹은 rejected가 될 때까지 기다린다.
+      async function fetchAndPrint() {
+        alert("click 이벤트 발생");
+        const btnText = this.innerHTML;
+        const url = `https://jsonplaceholder.typicode.com/${btnText}`;
+        const response = await fetch(url);
+        const result = await response.json();
+        const ulTag = document.getElementById("authors");
+        result.forEach(el => {
+            const keys = Object.keys(el);
+            keys.forEach(userKey => {
+                if(typeof(el[userKey]) == "string"){
+                const liTag = document.createElement("li");
+                liTag.innerHTML = `${userKey}: ${el[userKey]}`;
+                ulTag.append(liTag);
+            }
+            })
+        })
+      }
+      
+      const btns = document.querySelectorAll("button");
+      btns.forEach(el => {
+        el.addEventListener("click", fetchAndPrint);
+      })
     </script>
   </body>
 </html>
