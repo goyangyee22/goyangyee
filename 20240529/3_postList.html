@@ -15,28 +15,27 @@
       height: 500px;
       font-size: 2rem;
     }
+    .circleDiv {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: lightgray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ellipsis{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
   </style>
   <body>
     <div class="container">
-      <div class="list-group w-auto">
-        <a
-          href="#"
-          class="list-group-item list-group-item-action d-flex gap-3 py-3"
-          aria-current="true"
-        >
-        <div class="rounded-circle flex-shrink-0">1</div>
-          <div class="d-flex gap-2 w-100 justify-content-between">/
-            
-            <div>
-              <h6 class="mb-0">List group item heading</h6>
-              <p class="mb-0 opacity-75">
-                Some placeholder content in a paragraph.
-              </p>
-            </div>
-            <small class="opacity-50 text-nowrap">now</small>
-          </div>
-        </a>
-      </div>
+      <div class="list-group w-auto" id="listParent"></div>
     </div>
   </body>
   <script>
@@ -44,6 +43,28 @@
       const url = `https://jsonplaceholder.typicode.com/posts`;
       const response = await fetch(url);
       const result = await response.json();
+      const parent = document.getElementById("listParent");
+      result.forEach((el) => {
+        parent.innerHTML += `
+        <a
+          href="#"
+          class="list-group-item list-group-item-action d-flex gap-3 py-3"
+          aria-current="true"
+        >
+        <div class="circleDiv flex-shrink-0">${el.id}</div>
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h6 class="mb-0">${el.title}</h6>
+              <p class="mb-0 opacity-75">
+                ${el.body}
+              </p>
+            </div>
+            <small class="opacity-50 text-nowrap">${el.userId}</small>
+          </div>
+        </a>
+        `;
+      });
     }
+    fetchAndPrint();
   </script>
 </html>
