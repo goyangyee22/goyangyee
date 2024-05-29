@@ -6,10 +6,10 @@
   <title>Document</title>
   </head>
   <style>
-    *{
+    * {
       box-sizing: border-box;
     }
-    body{
+    body {
       margin: 0;
       padding: 0;
       background-image: url("../resources/img/background.jpg");
@@ -20,12 +20,15 @@
       justify-content: center;
       align-items: center;
     }
-    #container{
+    #container {
       width: 90%;
       height: 80%;
       position: relative;
+      /* display: flex;
+      justify-content: center;
+      align-items: flex-end; */
     }
-    #input{
+    #input {
       width: 180px;
       height: 45px;
       font-size: 16px;
@@ -36,14 +39,14 @@
       bottom: 0;
       transform: translateX(-50%);
     }
-    .word{
-      color: #fff;
+    .word {
+      color: #ffffff;
       font-size: 30px;
       font-weight: 500;
       position: absolute;
     }
-    .score{
-      color: #fff;
+    .score {
+      color: #ffffff;
       font-size: 40px;
       font-weight: 600;
       position: absolute;
@@ -54,10 +57,10 @@
   </style>
 </head>
 <body>
-  <div id="container">
-    <input id="input" type="text" placeholder="단어를 입력하세요." />
-  </div>
-  <div class="score">총점 : 0</div>
+ <div id="container">
+  <input id="input" type="text" placeholder="단어를 입력하세요." />
+ </div>
+ <div class="score">총점 : 0</div>
   </body>
   <script>
     const words = [
@@ -71,8 +74,8 @@
     ];
     const input = document.querySelector("#input");
     const scorePanel = document.querySelector(".score");
-    let count = 0;
     let score = 0;
+    let count = 0;
 
     // 단어들이 뿌려질 container의 범위를 파악한다.
     const container = document.querySelector("#container");
@@ -88,11 +91,11 @@
         // words 배열에 있는 단어를 생성한 span 태그에 넣어준다.
         span.innerHTML = el;
 
-        // span 태그에 클라스를 추가한다. (.word)
-        span.classList.add("word");
+        // span 태그에 클래스를 추가한다.(.word)
+        span.classList.add("word")
 
         // span 태그에 아이디 속성을 추가한다.
-        span.setAttribute("id", el);
+        span.setAttribute("id", el)
 
         // span 태그의 위치를 랜덤으로 설정한다.
         span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
@@ -109,12 +112,12 @@
       if(word!=null){
         word.remove();
         score = score + 100;
-        scorePanel.innerHTML = `총점 : ${score}`;
+        scorePanel.innelHTML = `총점 : ${score}`;
         count++;
 
         // 게임 클리어
         if(count == words.length){
-          alert("클리어");
+          alert("클리어")
           if(confirm("재도전?")){
             window.location.reload();
           }
@@ -131,14 +134,12 @@
           const rectSize = el.getBoundingClientRect();
           el.style.top = `${rectSize.top - 75}px`;
           if(
-            el.getBoundingClientRect().bottom >
-            container.getBoundingClientRect().bottom -
-            parseInt(getComputedStyle(input).height.split("px")[0])
+            el.getBoundingClientRect().bottom > container.getBoundingClientRect().bottom - parseInt(getComputedStyle(input).height.split("px")[0])
           ){
             el.remove();
           }
         })
-      }, 1000)
+      }, 1000);
     }
     init();
     wordRain();
