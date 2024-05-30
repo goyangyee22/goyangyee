@@ -72,13 +72,13 @@
       "window",
       "Event",
     ];
+    const container = document.querySelector("#container");
     const input = document.querySelector("#input");
     const scorePanel = document.querySelector(".score");
-    let score = 0;
     let count = 0;
+    let score = 0;
 
     // 단어들이 뿌려질 container의 범위를 파악한다.
-    const container = document.querySelector("#container");
     const maxPositionX = container.offsetWidth - 90;
     const maxPositionY = container.offsetHeight - 100;
 
@@ -88,14 +88,14 @@
         // span 태그를 생성한다.
         const span = document.createElement("span");
 
-        // words 배열에 있는 단어를 생성한 span 태그에 넣어준다.
+        // words 배열에 있는 단어를 생성한 span 태그에 넣는다.
         span.innerHTML = el;
 
         // span 태그에 클래스를 추가한다.(.word)
-        span.classList.add("word")
+        span.classList.add("word");
 
         // span 태그에 아이디 속성을 추가한다.
-        span.setAttribute("id", el)
+        span.setAttribute("id", el);
 
         // span 태그의 위치를 랜덤으로 설정한다.
         span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
@@ -112,7 +112,7 @@
       if(word!=null){
         word.remove();
         score = score + 100;
-        scorePanel.innelHTML = `총점 : ${score}`;
+        scorePanel.innerHTML = `총점 : ${score}`;
         count++;
 
         // 게임 클리어
@@ -129,18 +129,20 @@
     // 단어들을 내려오게 하는 부분
     function wordRain(){
       const words = document.querySelectorAll(".word");
-      setInterval(function(){
+      setInterval(function (){
         words.forEach(function (el){
           const rectSize = el.getBoundingClientRect();
           el.style.top = `${rectSize.top - 75}px`;
           if(
-            el.getBoundingClientRect().bottom > container.getBoundingClientRect().bottom - parseInt(getComputedStyle(input).height.split("px")[0])
+            el.getBoundingClientRect().bottom >
+            container.getBoundingClientRect().bottom - parseInt(getComputedStyle(input).height.split("px")[0])
           ){
             el.remove();
           }
         })
       }, 1000);
     }
+
     init();
     wordRain();
   </script>
