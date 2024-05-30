@@ -72,78 +72,62 @@
       "window",
       "Event",
     ];
+  
     const container = document.querySelector("#container");
     const input = document.querySelector("#input");
     const scorePanel = document.querySelector(".score");
-    let count = 0;
     let score = 0;
+    let count = 0;
+    const maxPositionX = container.offsetWidth - 90;
+    const maxPositionY = container.offsetHeight - 100;
+    
 
-  // 단어들이 뿌려지는 범위 설정
-  const maxPositionX = container.offsetWidth - 90;
-  const maxPositionY = container.offsetHeight - 100;
+    function init(){
+      words.forEach(function (el){
+        const span = document.createElement("span");
+        span.innerHTML = el;
+        span.classList.add("word");
+        span.setAttribute("id", el);
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        container.append(span);
+      })
+    }
 
-  // 단어들이 생성되고 화면에 출력하는 부분
-  function init(){
-    words.forEach(function (el){
-      // span 태그 생성
-      const span = document.createElement("span");
+    input.addEventListener("change", function(){
+      const word = document.querySelector(`span[id=${input.value}]`);
+      if(word != null){
+        word.remove();
+        score = score + 100;
+        scorePanel.innerHTML = `총점 : ${score}`;
+        count++;
 
-      // word 배열에 span 태그 추가
-      span.innerHTML = el;
-
-      // span 태그에 클래스(word) 추가
-      span.classList.add("word");
-
-      // span 태그에 아이디 속성 추가
-      span.setAttribute("id", el);
-
-      // span 태그의 위치를 랜덤 설정
-      span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
-      span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
-
-      // container div에 span 태그 추가
-      container.append(span);
-    })
-  }
-
-  // 입력한 텍스트와 id가 일치하면 span 태그 제거
-  input.addEventListener("change", function(){
-    const word = document.querySelector(`span[id=${input.value}]`);
-    if(word != null){
-      word.remove();
-      score = score + 100;
-      scorePanel.innerHTML = `총점 : ${score}`;
-      count++;
-
-      if(count == words.length){
-        alert("클리어")
-        if(confirm("재도전")){
-          window.location.reload();
+        if(count == words.length){
+          alert("클리어");
+          if(confirm("재도전?")){
+            window.location.reload();
+          }
         }
       }
-    }
-    input.value = "";
-  })
+      input.value = "";
+    })
 
-  // 단어들이 내려오는 부분
-  function wordRain(){
-    const words = document.querySelectorAll(".word");
-    setInterval(function (){
-      words.forEach(function (el){
+    function wordRain(){
+      const words = document.querySelectorAll(".word");
+      setInterval(function (){
+        words.forEach(function (el){
         const rectSize = el.getBoundingClientRect();
         el.style.top = `${rectSize.top - 75}px`;
         if(
-          el.getBoundingClientRect().bottom >
-          container.getBoundingClientRect().bottom - 
-          parseInt(getComputedStyle(input).height.split("px")[0])
+          el.getBoundingClientRect().bottom > container.getBoundingClientRect().bottom - parseInt(getComputedStyle(input).height.split("px")[0])
         ){
           el.remove();
         }
-      })
-    }, 1000)
-  }
+      });
+      }, 1000)
+    }
 
-  init();
-  wordRain();
+    init();
+    wordRain();
   </script>
 </html>
