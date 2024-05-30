@@ -78,72 +78,72 @@
     let count = 0;
     let score = 0;
 
-    // 단어들이 뿌려질 container의 범위를 파악한다.
-    const maxPositionX = container.offsetWidth - 90;
-    const maxPositionY = container.offsetHeight - 100;
+  // 단어들이 뿌려지는 범위 설정
+  const maxPositionX = container.offsetWidth - 90;
+  const maxPositionY = container.offsetHeight - 100;
 
-    // 단어를 생성하고 화면에 출력하는 부분
-    function init(){
-      words.forEach(function (el){
-        // span 태그를 생성한다.
-        const span = document.createElement("span");
+  // 단어들이 생성되고 화면에 출력하는 부분
+  function init(){
+    words.forEach(function (el){
+      // span 태그 생성
+      const span = document.createElement("span");
 
-        // words 배열에 있는 단어를 생성한 span 태그에 넣는다.
-        span.innerHTML = el;
+      // word 배열에 span 태그 추가
+      span.innerHTML = el;
 
-        // span 태그에 클래스를 추가한다.(.word)
-        span.classList.add("word");
+      // span 태그에 클래스(word) 추가
+      span.classList.add("word");
 
-        // span 태그에 아이디 속성을 추가한다.
-        span.setAttribute("id", el);
+      // span 태그에 아이디 속성 추가
+      span.setAttribute("id", el);
 
-        // span 태그의 위치를 랜덤으로 설정한다.
-        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
-        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+      // span 태그의 위치를 랜덤 설정
+      span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+      span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
 
-        // container div에 span 태그를 추가한다.
-        container.append(span);
-      })
-    }
+      // container div에 span 태그 추가
+      container.append(span);
+    })
+  }
 
-    // 사용자가 입력한 텍스트와 동일한 id를 가진 span 태그를 제거한다.
-    input.addEventListener("change", function(){
-      const word = document.querySelector(`span[id=${input.value}]`);
-      if(word!=null){
-        word.remove();
-        score = score + 100;
-        scorePanel.innerHTML = `총점 : ${score}`;
-        count++;
+  // 입력한 텍스트와 id가 일치하면 span 태그 제거
+  input.addEventListener("change", function(){
+    const word = document.querySelector(`span[id=${input.value}]`);
+    if(word != null){
+      word.remove();
+      score = score + 100;
+      scorePanel.innerHTML = `총점 : ${score}`;
+      count++;
 
-        // 게임 클리어
-        if(count == words.length){
-          alert("클리어")
-          if(confirm("재도전?")){
-            window.location.reload();
-          }
+      if(count == words.length){
+        alert("클리어")
+        if(confirm("재도전")){
+          window.location.reload();
         }
       }
-      input.value = "";
-    })
-
-    // 단어들을 내려오게 하는 부분
-    function wordRain(){
-      const words = document.querySelectorAll(".word");
-      setInterval(function (){
-        words.forEach(function (el){
-          const rectSize = el.getBoundingClientRect();
-          el.style.top = `${rectSize.top - 75}px`;
-          if(
-            el.getBoundingClientRect().bottom >
-            container.getBoundingClientRect().bottom - parseInt(getComputedStyle(input).height.split("px")[0])
-          ){
-            el.remove();
-          }
-        })
-      }, 1000);
     }
+    input.value = "";
+  })
 
-    init();
-    wordRain();
+  // 단어들이 내려오는 부분
+  function wordRain(){
+    const words = document.querySelectorAll(".word");
+    setInterval(function (){
+      words.forEach(function (el){
+        const rectSize = el.getBoundingClientRect();
+        el.style.top = `${rectSize.top - 75}px`;
+        if(
+          el.getBoundingClientRect().bottom >
+          container.getBoundingClientRect().bottom - 
+          parseInt(getComputedStyle(input).height.split("px")[0])
+        ){
+          el.remove();
+        }
+      })
+    }, 1000)
+  }
+
+  init();
+  wordRain();
   </script>
 </html>
