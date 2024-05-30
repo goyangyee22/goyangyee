@@ -8,9 +8,9 @@ const imgBox = document.querySelector(".imageBox");
 
 // dragenter - 자신의 영역에 드래그가 들어왔을 때
 // dragleave - 자신의 영역에서 드래그가 벗어났을 때
-// dragover - 자신의 영역에서 드래그가 일어나고 있을 때
+// dragover - 자신의 영역에서 드래그가 일어나고 있을 때(필수)
 
-// drop - 자신의 영역에서 드래그가 종료됐을 때
+// drop - 자신의 영역에서 드래그가 종료됐을 때(필수)
 
 boxes.forEach((box) => {
   box.addEventListener("dragover", (e) => {
