@@ -72,7 +72,15 @@
       //   joinFormObj[input.name] = input.value;
       // })
       const joinFormObj = formElChildrenArr.reduce((acc, cur) => {
+        // acc[cur.name] = cur.value;
+        // return acc;
         
+        // return{ ...acc, [cur.name]: cur.value }
+        
+        ;
+
+        ({ ...acc, [cur.name]: cur.value })
+
       }, {});
       console.log(joinFormObj);
 
@@ -90,5 +98,12 @@
       // 저장 결과가 실패 ==> alert("저장을 실패했습니다.")
       // result ? window.location.reload() : alert("저장을 실패했습니다.");
     });
+    let value;
+    try{
+      value = zero;
+      // value = 0;
+    }catch(error){
+      console.log(error);
+    }
   </script>
 </html>

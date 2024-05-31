@@ -38,7 +38,7 @@ async function addDatas(collectionName, dataObj) {
 
     // 문서 ID 자동
     const collect = await collection(db, collectionName);
-    await addDoc(collect, dataObj);
+    await addDoc(collect, dataObj); // 결과 == undefined
     return true;
   } catch (error) {
     return false;
