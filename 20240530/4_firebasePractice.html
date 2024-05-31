@@ -55,18 +55,22 @@
             </tr>
         `
       );
-      console.log(snapshot);
+    //   console.log(snapshot);
     });
 
     const btn =document.getElementById("saveBtn");
     btn.addEventListener("click", function(){
         const memberInfo = {
             name: document.querySelector("input[name='name']").value,
-            age: document.querySelector("input[age='age']").value,
-            tel: document.querySelector("input[tel='tel']").value,
-            gender: document.querySelector("input[gender='gender']").value,
-            email: document.querySelector("input[email='email']").value,
+            age: Number(document.querySelector("input[name='age']").value),
+            tel: document.querySelector("input[name='tel']").value,
+            gender: document.querySelector("input[name='gender']").value,
+            email: document.querySelector("input[name='email']").value,
         };
+        console.log(memberInfo);
+        // 파이어베이스에 데이터를 저장
+        // 저장 결과가 성공 ==> 페이지 리로딩
+        // 저장 결과가 실패 ==> alert("저장을 실패했습니다.")
     });
   </script>
 </html>
