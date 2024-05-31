@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>파이어베이스 연습</title>
-</head>
-<body>
+  </head>
+  <body>
+    <p>
+      <label>이름 : </label>
+      <input type="text" name="name" />
+    </p>
+    <p>
+      <label>나이 : </label>
+      <input type="text" name="age" />
+    </p>
+    <p>
+      <label>이메일 : </label>
+      <input type="text" name="email" />
+    </p>
+    <p>
+      <label>전화번호 : </label>
+      <input type="text" name="tel" />
+    </p>
+    <p>
+      <label>성별 : </label>
+      <input type="text" name="gender" />
+    </p>
+    <button id="saveBtn">데이터저장</button>
     <table border="1">
-        <tr>
-            <th>이름</th>
-            <th>나이</th>
-            <th>성별</th>
-            <th>이메일</th>
-            <th>전화번호</th>
-        </tr>
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+      </tr>
     </table>
-</body>
-<script type="module">
-    import { db, getMembers } from "../resources/js/firebase.js"
-    async function getDatas(){
-        const snapshot = await getMembers();
-        const tableTag = document.querySelector("table")
+  </body>
+  <script type="module">
+    import { db, getDatas } from "../resources/js/firebase.js";
+    const snapshot = await getDatas("member");
+    const tableTag = document.querySelector("table");
     snapshot.forEach((doc) => {
-        const { name, age, gender, tel, email } = doc.data();
-       tableTag.insertAdjacentHTML("beforeend", 
+      const { name, age, gender, tel, email } = doc.data();
+      tableTag.insertAdjacentHTML(
+        "beforeend",
         `
         <tr>
             <td>${name}</td> 
@@ -32,10 +53,20 @@
             <td>${email}</td>
             <td>${tel}</td>
             </tr>
-        `) 
-        console.log(snapshot);
+        `
+      );
+      console.log(snapshot);
     });
-    }
-    getDatas();
-</script>
+
+    const btn =document.getElementById("saveBtn");
+    btn.addEventListener("click", function(){
+        const memberInfo = {
+            name: document.querySelector("input[name='name']").value,
+            age: document.querySelector("input[age='age']").value,
+            tel: document.querySelector("input[tel='tel']").value,
+            gender: document.querySelector("input[gender='gender']").value,
+            email: document.querySelector("input[email='email']").value,
+        };
+    });
+  </script>
 </html>

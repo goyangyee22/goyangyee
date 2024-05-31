@@ -14,11 +14,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getMembers(){
-    const collect = await collection(db, "member")
+async function getDatas(collectionName){
+    const collect = await collection(db, collectionName)
     const snapshot = await getDocs(collect);
 
     return snapshot;
 }
 
-export { db, getMembers };
+export { db, getDatas };
