@@ -38,6 +38,9 @@
         <th>전화번호</th>
       </tr>
     </table>
+    <br /><br />
+    <button id="updateBtn">회원정보수정</button>
+    <button id="deleteBtn">회원삭제</button>
   </body>
   <script type="module">
     import { db, getDatas, addDatas } from "../resources/js/firebase.js";
@@ -74,13 +77,10 @@
       const joinFormObj = formElChildrenArr.reduce((acc, cur) => {
         // acc[cur.name] = cur.value;
         // return acc;
-        
-        return{ ...acc, [cur.name]: cur.value }
-        
-        ;
 
-        ({ ...acc, [cur.name]: cur.value })
+        return { ...acc, [cur.name]: cur.value };
 
+        ({ ...acc, [cur.name]: cur.value });
       }, {});
       console.log(joinFormObj);
 
