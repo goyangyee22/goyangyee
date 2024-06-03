@@ -1,0 +1,12 @@
+html{
+    font-family: Pretendard;
+}
+body{
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+}
+.bg{
+    width: 100%;
+    opacity: 0.5;
+}

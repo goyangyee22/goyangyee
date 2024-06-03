@@ -6,7 +6,9 @@ import {
   setDoc,
   doc,
   addDoc,
-  deleteDoc
+  deleteDoc,
+  getDoc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -51,4 +53,13 @@ async function deleteDatas(collectionName, docId){
   await deleteDoc(docRef);
 }
 
-export { db, getDatas, addDatas, deleteDatas };
+async function updateDatas(collectionName, docId, updateInfoObj){
+  // doc(db, 컬렉션명, 문서ID);
+  // getDoc(문서레퍼런스);
+  // updateDoc(문서데이터, 수정할 정보객체);
+  const docRef = await doc(db, collectionName, docId);
+  // const docData = await getDoc(docRef);
+  await updateDoc(docRef, updateInfoObj);
+}
+
+export { db, getDatas, addDatas, deleteDatas, updateDatas };
