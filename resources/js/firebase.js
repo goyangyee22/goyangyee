@@ -6,6 +6,7 @@ import {
   setDoc,
   doc,
   addDoc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -45,4 +46,9 @@ async function addDatas(collectionName, dataObj) {
   }
 }
 
-export { db, getDatas, addDatas };
+async function deleteDatas(collectionName, docId){
+  const docRef = await doc(db, collectionName, docId);
+  await deleteDoc(docRef);
+}
+
+export { db, getDatas, addDatas, deleteDatas };
