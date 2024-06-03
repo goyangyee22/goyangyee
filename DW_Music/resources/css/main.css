@@ -10,3 +10,30 @@ body{
     width: 100%;
     opacity: 0.5;
 }
+.hero{
+    position: relative;
+}
+.hero-heading{
+    width: 100vw;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; */
+    inset: 0;
+    background-image: ;
+}
+.hero-heading > h1{
+    font-weight: 400;
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+}
+.small{
+}
+.big{
+}
