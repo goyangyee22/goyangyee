@@ -1,41 +1,69 @@
+*{
+    box-sizing: border-box;
+}
+html{
+font: pretendard;
+}
 body{
     background: #000;
     color: #fff;
+    margin: 0;
+    font-size: 16px;
+    /* background-image: url("../../../resources/img/ralo.png"); */
 }
 .progress-bar{
     background-color: #4d4d54;
     width: 100%;
     height: 8px;
 }
+.player{
+    backdrop-filter: blur(15px);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+}
 .progress{
     background-color: #7000ff;
     width: 43%;
-    height: 8px;
+    height: 100%;
 }
 .player-main{
     background-color: rgba(48, 48, 55, 0.7);
-    padding: 12px 24px;
+    padding: 16px 40px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
 }
 .title{
     color: #d9d9d9;
 }
 .artist{
     color: #8c8993;
+    font-size: 14px;
 }
 .time{
     color: #8c8993;
+    text-align: right;
+}
+.current{
+    border-radius: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateY(-4px);
+    gap: 12px;
 }
 .info{
     display: flex;
-    gap: 16px;
-    justify-content: center;
     align-items: center;
+    gap: 16px;
+}
+.info, .time{
+    flex-basis: 300px;
 }
 .info img{
     border-radius: 8px;
@@ -44,7 +72,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(-25%);
 }
 .info p{
     color: #777;
