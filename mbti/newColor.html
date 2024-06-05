@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ADD COLOR</title>
     <link
       rel="stylesheet"
@@ -10,18 +10,129 @@
     />
     <link rel="stylesheet" href="resources/css/new.css" />
     <link rel="stylesheet" href="resources/css/style.css" />
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1 class="header-heading">새 컬러 등록하기</h1>
-            <a class="cancel" href="javascript:history.go(-1)">
-                <img class="cancel-icon" src="resources/img/x.svg" />
-            </a>
-        </header>
-        <section></section>
-        <section></section>
-        <button>컬러 등록</button>
+      <div class="header">
+        <div class="header-heading">
+          <h1>새 컬러 등록하기</h1>
+        </div>
+        <a class="cancel" href="javascript:history.go(-1)">
+          <img class="cancel-icon" src="resources/img/x.svg" />
+        </a>
+      </div>
+      <div class="section">
+        <h2 class="section-heading">MBTI</h2>
+        <div class="mbti-options" id="mbti-options">
+          <!-- <div class="mbti-option">
+                    <span class="mbti-char">E</span>
+                    외향형
+                </div> -->
+        </div>
+      </div>
+      <div class="section">
+        <h2 class="section-heading">
+          컬러
+          <button class="random">
+            <img class="repeat-icon" src="resources/img/repeat.svg" />
+          </button>
+        </h2>
+        <div class="color-input-container">
+          <input class="color-input" type="text" value="#CF79E5" />
+          <span
+            class="color-input-chip"
+            id="colorChip"
+            style="background-color: #cf79e5"
+          ></span>
+        </div>
+      </div>
+      <button class="submit">컬러 등록</button>
     </div>
-</body>
+  </body>
+  <script>
+    const mbtiOptions = document.getElementById("mbti-options");
+    const mbtiArr = [
+      { mbti: "E", desc: "외향형" },
+      { mbti: "I", desc: "내향형" },
+      { mbti: "S", desc: "감각형" },
+      { mbti: "N", desc: "직관형" },
+      { mbti: "F", desc: "감정형" },
+      { mbti: "T", desc: "사고형" },
+      { mbti: "P", desc: "인식형" },
+      { mbti: "J", desc: "판단형" },
+    ];
+    mbtiArr.forEach((info) => {
+      mbtiOptions.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="mbti-option">
+                    <span class="mbti-char">${info.mbti}</span>
+                    ${info.desc}
+                </div>
+        `
+      );
+    });
+
+    const mbtiOptionNodeList = document.querySelectorAll(".mbti-option");
+    mbtiOptionNodeList.forEach((option, idx) => {
+      option.addEventListener("click", function () {
+        if (option.classList.contains("selected")) return false;
+
+        let versusEl;
+
+        if (idx % 2 == 0) {
+          versusEl = this.nextElementSibling;
+        } else {
+          versusEl = this.previousElementSibling;
+        }
+
+        if (versusEl.classList.contains("selected")) {
+          versusEl.classList.remove("selected");
+        }
+        this.classList.add("selected");
+
+        // {
+        //     const nextEl = this.nextElementSibling;
+        //     if(nextEl.classList.contains("selected")){
+        //         nextEl.classList.remove("selected");
+        //     };
+        //     this.classList.add("selected");
+        // }else{
+        //     const prevEl = this.previousElementSibling;
+        //     if(prevEl.classList.contains("selected")){
+        //         prevEl.classList.remove("selected");
+        //     };
+        //     this.classList.add("selected");
+        // }
+      });
+    });
+
+    const colorInput = document.querySelector(".color-input");
+    const colorChip = document.getElementById("colorChip");
+    colorInput.addEventListener("change", function () {
+      const colorVal = colorInput.value;
+      if (colorVal.length == 7) {
+        colorChip.style.backgroundColor = colorVal;
+      } else {
+        alert("색상 코드는 #을 포함한 HEX 형태로 작성해야 합니다.");
+      }
+    });
+
+    const randomBtn = document.querySelector(".random");
+    randomBtn.addEventListener("click", function () {
+      const colorArr = [];
+      for (let i = 0; i < 3; i++) {
+        colorArr.push(parseInt(Math.random() * 256));
+      }
+      // console.log(colorArr[0].toString(16).padStart(2, "0"));
+      // console.log(colorArr[1].toString(16));
+      // console.log(colorArr[2].toString(16));
+      const hexColorCode = colorArr
+        .map((rgb) => rgb.toString(16).padStart(2, "0"))
+        .join("");
+      colorInput.value = `#${hexColorCode.toUpperCase()}`;
+      colorChip.style.backgroundColor = `#${hexColorCode}`;
+      // colorArr[0].toString(16).padStart(2, "0");
+    });
+  </script>
 </html>
