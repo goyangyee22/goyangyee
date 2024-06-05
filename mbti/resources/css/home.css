@@ -5,6 +5,8 @@
   gap: 40px;
 }
 .header {
+  position: sticky;
+  top: 80px;
   background-color: #f5f7fb;
   padding: 80px 40px;
   border-radius: 80px;

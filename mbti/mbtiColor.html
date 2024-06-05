@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="content">
-        <a class="add-item" href="#">+ 새 컬러 등록하기</a>
+        <a class="add-item" href="newColor.html">+ 새 컬러 등록하기</a>
         <ul class="items" id="items">
           <!-- <li class="item">
             <div class="item-id">20</div>
@@ -69,10 +69,10 @@
     ];
     mbtiArr.forEach((el, idx) => {
       items.insertAdjacentHTML(
-        "beforeend",
+        "afterbegin",
         `
             <li class="item">
-            <div class="item-id">${mbtiArr.length - idx}</div>
+            <div class="item-id">${idx+1}</div>
             <div class="item-mbti">${el.mbti}</div>
             <div class="item-arrow">
               <img class="item-arrow-icon" src="resources/img/arrow.svg" />
@@ -81,7 +81,7 @@
               class="item-color-chip"
               style="background-color: ${el.code}"
             ></div>
-            <div class="item-color-code">${el.code}</div>
+            <div class="item-color-code">${el.code.toUpperCase()}</div>
           </li>
             `
       );

@@ -1,0 +1,28 @@
+.container{
+    width: 416px;
+    margin: 80px auto;
+}
+.section{
+    margin: 56px 0;
+}
+.container header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-heading{
+    margin: 0;
+    font-weight: 800;
+    font-size: 40px;
+}
+.cancel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f7fb;
+    padding: 18px;
+    border-radius: 50%;
+}
+.cancel:hover{
+    background-color: #edf0f5;
+}
