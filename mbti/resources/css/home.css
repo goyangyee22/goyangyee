@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  width: 865px;
+  margin: 80px auto;
+  gap: 40px;
+}
+.header {
+  background-color: #f5f7fb;
+  padding: 80px 40px;
+  border-radius: 80px;
+  color: #464e5e;
+  text-align: right;
+}
+.header > h1 {
+  font-weight: 400;
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+.header > h1 > .accent {
+  font-weight: 800;
+}
+.header .filter {
+  background-color: #fff;
+  padding: 8px 24px;
+  border-radius: 8px;
+}
