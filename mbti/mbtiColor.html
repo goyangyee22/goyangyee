@@ -1,30 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MBTI COLOR</title>
     <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-  />
-  <link rel="stylesheet" href="resources/css/home.css" />
-  <link rel="stylesheet" href="resources/css/style.css" />
-</head>
-<body>
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="resources/css/home.css" />
+    <link rel="stylesheet" href="resources/css/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="header-container">
-            <div class="header">
-                <h1>MBTI별<br /><span class="accent">좋아하는 컬러</span></h1>
-                <div>
-                    <span class="filter">
-                        <span>ISTP</span>
-                        <img class="remove-icon" src="resources/img/x.svg" />
-                    </span>
-                </div>
-            </div>
+      <div class="header-container">
+        <div class="header">
+          <h1>MBTI별<br /><span class="accent">좋아하는 컬러</span></h1>
+          <div>
+            <span class="filter">
+              <span>ISTP</span>
+              <img class="remove-icon" src="resources/img/x.svg" />
+            </span>
+          </div>
         </div>
-        <div class="content"></div>
+      </div>
+      <div class="content">
+        <a class="add-item" href="#">+ 새 컬러 등록하기</a>
+        <ul class="items" id="items">
+          <!-- <li class="item">
+            <div class="item-id">20</div>
+            <div class="item-mbti">ENFP</div>
+            <div class="item-arrow">
+              <img class="item-arrow-icon" src="resources/img/arrow.svg" />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: #efb578"
+            ></div>
+            <div class="item-color-code">#EFB578</div>
+          </li> -->
+        </ul>
+      </div>
     </div>
-</body>
+  </body>
+  <script>
+    const items = document.getElementById("items");
+    const mbtiArr = [
+      { mbti: "ENFP", code: "#28598f" },
+      { mbti: "INFP", code: "#8649b6" },
+      { mbti: "ISFP", code: "#a894b2" },
+      { mbti: "ENFJ", code: "#ecbb30" },
+      { mbti: "INFP", code: "#cf79e5" },
+      { mbti: "ISFP", code: "#95fcc0" },
+      { mbti: "INFP", code: "#961005" },
+      { mbti: "INTJ", code: "#40fa34" },
+      { mbti: "ENFP", code: "#106100" },
+      { mbti: "ESFJ", code: "#f0df32" },
+      { mbti: "ESTJ", code: "#10e479" },
+      { mbti: "INFP", code: "#6c84ac" },
+      { mbti: "ENTJ", code: "#aec7cb" },
+      { mbti: "INTJ", code: "#6746cb" },
+      { mbti: "ISTP", code: "#ff5028" },
+      { mbti: "INFP", code: "#36c667" },
+      { mbti: "ESFP", code: "#4c8f9e" },
+      { mbti: "ENFP", code: "#c88ce8" },
+      { mbti: "ISTP", code: "#930622" },
+      { mbti: "ENFJ", code: "#efb578" },
+    ];
+    mbtiArr.forEach((el, idx) => {
+      items.insertAdjacentHTML(
+        "beforeend",
+        `
+            <li class="item">
+            <div class="item-id">${mbtiArr.length - idx}</div>
+            <div class="item-mbti">${el.mbti}</div>
+            <div class="item-arrow">
+              <img class="item-arrow-icon" src="resources/img/arrow.svg" />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: ${el.code}"
+            ></div>
+            <div class="item-color-code">${el.code}</div>
+          </li>
+            `
+      );
+    });
+  </script>
 </html>
