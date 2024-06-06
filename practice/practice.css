@@ -1,20 +1,81 @@
-* {
+*{
   box-sizing: border-box;
 }
-html {
-  font-family: Pretendard;
-  word-break: keep-all;
-  font-size: 16px;
+html{
+  font: Pretendard;
 }
-body {
+body{
+  background: #000;
+  color: #fff;
   margin: 0;
-  background-color: #000;
+  font-size: 14px;
+}
+.progress-bar{
+  background-color: #4d4d54;
+  width: 100%;
+  height: 8px;
+}
+.player{
+  backdrop-filter: blur(15px);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.progress{
+  background-color: #7000ff;
+  width: 43%;
+  height: 100%;
+}
+.player-main{
+  background-color: rgba(48, 48, 55, 0.7);
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+.title{
   color: #d9d9d9;
 }
-ul {
-  list-style-type: none;
-  padding: 16px;
+.artist{
+  color: #8c8993;
+  font-size: 14px;
 }
-li {
-  padding: 4px;
+.time{
+  color: #8c8993;
+  text-align: right;
+}
+.current{
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.info{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.info, .time{
+  flex-basis: 300px;
+}
+.info img{
+  border-radius: 8px;
+}
+.controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info p{
+  color: #777;
+}
+button{
+  background-color: transparent;
+  border: none;
 }
