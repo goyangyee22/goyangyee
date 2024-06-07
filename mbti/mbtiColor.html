@@ -46,30 +46,31 @@
   <script type="module">
     import { getDatas } from "./resources/js/mbti_firebase.js";
     const items = document.getElementById("items");
-    
-    async function getMbtiInfo(){
+
+    async function getMbtiInfo() {
       const datas = await getDatas("mbtiColor");
       let idx = 1;
       datas.forEach((doc) => {
+        const info = doc.data();
         items.insertAdjacentHTML(
-        "afterbegin",
-        `
-            <li class="item">
+          "afterbegin",
+          `
+        <li class="item">
             <div class="item-id">${idx}</div>
-            <div class="item-mbti">${doc.mbti}</div>
+            <div class="item-mbti">${info.mbti}</div>
             <div class="item-arrow">
-              <img class="item-arrow-icon" src="resources/img/arrow.svg" />
+                <img class="item-arrow-icon" src="resources/img/arrow.svg" />
             </div>
             <div
-              class="item-color-chip"
-              style="background-color: ${doc.code}"
+                class="item-color-chip"
+                style="background-color: ${info.code}"
             ></div>
-            <div class="item-color-code">${doc.code.toUpperCase()}</div>
-          </li>
-            `
-      );
-      idx++;
-      })
+            <div class="item-color-code">${info.code.toUpperCase()}</div>
+        </li>
+        `
+        );
+        idx++;
+      });
     }
     getMbtiInfo();
 
