@@ -103,6 +103,7 @@
     transform: translateY(-50%);
 }
 .submit{
+  cursor: pointer;
     width: 100%;
     background-color: #464e5e;
     border: none;
