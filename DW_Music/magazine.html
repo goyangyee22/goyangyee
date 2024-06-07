@@ -49,51 +49,45 @@
     </main>
   </body>
   <script>
-    const playlists = document.getElementById('playlists');
+    const playlists = document.getElementById("playlists");
     const playlistInfoArr = [
-      { src: 'resources/img/img_playlist_1.png', title: '여행을 떠나요' },
-      {
-        src: 'resources/img/img_playlist_2.png',
-        title: '금요일 저녁의 카페에서',
-      },
-      { src: 'resources/img/img_playlist_3.png', title: '이제 집중할 시간' },
-      { src: 'resources/img/img_playlist_4.png', title: '몰디브 한 잔' },
-      { src: 'resources/img/img_playlist_5.png', title: 'K-Pop 믹스' },
-      { src: 'resources/img/img_playlist_6.png', title: '공부를 위한 클래식' },
-      { src: 'resources/img/img_playlist_7.png', title: '한국 시티팝 20선' },
-      { src: 'resources/img/img_playlist_8.png', title: '편안하게 느긋하게' },
-      {
-        src: 'resources/img/img_playlist_9.png',
-        title: '고요한 밤을 위한 BGM',
-      },
+      "여행을 떠나요",
+      "금요일 저녁의 카페에서",
+      "이제 집중할 시간",
+      "몰디브 한 잔",
+      "K-Pop 믹스",
+      "공부를 위한 클래식",
+      "한국 시티팝 20선",
+      "편안하게 느긋하게",
+      "고요한 밤을 위한 BGM",
     ];
-    playlistInfoArr.forEach((info) => {
+    playlistInfoArr.forEach((info, idx) => {
       playlists.insertAdjacentHTML(
-        'beforeend',
+        "beforeend",
         `
         <div class="playlist">
             <img
                 class="playlist-thumb"
-                src="${info.src}"
+                src="resources/img/img_playlist_${idx + 1}.png"
             />
-            <div class="playlist-title">${info.title}</div>
+            <div class="playlist-title">${info}</div>
             <div class="playlist-artist">DW Music</div>
         </div>
         `
       );
     });
 
-    const artists = document.getElementById('artists');
+    const artists = document.getElementById("artists");
     const artistNameArr = [
-      'Neon 5',
-      '곤잘레스',
-      '케이시 킹',
-      'Frake',
-      '체인스모킹',
+      "Neon 5",
+      "곤잘레스",
+      "케이시 킹",
+      "Frake",
+      "체인스모킹",
     ];
     artistNameArr.forEach((name, idx) => {
       artists.insertAdjacentHTML(
-        'beforeend',
+        "beforeend",
         `
         <div class="artist">
             <img class="artist-profile" src="resources/img/img_artist_${
@@ -105,47 +99,47 @@
       );
     });
 
-    const stations = document.getElementById('stations');
+    const stations = document.getElementById("stations");
     for (let i = 1; i < 10; i++) {
       stations.insertAdjacentHTML(
-        'beforeend',
+        "beforeend",
         `
         <img class="station" src="resources/img/img_station_${i}.png" />
         `
       );
     }
 
-    const charts = document.getElementById('charts');
+    const charts = document.getElementById("charts");
     const chartArr = [
-      { title: '사건의 수평선', artist: '은하', updown: '▲', className: 'up' },
-      { title: 'FRAGILE', artist: '세라핌', updown: '▼', className: '' },
-      { title: 'Hype Girl', artist: 'OldJeans', updown: '-', className: '' },
+      { title: "사건의 수평선", artist: "은하", updown: "▲", className: "up" },
+      { title: "FRAGILE", artist: "세라핌", updown: "▼", className: "" },
+      { title: "Hype Girl", artist: "OldJeans", updown: "-", className: "" },
       {
-        title: '사랑은 늘 찾아와',
-        artist: '임빌런',
-        updown: '-',
-        className: '',
+        title: "사랑은 늘 찾아와",
+        artist: "임빌런",
+        updown: "-",
+        className: "",
       },
       {
-        title: 'Black Venom',
-        artist: 'PinkPink',
-        updown: '▲',
-        className: 'up',
+        title: "Black Venom",
+        artist: "PinkPink",
+        updown: "▲",
+        className: "up",
       },
-      { title: '취중고백', artist: '멜로', updown: '▼', className: '' },
-      { title: 'Snowman', artist: '지아', updown: '▲', className: 'up' },
-      { title: 'Hollywood', artist: '검정바지', updown: '▲', className: 'up' },
+      { title: "취중고백", artist: "멜로", updown: "▼", className: "" },
+      { title: "Snowman", artist: "지아", updown: "▲", className: "up" },
+      { title: "Hollywood", artist: "검정바지", updown: "▲", className: "up" },
       {
-        title: 'I Think I Like Her',
-        artist: '찰리 원더',
-        updown: '▼',
-        className: '',
+        title: "I Think I Like Her",
+        artist: "찰리 원더",
+        updown: "▼",
+        className: "",
       },
-      { title: 'London', artist: '체인스모킹', updown: '-', className: '' },
+      { title: "London", artist: "체인스모킹", updown: "-", className: "" },
     ];
     chartArr.forEach((info, idx) => {
       charts.insertAdjacentHTML(
-        'beforeend',
+        "beforeend",
         `
         <li class="chart">
             <img class="chart-cover" src="resources/img/img_chart_${
@@ -154,7 +148,7 @@
             <div class="chart-info">
                 <div class="chart-rank">
                 <div class="chart-number">${idx + 1}</div>
-                <span class="chart-change ${info.updown == '▲' ? 'up' : ''}">${
+                <span class="chart-change ${info.updown == "▲" ? "up" : ""}">${
           info.updown
         }</span>
                 </div>
