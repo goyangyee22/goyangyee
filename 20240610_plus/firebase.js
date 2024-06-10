@@ -21,3 +21,12 @@ const firebaseConfig = {
     const result =  await db.collection(collectionName).add(addObj);
     return result;
   }
+
+  async function deleteDatas(collectionName, docId) {
+    try{
+        await db.collection(collectionName).doc(docId).delete();
+        return true;
+    }catch (error){
+        return false;
+    }
+  }

@@ -33,6 +33,9 @@
     .form-item > .form-label {
       width: 30%;
     }
+    .selected {
+      background-color: yellow;
+    }
   </style>
   <body>
     <div class="container">
@@ -90,7 +93,7 @@
         tableTag.insertAdjacentHTML(
           "beforeend",
           `
-        <tr>
+        <tr data-id=${doc.id}>
             <td>${name}</td>
             <td>${age}</td>
             <td>${gender}</td>
@@ -114,7 +117,10 @@
     // table에 클릭 이벤트 생성
     const tableTag = document.querySelector("table");
     tableTag.addEventListener("click", function (e) {
-      console.log(e.currentTarget);
+      if (e.target.tagName != "TH" && e.target.tagName != "TABLE") {
+        e.target.parentElement.classList.toggle("selected");
+      }
+      console.log(e.target.parentElement);
     });
 
     // 신규 회원정보 저장
@@ -131,6 +137,31 @@
       // console.log(addObj);
       const result = await addDatas("member", addObj);
       console.log(result);
+      const { name, age, gender, email, tel } = addObj;
+      console.log(result);
+      tableTag.firstElementChild.insertAdjacentHTML(
+        "afterend",
+        `
+      <tr data-id=${result.id}>
+            <td>${name}</td>
+            <td>${age}</td>
+            <td>${gender}</td>
+            <td>${email}</td>
+            <td>${tel}</td>
+            </tr>
+      `
+      );
+    });
+
+    // 회원정보 삭제(다중 삭제 가능)
+    const deleteBtn = document.getElementById("deleteBtn");
+    deleteBtn.addEventListener("click", async function () {
+      const selectedTrs = document.querySelectorAll(".selected");
+      selectedTrs.forEach(async (tr) => {
+        const docId = tr.getAttribute("data-id");
+        // console.log(docId);
+        const result = deleteDates("member", docId);
+      });
     });
   </script>
 </html>
