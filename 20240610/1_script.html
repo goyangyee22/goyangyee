@@ -51,10 +51,39 @@
     let numSum = +strNum + num2;
 
     // 조건문
-    let money = 50000;
-    let price = 40000;
-    if (price < money) {
-      alert(`장난감을 구매했습니다. 남은돈 : ${money - price}원`);
-    }
+    // let money = 50000;
+    // let price = 40000;
+    // if (price < money) {
+    //   alert(`장난감을 구매했습니다. 남은돈 : ${money - price}원`);
+    // }
+
+    // let grade = +prompt("점수를 입력해주세요.");
+    // 60점 미만은 F 학점
+    // 60점 이상부터 100점까지 10점씩 구간을 나눠서 D, C, B, A 학점을 주려고 한다.
+    // if (grade < 60) {
+    //   alert("F학점 입니다.");
+    // } else if (60 <= grade && grade < 70) {
+    //   alert("D학점 입니다.");
+    // } else if (70 <= grade && grade < 80) {
+    //   alert("C학점 입니다.");
+    // } else if (80 <= grade && grade < 90) {
+    //   alert("B학점 입니다.");
+    // } else {
+    //   alert("A학점 입니다.");
+    // }
+
+    // 조건식의 불린형 변환
+    // 조건문의 조건식을 평가하고 그 결과를 불린값으로 변환한다.
+    // 불린값으로 변환하기 전에 falsy한 값이냐 truthy한 값이냐를 판단한다.
+    // falsy: 0, "", null, undefined, NaN
+    // if (str1) {
+    //   alert("참 입니다.");
+    // }
+
+    // 조건부 연산자 '?'
+    let num3 = +prompt("숫자를 입력하세요.");
+    let num4 = +prompt("숫자를 입력하세요.");
+    let num3or4 = num3 <= num4 ? num4 - num3 : num3 - num4;
+    alert(`두 수의 차는 ${num3or4}입니다.`);
   </script>
 </html>
