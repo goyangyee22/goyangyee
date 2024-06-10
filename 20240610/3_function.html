@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>함수 리마인드</title>
   </head>
-  <body></body>
+  <body>
+    <button onclick="showMessage()">showMessage 함수</button>
+    <button onclick="show()">show 함수</button>
+  </body>
   <script>
-    // 함수 선언식
-    function showMessage() {
-      alert("안녕하세요!");
+    // 함수 선언식 showMessage()가 호이스팅 돼서 함수 선언식 위에서 함수를 호출해도 됨
+    // showMessage();
+    function showMessage(e) {
+      //   alert("안녕하세요!");
+      console.log(this);
     }
-    showMessage();
 
     // 함수 표현식
-    const show = function () {
-      alert("함수 표현식");
+    // 함수 선언 function()이 아닌 변수 show가 호이스팅되서 함수 선언식 위에서 함수를 호출하면 안됨
+    const show = function (e) {
+      // alert("함수 표현식");
+      console.log(this);
     };
-    show();
+    // show();
   </script>
 </html>
