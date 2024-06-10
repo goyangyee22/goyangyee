@@ -160,7 +160,7 @@
       selectedTrs.forEach(async (tr) => {
         const docId = tr.getAttribute("data-id");
         // console.log(docId);
-        const result = deleteDates("member", docId);
+        const result = deleteDatas("member", docId);
         if (result) {
           tr.remove();
         } else {
