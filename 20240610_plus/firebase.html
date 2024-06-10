@@ -28,17 +28,26 @@
     .form-item {
       display: flex;
       align-items: center;
+      gap: 10px;
+    }
+    .form-item > .form-label {
+      width: 30%;
     }
   </style>
   <body>
     <div class="container">
       <div>
+        <div>
+          <button id="saveBtn">회원정보저장</button>
+          <button id="updateBtn">회원정보수정</button>
+          <button id="deleteBtn">회원정보삭제</button>
+        </div>
         <table border="1">
           <tr>
             <th>이름</th>
-            <th>성별</th>
             <th>나이</th>
-            <th>주소</th>
+            <th>성별</th>
+            <th>이메일</th>
             <th>전화번호</th>
           </tr>
         </table>
@@ -49,20 +58,20 @@
           <div class="form-input"><input type="text" name="name" /></div>
         </div>
         <div class="form-item">
-          <div class="form-label"><span>이름</span></div>
-          <div class="form-input"><input type="text" name="name" /></div>
+          <div class="form-label"><span>나이</span></div>
+          <div class="form-input"><input type="text" name="age" /></div>
         </div>
         <div class="form-item">
-          <div class="form-label"><span>이름</span></div>
-          <div class="form-input"><input type="text" name="name" /></div>
+          <div class="form-label"><span>성별</span></div>
+          <div class="form-input"><input type="text" name="gender" /></div>
         </div>
         <div class="form-item">
-          <div class="form-label"><span>이름</span></div>
-          <div class="form-input"><input type="text" name="name" /></div>
+          <div class="form-label"><span>이메일</span></div>
+          <div class="form-input"><input type="text" name="email" /></div>
         </div>
         <div class="form-item">
-          <div class="form-label"><span>이름</span></div>
-          <div class="form-input"><input type="text" name="name" /></div>
+          <div class="form-label"><span>전화번호</span></div>
+          <div class="form-input"><input type="text" name="tel" /></div>
         </div>
         <div></div>
         <div></div>
@@ -77,14 +86,14 @@
       const tableTag = document.querySelector("table");
       //   console.log(querySnapshot);
       querySnapshot.forEach((doc) => {
-        const { name, gender, age, email, tel } = doc.data();
+        const { name, age, gender, email, tel } = doc.data();
         tableTag.insertAdjacentHTML(
           "beforeend",
           `
         <tr>
             <td>${name}</td>
-            <td>${gender}</td>
             <td>${age}</td>
+            <td>${gender}</td>
             <td>${email}</td>
             <td>${tel}</td>
             </tr>
@@ -101,5 +110,21 @@
     //         console.log(doc.data());
     //     });
     // });
+
+    // 신규 회원정보 저장
+    const saveBtn = document.getElementById("saveBtn");
+    saveBtn.addEventListener("click", async function () {
+      const inputs = document.querySelectorAll(".form-container input");
+      // console.log(inputs);
+      const inputsArr = Array.from(inputs);
+      // const addObj = inputsArr.reduce((acc, cur) => ({...acc, [cur.name]: cur.value}), {})
+      const addObj = {};
+      inputsArr.forEach((input) => {
+        addObj[input.name] = input.value;
+      });
+      // console.log(addObj);
+      const result = await addDatas("member", addObj);
+      console.log(result);
+    });
   </script>
 </html>

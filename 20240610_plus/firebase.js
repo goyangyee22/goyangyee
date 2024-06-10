@@ -16,3 +16,8 @@ const firebaseConfig = {
     const querySnapshot = await db.collection(collectionName).get();
     return querySnapshot;
   }
+
+  async function addDatas(collectionName, addObj){
+    const result =  await db.collection(collectionName).add(addObj);
+    return result;
+  }
