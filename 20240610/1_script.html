@@ -72,6 +72,12 @@
     //   alert("A학점 입니다.");
     // }
 
+    // grade < 60 ? alert('F학점 입니다.') :
+    // (60 <= grade && grade < 70) ? alert('D학점 입니다.') :
+    // (70 <= grade && grade < 80) ? alert('C학점 입니다.') :
+    // (80 <= grade && grade < 90) ? alert('B학점 입니다.') :
+    // (90 <= grade && grade <= 100) ? alert('A학점 입니다.')
+
     // 조건식의 불린형 변환
     // 조건문의 조건식을 평가하고 그 결과를 불린값으로 변환한다.
     // 불린값으로 변환하기 전에 falsy한 값이냐 truthy한 값이냐를 판단한다.
@@ -81,16 +87,27 @@
     // }
 
     // 조건부 연산자 '?'
-    let num3 = +prompt("숫자를 입력하세요.");
-    let num4 = +prompt("숫자를 입력하세요.");
-    let resultNum = 0;
+    // let num3 = +prompt("숫자를 입력하세요.");
+    // let num4 = +prompt("숫자를 입력하세요.");
+    // let resultNum = 0;
 
-    // if(num3 > num4){
-    //     resultNum = num3 - num4;
-    // }else{
-    //     resultNum = num4 - num3;
-    // }
-    resultNum = num3 > num4 ? num3 - num4 : num4 - num3;
-    alert(`두 수의 차는 ${resultNum}입니다.`);
+    // // if(num3 > num4){
+    // //     resultNum = num3 - num4;
+    // // }else{
+    // //     resultNum = num4 - num3;
+    // // }
+    // resultNum = num3 > num4 ? num3 - num4 : num4 - num3;
+    // alert(`두 수의 차는 ${resultNum}입니다.`);
+
+    // nullish 병합 연산자
+    let aa;
+    let bb = 10;
+    if (aa !== null && aa !== undefined) {
+      alert(aa);
+    } else {
+      alert(bb);
+    }
+
+    alert(aa ?? bb);
   </script>
 </html>
