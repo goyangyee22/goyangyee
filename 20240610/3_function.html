@@ -47,14 +47,14 @@
       const welcomePhrase = document.getElementById("welcomePhrase");
       welcomePhrase.innerHTML = userName;
     }
+    // printUserName();
 
     // 로그인 버튼클릭 함수
     const loginBtn = document.getElementById("loginBtn");
     loginBtn.addEventListener("click", function () {
-      const name = prompt(`이름을 입력하세요.`);
-      alert(`환영합니다, ${name}님!`);
-      //   console.log(name);
+      const userName = prompt(`이름을 입력하세요.`);
+      alert(`환영합니다, ${userName}님!`);
+      // console.log(userName);
     });
-    printUserName();
   </script>
 </html>
