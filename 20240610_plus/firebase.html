@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>파이어베이스 리마인드</title>
     <!-- compat이 붙으면 module 타입이 아님 -->
-     <!-- module 타입은 import{} from ""을 이용해서 함수를 가져옴 -->
+    <!-- module 타입은 import{} from ""을 이용해서 함수를 가져옴 -->
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
   </head>
-  <body></body>
+  <body>
+    <table border="1">
+      <tr>
+        <th>이름</th>
+        <th>성별</th>
+        <th>나이</th>
+        <th>주소</th>
+        <th>전화번호</th>
+      </tr>
+    </table>
+  </body>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyBK-lYtS0MRJyn5EIoCrFsMqT3dUNQeQ50",
@@ -27,10 +37,21 @@
 
     async function getDatas(collectionName) {
       const querySnapshot = await db.collection(collectionName).get();
-    //   console.log(querySnapshot);
-    querySnapshot.forEach(doc => {
-        console.log(doc.data());
-    })
+      const tableTag = document.querySelector("table");
+      //   console.log(querySnapshot);
+      querySnapshot.forEach((doc) => {
+        "afterbegin",
+          `
+        <td>
+            <tr>${doc.name}</tr>
+            <tr>${doc.gender}</tr>
+            <tr>${doc.age}</tr>
+            <tr>${doc.addr}</tr>
+            <tr>${doc.tel}</tr>
+            </td>
+        `;
+        // console.log(doc.data());
+      });
     }
     getDatas("member"); // collectionName이 "member"입니다.
 
