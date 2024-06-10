@@ -83,7 +83,14 @@
     // 조건부 연산자 '?'
     let num3 = +prompt("숫자를 입력하세요.");
     let num4 = +prompt("숫자를 입력하세요.");
-    let num3or4 = num3 <= num4 ? num4 - num3 : num3 - num4;
-    alert(`두 수의 차는 ${num3or4}입니다.`);
+    let resultNum = 0;
+
+    // if(num3 > num4){
+    //     resultNum = num3 - num4;
+    // }else{
+    //     resultNum = num4 - num3;
+    // }
+    resultNum = num3 > num4 ? num3 - num4 : num4 - num3;
+    alert(`두 수의 차는 ${resultNum}입니다.`);
   </script>
 </html>
