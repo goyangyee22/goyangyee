@@ -52,13 +52,13 @@
     function makeSentence(userName, userCase) {
       switch (userCase) {
         case "login":
-          break;
+          return `${userName}님 환영합니다!!`;
         case "logout":
-          break;
-        case "delete":
-          break;
+          return `${userName}님이 로그아웃 하셨습니다.`;
         case "payment":
-          break;
+          return `${userName}님, 결제가 완료되었습니다.`;
+        case "delete":
+          return `${userName}님의 회원정보가 삭제되었습니다.`;
         default:
           break;
       }
