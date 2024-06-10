@@ -161,6 +161,12 @@
         const docId = tr.getAttribute("data-id");
         // console.log(docId);
         const result = deleteDates("member", docId);
+        if (result) {
+          tr.remove();
+        } else {
+          alert("삭제중 오류가 발생했습니다.");
+          return false;
+        }
       });
     });
   </script>
