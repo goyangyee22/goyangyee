@@ -6,23 +6,55 @@
     <title>함수 리마인드</title>
   </head>
   <body>
-    <button onclick="showMessage()">showMessage 함수</button>
+    <button onclick="{showMessage(this)}">showMessage 함수</button>
     <button onclick="show()">show 함수</button>
+    <br /><br />
+    <button id="basicFn">기본함수선언</button>
+    <button id="arrowFn">화살표함수선언</button>
+    <br />
+    <button id="loginBtn">로그인</button>
+    <h1 id="welcomePhrase"></h1>
   </body>
   <script>
     // 함수 선언식 showMessage()가 호이스팅 돼서 함수 선언식 위에서 함수를 호출해도 됨
     // showMessage();
     function showMessage(e) {
       //   alert("안녕하세요!");
-      console.log(this);
+      console.log(e);
     }
 
     // 함수 표현식
-    // 함수 선언 function()이 아닌 변수 show가 호이스팅되서 함수 선언식 위에서 함수를 호출하면 안됨
+    // 함수 선언 function()이 아닌 변수 show가 호이스팅 돼서 함수 선언식 위에서 함수를 호출하면 안됨
     const show = function (e) {
       // alert("함수 표현식");
       console.log(this);
     };
     // show();
+
+    const basicBtn = document.getElementById("basicFn");
+    const arrowBtn = document.getElementById("arrowFn");
+
+    basicBtn.addEventListener("click", function () {
+      console.log(this);
+    });
+
+    arrowBtn.addEventListener("click", (e) => {
+      // console.log(this); // 전역으로 선언된 개체를 지칭
+      console.log(e.currentTarget);
+    });
+
+    function printUserName(userName) {
+      const welcomePhrase = document.getElementById("welcomePhrase");
+      welcomePhrase.innerHTML = userName;
+    }
+
+    // 로그인 버튼클릭 함수
+    const loginBtn = document.getElementById("loginBtn");
+    loginBtn.addEventListener("click", function () {
+      const name = prompt(`이름을 입력하세요.`);
+      alert(`환영합니다, ${name}님!`);
+      //   console.log(name);
+    });
+    printUserName();
   </script>
 </html>
