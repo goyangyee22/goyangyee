@@ -13,6 +13,7 @@
     <button id="arrowFn">화살표함수선언</button>
     <br />
     <button id="loginBtn">로그인</button>
+    <button id="logoutBtn">로그아웃</button>
     <h1 id="welcomePhrase"></h1>
   </body>
   <script>
@@ -43,18 +44,39 @@
       console.log(e.currentTarget);
     });
 
-    function printUserName(userName) {
+    function printUserName(userName, restPhrase) {
       const welcomePhrase = document.getElementById("welcomePhrase");
-      welcomePhrase.innerHTML = userName;
+      welcomePhrase.innerHTML = `${userName} ${restPhrase}`;
+    }
+
+    function makeSentence(userName, userCase) {
+      switch (userCase) {
+        case "login":
+          break;
+        case "logout":
+          break;
+        case "delete":
+          break;
+        case "payment":
+          break;
+      }
     }
     // printUserName();
 
     // 로그인 버튼클릭 함수
+    let userName;
     const loginBtn = document.getElementById("loginBtn");
     loginBtn.addEventListener("click", function () {
-      const userName = prompt(`이름을 입력하세요.`);
+      userName = prompt(`이름을 입력하세요.`);
+      printUserName(userName, "님 환영합니다!!");
       alert(`환영합니다, ${userName}님!`);
       // console.log(userName);
+    });
+
+    // 로그아웃 버튼클릭 함수
+    const logoutBtn = document.getElementById("logoutBtn");
+    logoutBtn.addEventListener("click", function () {
+      printUserName(userName, "님이 로그아웃 하셨습니다.");
     });
   </script>
 </html>
