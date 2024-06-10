@@ -14,6 +14,8 @@
     <br />
     <button id="loginBtn">로그인</button>
     <button id="logoutBtn">로그아웃</button>
+    <button id="paymentBtn">결제</button>
+    <button id="deleteBtn">회원탈퇴</button>
     <h1 id="welcomePhrase"></h1>
   </body>
   <script>
@@ -44,9 +46,9 @@
       console.log(e.currentTarget);
     });
 
-    function printUserName(userName, restPhrase) {
+    function printUserName(phrase) {
       const welcomePhrase = document.getElementById("welcomePhrase");
-      welcomePhrase.innerHTML = `${userName} ${restPhrase}`;
+      welcomePhrase.innerHTML = phrase;
     }
 
     function makeSentence(userName, userCase) {
@@ -70,15 +72,39 @@
     const loginBtn = document.getElementById("loginBtn");
     loginBtn.addEventListener("click", function () {
       userName = prompt(`이름을 입력하세요.`);
-      printUserName(userName, "님 환영합니다!!");
-      alert(`환영합니다, ${userName}님!`);
-      // console.log(userName);
+      printUserName(makeSentence(userName, "login"));
     });
 
     // 로그아웃 버튼클릭 함수
     const logoutBtn = document.getElementById("logoutBtn");
     logoutBtn.addEventListener("click", function () {
-      printUserName(userName, "님이 로그아웃 하셨습니다.");
+      if (!userName) {
+        alert("로그인을 해주세요.");
+        return false;
+      }
+      printUserName(makeSentence(userName, "logout"));
+      userName = "";
+    });
+
+    // 결제 버튼클릭 함수
+    const paymentBtn = document.getElementById("paymentBtn");
+    paymentBtn.addEventListener("click", function () {
+      if (!userName) {
+        alert("로그인을 해주세요.");
+        return false;
+      }
+      printUserName(makeSentence(userName, "payment"));
+    });
+
+    // 회원탈퇴 버튼클릭 함수
+    const deleteBtn = document.getElementById("deleteBtn");
+    deleteBtn.addEventListener("click", function () {
+      if (!userName) {
+        alert("로그인을 해주세요.");
+        return false;
+      }
+      printUserName(makeSentence(userName, "delete"));
+      userName = "";
     });
   </script>
 </html>
