@@ -111,6 +111,12 @@
     //     });
     // });
 
+    // table에 클릭 이벤트 생성
+    const tableTag = document.querySelector("table");
+    tableTag.addEventListener("click", function (e) {
+      console.log(e.currentTarget);
+    });
+
     // 신규 회원정보 저장
     const saveBtn = document.getElementById("saveBtn");
     saveBtn.addEventListener("click", async function () {
