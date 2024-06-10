@@ -8,52 +8,91 @@
     <!-- module 타입은 import{} from ""을 이용해서 함수를 가져옴 -->
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+    <script src="./firebase.js"></script>
   </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    .form-container {
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+    }
+    .form-item {
+      display: flex;
+    }
+  </style>
   <body>
-    <table border="1">
-      <tr>
-        <th>이름</th>
-        <th>성별</th>
-        <th>나이</th>
-        <th>주소</th>
-        <th>전화번호</th>
-      </tr>
-    </table>
+    <div class="container">
+      <div>
+        <table border="1">
+          <tr>
+            <th>이름</th>
+            <th>성별</th>
+            <th>나이</th>
+            <th>주소</th>
+            <th>전화번호</th>
+          </tr>
+        </table>
+      </div>
+      <div class="form-container">
+        <div class="form-item">
+          <div class="form-label"><span>이름</span></div>
+          <div class="form-input"><input type="text" name="name" /></div>
+        </div>
+        <div class="form-item">
+          <div class="form-label"><span>이름</span></div>
+          <div class="form-input"><input type="text" name="name" /></div>
+        </div>
+        <div class="form-item">
+          <div class="form-label"><span>이름</span></div>
+          <div class="form-input"><input type="text" name="name" /></div>
+        </div>
+        <div class="form-item">
+          <div class="form-label"><span>이름</span></div>
+          <div class="form-input"><input type="text" name="name" /></div>
+        </div>
+        <div class="form-item">
+          <div class="form-label"><span>이름</span></div>
+          <div class="form-input"><input type="text" name="name" /></div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </body>
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBK-lYtS0MRJyn5EIoCrFsMqT3dUNQeQ50",
-      authDomain: "myproject-337a3.firebaseapp.com",
-      projectId: "myproject-337a3",
-      storageBucket: "myproject-337a3.appspot.com",
-      messagingSenderId: "8256987388",
-      appId: "1:8256987388:web:05765c4ea8d4ab5d65b779",
-    };
-
-    // Initialize Firebase (firebase 객체는 선언한 것이 아닌 위에 선언되어 있는 script에 들어있음)
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    // console.log(db);
-
-    async function getDatas(collectionName) {
-      const querySnapshot = await db.collection(collectionName).get();
+    async function getMembers() {
+      const querySnapshot = await getDatas("member");
       const tableTag = document.querySelector("table");
       //   console.log(querySnapshot);
       querySnapshot.forEach((doc) => {
-        "afterbegin",
+        const { name, gender, age, email, tel } = doc.data();
+        tableTag.insertAdjacentHTML(
+          "beforeend",
           `
-        <td>
-            <tr>${doc.name}</tr>
-            <tr>${doc.gender}</tr>
-            <tr>${doc.age}</tr>
-            <tr>${doc.addr}</tr>
-            <tr>${doc.tel}</tr>
-            </td>
-        `;
+        <tr>
+            <td>${name}</td>
+            <td>${gender}</td>
+            <td>${age}</td>
+            <td>${email}</td>
+            <td>${tel}</td>
+            </tr>
+        `
+        );
         // console.log(doc.data());
       });
     }
-    getDatas("member"); // collectionName이 "member"입니다.
+    getMembers(); // collectionName이 "member"입니다.
 
     //     db.collection("member").get().then((querySnapshot) => {
     //     querySnapshot.forEach((doc) => {
