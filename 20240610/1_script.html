@@ -34,8 +34,27 @@
     let name;
     name = "John";
     admin = name;
+    // alert(admin);
+    // console.log(admin);
 
-    alert(admin);
-    console.log(admin);
+    let str1 = "Hello";
+    let str2 = "Single quotes";
+    let str3 = `can embed another ${str1}`; // ${}은 `` 사이에만 넣을 수 있다.
+    let str4 = str1 + str2; // Hello Single quotes
+    let num1 = 1;
+    let str5 = str1 + num1; // "Hello" + 1 ==> "Hello" + "1" ==> "Hello1"
+    let num2 = 5;
+    let strNum = "2";
+    let sum = num2 + strNum; // "52"
+    // let numSum = num2 + parseInt(strNum); // 7
+    // let numSum = num2 + Number(strNum);
+    let numSum = +strNum + num2;
+
+    // 조건문
+    let money = 50000;
+    let price = 40000;
+    if (price < money) {
+      alert(`장난감을 구매했습니다. 남은돈 : ${money - price}원`);
+    }
   </script>
 </html>
