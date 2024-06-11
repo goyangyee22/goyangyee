@@ -213,8 +213,9 @@
       });
       selectedTr.innerHTML = newTdStr;
       // console.log(updateObj);
-      
+
       const docId = selectedTr.getAttribute("data-id");
+      updateDatas("member", docId, updateObj);
     });
   </script>
 </html>
