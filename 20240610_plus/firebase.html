@@ -91,6 +91,7 @@
     </div>
   </body>
   <script>
+    let updateTarget;
     async function getMembers() {
       const querySnapshot = await getDatas("member");
       const tableTag = document.querySelector("table");
@@ -124,16 +125,20 @@
     // table에 클릭 이벤트 생성
     const tableTag = document.querySelector("table");
     tableTag.addEventListener("click", function (e) {
-      // if(updateTarget) return false;
+      if (updateTarget) return false;
       if (e.target.tagName != "TH" && e.target.tagName != "TABLE") {
         e.target.parentElement.classList.toggle("selected");
       }
-      console.log(e.target.parentElement);
+      // console.log(e.target.parentElement);
     });
 
     // 신규 회원정보 저장
     const saveBtn = document.getElementById("saveBtn");
     saveBtn.addEventListener("click", async function () {
+      if (updateTarget) {
+        alert("회원정보 수정중에는 저장할 수 없습니다.");
+        return false;
+      }
       const inputs = document.querySelectorAll(".form-container input");
       // console.log(inputs);
       const inputsArr = Array.from(inputs);
@@ -165,14 +170,10 @@
     const deleteBtn = document.getElementById("deleteBtn");
     deleteBtn.addEventListener("click", async function () {
       const selectedTrs = document.querySelectorAll(".selected");
-      if (selectedTrs.length > 1) {
-        alert("회원삭제는 한 건씩 가능합니다.");
-        return false;
-      }
       selectedTrs.forEach(async (tr) => {
         const docId = tr.getAttribute("data-id");
         // console.log(docId);
-        const result = deleteDatas("member", docId);
+        const result = await deleteDatas("member", docId);
         if (result) {
           tr.remove();
         } else {
@@ -197,6 +198,7 @@
       updateBtn.classList.add("noneActive"); // 회원정보수정 버튼이 비활성화 됨
 
       const selectedTr = document.querySelector(".selected");
+      updateTarget = selectedTr;
       const trChildren = [...selectedTr.children];
       trChildren.forEach((td) => {
         td.innerHTML = `<input type="text" value="${td.innerText}"/>`; // ${td.innerHTML}을 사용하여도 무방함
@@ -206,11 +208,6 @@
       });
     });
     saveUpdateBtn.addEventListener("click", function () {
-      const selectedTrs = document.querySelectorAll(".selected");
-      if (selectedTrs.length > 1) {
-        alert("수정정보 저장은 한 건씩 가능합니다.");
-        return false;
-      }
       saveUpdateBtn.classList.remove("active");
       saveUpdateBtn.classList.add("noneActive"); // 수정정보저장 버튼이 비활성화 됨
       updateBtn.classList.remove("noneActive");
@@ -231,7 +228,7 @@
 
       const docId = selectedTr.getAttribute("data-id");
       updateDatas("member", docId, updateObj);
-      // updateTarget = undefined;
+      updateTarget = undefined;
     });
   </script>
 </html>
