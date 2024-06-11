@@ -202,6 +202,19 @@
       updateBtn.classList.add("active");
 
       const selectedTr = document.querySelector(".selected");
+      const trChildren = [...selectedTr.children];
+      let newTdStr = "";
+      const updateObj = {};
+      trChildren.forEach((td) => {
+        const className = td.classList.value;
+        const value = td.firstElementChild.value;
+        newTdStr += `<td class="${className}">${value}</td>`;
+        updateObj[className] = value;
+      });
+      selectedTr.innerHTML = newTdStr;
+      // console.log(updateObj);
+      
+      const docId = selectedTr.getAttribute("data-id");
     });
   </script>
 </html>
