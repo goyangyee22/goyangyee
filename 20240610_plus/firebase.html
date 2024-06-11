@@ -36,13 +36,20 @@
     .selected {
       background-color: yellow;
     }
+    .active {
+      display: inline-block;
+    }
+    .noneActive {
+      display: none;
+    }
   </style>
   <body>
     <div class="container">
       <div>
         <div>
           <button id="saveBtn">회원정보저장</button>
-          <button id="updateBtn">회원정보수정</button>
+          <button id="updateBtn" class="active">회원정보수정</button>
+          <button id="saveUpdateBtn" class="noneActive">수정정보저장</button>
           <button id="deleteBtn">회원정보삭제</button>
         </div>
         <table border="1">
