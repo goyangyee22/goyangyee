@@ -56,6 +56,11 @@
         const info = doc.data();
         const newObj = { ...info, timestamp: timestamp };
         arr.push(newObj);
+      });
+      arr.sort(function (a, b) {
+        return a.timestamp - b.timestamp; // 내림차순 (최신 객체가 위로 올라옴)
+      });
+      arr.forEach((info) => {
         items.insertAdjacentHTML(
           "afterbegin",
           `
@@ -74,9 +79,6 @@
         `
         );
         idx++;
-      });
-      arr.sort(function (a, b) {
-        return b.timestamp - a.timestamp; // 최신 객체가 위로 올라옴 (내림차순)
       });
     }
     getMbtiInfo();
