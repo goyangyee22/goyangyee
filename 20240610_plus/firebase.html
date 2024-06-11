@@ -124,6 +124,7 @@
     // table에 클릭 이벤트 생성
     const tableTag = document.querySelector("table");
     tableTag.addEventListener("click", function (e) {
+      // if(updateTarget) return false;
       if (e.target.tagName != "TH" && e.target.tagName != "TABLE") {
         e.target.parentElement.classList.toggle("selected");
       }
@@ -164,6 +165,10 @@
     const deleteBtn = document.getElementById("deleteBtn");
     deleteBtn.addEventListener("click", async function () {
       const selectedTrs = document.querySelectorAll(".selected");
+      if (selectedTrs.length > 1) {
+        alert("회원삭제는 한 건씩 가능합니다.");
+        return false;
+      }
       selectedTrs.forEach(async (tr) => {
         const docId = tr.getAttribute("data-id");
         // console.log(docId);
@@ -181,25 +186,35 @@
     const updateBtn = document.getElementById("updateBtn");
     const saveUpdateBtn = document.getElementById("saveUpdateBtn");
     updateBtn.addEventListener("click", function () {
+      const selectedTrs = document.querySelectorAll(".selected");
+      if (selectedTrs.length > 1) {
+        alert("회원수정은 한 건씩 가능합니다.");
+        return false;
+      }
       saveUpdateBtn.classList.remove("noneActive");
-      saveUpdateBtn.classList.add("active");
+      saveUpdateBtn.classList.add("active"); // 수정정보저장 버튼이 활성화 됨
       updateBtn.classList.remove("active");
-      updateBtn.classList.add("noneActive");
+      updateBtn.classList.add("noneActive"); // 회원정보수정 버튼이 비활성화 됨
 
       const selectedTr = document.querySelector(".selected");
       const trChildren = [...selectedTr.children];
       trChildren.forEach((td) => {
-        td.innerHTML = `<input type="text" value="${td.innerText}"/>`;
+        td.innerHTML = `<input type="text" value="${td.innerText}"/>`; // ${td.innerHTML}을 사용하여도 무방함
         td.addEventListener("click", function (e) {
           e.stopPropagation(); // 다른 이벤트 핸들러가 동일한 이벤트를 처리하지 못하게 함
         });
       });
     });
     saveUpdateBtn.addEventListener("click", function () {
+      const selectedTrs = document.querySelectorAll(".selected");
+      if (selectedTrs.length > 1) {
+        alert("수정정보 저장은 한 건씩 가능합니다.");
+        return false;
+      }
       saveUpdateBtn.classList.remove("active");
-      saveUpdateBtn.classList.add("noneActive");
+      saveUpdateBtn.classList.add("noneActive"); // 수정정보저장 버튼이 비활성화 됨
       updateBtn.classList.remove("noneActive");
-      updateBtn.classList.add("active");
+      updateBtn.classList.add("active"); // 회원정보수정 버튼이 활성화 됨
 
       const selectedTr = document.querySelector(".selected");
       const trChildren = [...selectedTr.children];
@@ -216,6 +231,7 @@
 
       const docId = selectedTr.getAttribute("data-id");
       updateDatas("member", docId, updateObj);
+      // updateTarget = undefined;
     });
   </script>
 </html>
