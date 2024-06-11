@@ -50,8 +50,12 @@
     async function getMbtiInfo() {
       const datas = await getDatas("mbtiColor");
       let idx = 1;
+      const arr = [];
       datas.forEach((doc) => {
+        const timestamp = doc._document.createTime.timestamp.seconds;
         const info = doc.data();
+        const newObj = { ...info, timestamp: timestamp };
+        arr.push(newObj);
         items.insertAdjacentHTML(
           "afterbegin",
           `
@@ -70,6 +74,9 @@
         `
         );
         idx++;
+      });
+      arr.sort(function (a, b) {
+        return b.timestamp - a.timestamp; // 최신 객체가 위로 올라옴 (내림차순)
       });
     }
     getMbtiInfo();
