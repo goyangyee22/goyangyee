@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 스토리지</title>
+</head>
+<body>
+    <button id="login">로그인</button>
+    <button id="logout">로그아웃</button>
+</body>
+<script>
+    const loginBtn = document.getElementById("login");
+    const logoutBtn = document.getElementById("logout");
+
+    // setItem(key, value) - 키-값 쌍을 저장한다.
+    // getItem(key) - 키에 해당하는 값을 가져온다.
+    // removeItem(key) - 키와 해당 값을 삭제한다.
+    // clear() - 모든 값을 삭제한다.
+    loginBtn.addEventListener("click", function(){
+        // 로그인 버튼 클릭 시 sessionStorage에 정보 저장
+        // sessionStorage.setItem("id", "nj622");
+        localStorage.setItem("id", "nj622");
+    })
+
+    logoutBtn.addEventListener("click", function(){
+    })
+</script>
+</html>
