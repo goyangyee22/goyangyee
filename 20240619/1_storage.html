@@ -29,7 +29,7 @@
         name: "노진성",
         addr: "대전광역시 중구 선화동",
       };
-      localStorage.setItem("userInfo", JSON.stringify(userObj.name));
+      localStorage.setItem("userInfo", JSON.stringify(userObj));
     });
 
     logoutBtn.addEventListener("click", function () {
@@ -37,11 +37,12 @@
     });
 
     const welcomeDiv = document.getElementById("welcome");
-    const userInfo = localStorage.getItem("userInfo");
+    let userInfo = localStorage.getItem("userInfo");
+    userInfo = JSON.parse(userInfo);
     console.log(userInfo);
 
     if (userInfo) {
-      welcomeDiv.innerHTML = `<span>${userInfo}님 환영합니다!!</span>`;
+      welcomeDiv.innerHTML = `<span>${userInfo.name}님 환영합니다!!</span>`;
     }
   </script>
 </html>
