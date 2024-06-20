@@ -210,8 +210,8 @@
       updateDatas("member", docId, updateObj).then(getMembersHandleTrClick);
     });
 
-    const btn = document.getElementById("saveBtn");
-    btn.addEventListener("click", async function () {
+    const saveBtn = document.getElementById("saveBtn");
+    saveBtn.addEventListener("click", async function () {
       // const formEl = document.querySelector("form[name='joinForm']");
       const formEl = document.forms[0];
       const formElChildren = formEl.elements;
