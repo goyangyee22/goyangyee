@@ -50,7 +50,8 @@ function App() {
         </select>
       </div>
       <div className="App-result">
-        <Board />
+        <Board name="나" />
+        <Board name="상대" />
       </div>
       <div>
         <div>
