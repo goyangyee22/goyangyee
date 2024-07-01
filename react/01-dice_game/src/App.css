@@ -45,4 +45,8 @@
   display: inline-block;
   padding: 35px 30px;
   border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #272b38;
 }
