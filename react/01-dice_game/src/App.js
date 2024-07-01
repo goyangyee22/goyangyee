@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
-import blueOne from "./assets/dice-blue-1.svg";
-import redOne from "./assets/dice-red-1.svg";
 import Board from "./Board";
 
 // 함수형 컴포넌트 : 컴포넌트를 함수형으로 만든것(변수형으로도 만들 수 있다.)
@@ -20,8 +18,8 @@ function App() {
   // 순수 자바스크립트로 작성한다면 주사위 이미지마다 화면을 만들거나, 비동기로 화면에 요소를 추가, 삭제하는 코드를 작성해야한다.
   // 리액트에서는 State라는 것을 사용한다.
   // 이 State가 바뀔 때마다 리액트가 알아서 화면을 새로 렌더링 해준다.
-  const [myNum, setMyNum] = useState(1);
-  const [otherNum, setOtherNum] = useState(1);
+  // const [myNum, setMyNum] = useState(1);
+  // const [otherNum, setOtherNum] = useState(1);
   const [gameHistory, setGameHistory] = useState([]);
   const [otherGameHistory, setOtherGameHistory] = useState([]);
   console.log(gameHistory);

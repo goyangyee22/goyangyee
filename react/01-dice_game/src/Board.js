@@ -1,6 +1,4 @@
 import React from "react";
-import blueOne from "./assets/dice-blue-1.svg";
-import redOne from "./assets/dice-red-1.svg";
 import Dice from "./Dice";
 
 function Board({ name, color, gameHistory }) {
