@@ -10,3 +10,17 @@
   background-color: #6f00ff;
   box-shadow: 0 4px 2px #5900cc;
 }
+.App-heading {
+  margin: 0 0 34px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+.App-reset {
+  position: absolute;
+  right: 48px;
+  top: 48px;
+  cursor: pointer;
+}
