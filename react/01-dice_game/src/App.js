@@ -35,6 +35,7 @@ function App() {
     setOtherGameHistory([...otherGameHistory, nextOtherNum]);
   };
 
+  // 페이지를 새로고침하여 기록을 초기화합니다.
   const handleClearClick = () => {
     setGameHistory([]);
     setOtherGameHistory([]);
