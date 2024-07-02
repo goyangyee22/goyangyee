@@ -3,10 +3,17 @@ import scissorImg from "./assets/scissor.svg";
 import rockImg from "./assets/rock.svg";
 import paperImg from "./assets/paper.svg";
 
-function HandIcon({ className }) {
+const IMAGES = {
+  rock: rockImg,
+  scissor: scissorImg,
+  paper: paperImg,
+};
+
+function HandIcon({ value, className }) {
+  const src = IMAGES[value];
   return (
     <div>
-      <img src={rockImg} className={className} />
+      <img src={src} className={className} />
     </div>
   );
 }
