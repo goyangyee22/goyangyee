@@ -1,6 +1,5 @@
 import React from "react";
 import Rating from "./Rating";
-import ralo from "./assets/ralodog.jfif";
 import "./ReviewList.css";
 
 function formatDate(value) {
