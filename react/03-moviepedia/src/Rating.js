@@ -9,9 +9,9 @@ function Star() {
 function Rating(props) {
   return (
     <div>
-      {RATINGS.map((arrNum) => {
-        <Star key={arrNum} />;
-      })}
+      {RATINGS.map((arrNum) => (
+        <Star key={arrNum} />
+      ))}
     </div>
     // key 값을 사용하는 이유: 각 요소가 고유하게 식별될 수 있기 위해
   );

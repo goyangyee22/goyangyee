@@ -1,9 +1,28 @@
 import "./App.css";
 import ReviewForm from "./ReviewForm";
+import ReviewList from "./ReviewList";
 import logoImg from "./assets/logo.png";
-import ticketImg from "./assets/ticket.png";
+import { getDatas } from "./assets/firebase";
+import { useEffect, useState } from "react";
+
+function AppSortButton({ children }) {
+  return <button className="AppSortButton selected">{children}</button>;
+}
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  const handleLoad = async () => {
+    const resultData = await getDatas("movie");
+    console.log(resultData);
+    setItems(resultData);
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+  // []안에 items라고 적으면 무한 루프에 빠지기 때문에 적으면 안 됨
+
   return (
     <div className="App">
       <nav className="App-nav">
@@ -19,8 +38,14 @@ function App() {
         <div className="App-ReviewForm">
           <ReviewForm />
         </div>
-        <div className="App-sorts"></div>
-        <div className="App-ReviewList"></div>
+        <div className="App-sorts">
+          <AppSortButton>최신순</AppSortButton>
+          <AppSortButton>베스트순</AppSortButton>
+        </div>
+        <div className="App-ReviewList">
+          <ReviewList items={items} />
+          <button className="App-load-more-button">더 보기</button>
+        </div>
       </div>
       <footer className="App-footer">
         <div className="App-footer-container">| 개인정보 처리방침</div>
