@@ -20,7 +20,7 @@ function ReviewForm(props) {
   return (
     <form className="ReviewForm">
       <div>
-        <FileInput />
+        <FileInput name="imgUrl" onChange={handleChange} />
       </div>
       <div className="Form-container">
         <input
