@@ -2,13 +2,10 @@ import "./App.css";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import logoImg from "./assets/logo.png";
-import {
-  getDatas,
-  getDatasByOrder,
-  getDatasByOrderLimit,
-} from "./assets/firebase";
+import { getDatasByOrderLimit } from "./assets/firebase";
 import { useEffect, useState } from "react";
 
+// 처음에 표시되는 데이터의 수 및 '더 보기' 버튼을 눌렀을 경우 추가로 표시되는 데이터의 수입니다.
 const LIMIT = 10;
 
 function AppSortButton({ children, onClick, selected }) {

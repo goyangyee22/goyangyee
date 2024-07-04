@@ -26,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Firebase에서 데이터를 가져옵니다.
 async function getDatas(collectionName) {
   const collect = await collection(db, collectionName);
   const snapshot = await getDocs(collect);
@@ -37,6 +38,7 @@ async function getDatas(collectionName) {
   return resultData;
 }
 
+// 데이터를 특정한 조건에 맞춰 정렬하는 함수입니다.
 async function getDatasByOrder(collectionName, options) {
   const collect = await collection(db, collectionName);
   // query(컬렉션정보, 조건1, 조건2, 조건3...)
