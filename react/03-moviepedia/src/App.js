@@ -33,7 +33,7 @@ function App() {
     );
     console.log(resultData);
     if (!options.lq) {
-      // setItems(resultData)도 미리 적으면 안 됨
+      // ※ setItems(resultData)도 미리 적으면 안 됨 ※
       setItems(resultData);
     } else {
       // setItems([...기존배열, ...새로운값])
@@ -45,9 +45,13 @@ function App() {
     setLq(lastQuery);
   };
 
+  // 최신순 버튼에 대한 함수입니다.
   const handleNewestClick = () => setOrder("createdAt");
+
+  // 베스트순 버튼에 대한 함수입니다.
   const handleBestClick = () => setOrder("rating");
 
+  // 더 보기 버튼에 대한 함수입니다.
   const handleMoreClick = () => {
     handleLoad({ order: order, limit: LIMIT, lq: lq });
   };
@@ -55,9 +59,9 @@ function App() {
   useEffect(() => {
     handleLoad({ order: order, limit: LIMIT });
     setHasNext(true);
-    // handleLoad()도 미리 적으면 안 됨
+    // ※ handleLoad()도 미리 적으면 안 됨 ※
   }, [order]);
-  // []안에 items라고 적으면 무한 루프에 빠지기 때문에 적으면 안 됨
+  // ※ []안에 items라고 적으면 무한 루프에 빠지기 때문에 적으면 안 됨 ※
 
   return (
     <div className="App">

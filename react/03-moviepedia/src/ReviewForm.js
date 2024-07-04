@@ -9,7 +9,7 @@ function ReviewForm(props) {
 
   const handleChange = (name, value) => {
     setItem(2);
-    // { ...prevValues, [name]: value } 여기서 () 붙여줘야 객체로 인식함
+    // { ...prevValues, [name]: value } 여기서 앞 () 붙여줘야 객체로 인식함
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
   const handleInputChange = (e) => {
