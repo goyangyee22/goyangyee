@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
 import "./ReviewForm.css";
 
 function ReviewForm(props) {
+  const [values, setValues] = useState({});
+
+  const handleChange = (name, value) => {
+    // { ...prevValues, [name]: value } 여기서 () 붙여줘야 객체로 인식함
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
+  };
+  const handleInputChange = (e) => {
+    // console.log(e.target.name, e.target.value);
+    // name에 변수 처리를 합니다. [] 안 붙여주면 key 값으로 들어감
+    const { name, value } = e.target;
+    handleChange(name, value);
+  };
+
   return (
     <form className="ReviewForm">
       <div>
         <FileInput />
       </div>
       <div className="Form-container">
-        <input type="text" placeholder="제목을 입력해주세요." />
+        <input
+          type="text"
+          name="title"
+          placeholder="제목을 입력해주세요."
+          onChange={handleInputChange}
+        />
         <RatingInput />
-        <textarea placeholder="내용을 입력해주세요." />
+        <textarea
+          name="content"
+          placeholder="내용을 입력해주세요."
+          onChange={handleInputChange}
+        />
         <button>확인</button>
       </div>
     </form>
