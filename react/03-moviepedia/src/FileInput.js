@@ -5,6 +5,7 @@ import resetImg from "./assets/ic-reset.png";
 
 function FileInput({ name, onChange }) {
   const handleFileChange = (e) => {
+    const nextFile = e.target.files;
     console.log(e);
   };
   return (
