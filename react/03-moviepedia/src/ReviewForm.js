@@ -5,8 +5,10 @@ import "./ReviewForm.css";
 
 function ReviewForm(props) {
   const [values, setValues] = useState({});
+  const [item, setItem] = useState(1);
 
   const handleChange = (name, value) => {
+    setItem(2);
     // { ...prevValues, [name]: value } 여기서 () 붙여줘야 객체로 인식함
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
@@ -20,7 +22,7 @@ function ReviewForm(props) {
   return (
     <form className="ReviewForm">
       <div>
-        <FileInput name="imgUrl" onChange={handleChange} />
+        <FileInput name="imgUrl" setFile={handleChange} />
       </div>
       <div className="Form-container">
         <input

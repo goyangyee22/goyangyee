@@ -3,9 +3,10 @@ import placeholderImg from "./assets/preview-placeholder.png";
 import "./FileInput.css";
 import resetImg from "./assets/ic-reset.png";
 
-function FileInput({ name, onChange }) {
+function FileInput({ name, setFile }) {
   const handleFileChange = (e) => {
-    const nextFile = e.target.files;
+    const nextFile = e.target.files[0];
+    setFile(name, nextFile);
     console.log(e);
   };
   return (
