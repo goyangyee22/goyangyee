@@ -8,7 +8,10 @@ function formatDate(value) {
 }
 
 // item은 db에서 받아온 데이터
-function ReviewListItem({ item }) {
+function ReviewListItem({ item, handleDelete }) {
+  const handleDeleteClick = () => {
+    handleDelete(item.docId, item.imgUrl);
+  };
   return (
     <div className="ReviewListItem">
       <img className="ReviewListItem-img" src={item.imgUrl} />
@@ -19,19 +22,24 @@ function ReviewListItem({ item }) {
         <p className="ReviewListItem-content">{item.content}</p>
         <div className="ReviewListItem-buttons">
           <button className="ReviewListItem-edit-button">수정</button>
-          <button className="ReviewListItem-delete-button">삭제</button>
+          <button
+            className="ReviewListItem-delete-button"
+            onClick={handleDeleteClick}
+          >
+            삭제
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-function ReviewList({ items }) {
+function ReviewList({ items, handleDelete }) {
   return (
     <ul className="ReviewList">
       {items.map((item) => (
         <li key={item.id}>
-          <ReviewListItem item={item} />
+          <ReviewListItem item={item} handleDelete={handleDelete} />
         </li>
       ))}
     </ul>
