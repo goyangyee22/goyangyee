@@ -1,10 +1,13 @@
 import React from "react";
 import Rating from "./Rating";
 
-function RatingInput(props) {
+function RatingInput({ inputName, setRating }) {
+  const handleSelect = (nextValue) => {
+    setRating(inputName, nextValue);
+  };
   return (
     <div>
-      <Rating />
+      <Rating selectRating={handleSelect} />
     </div>
   );
 }
