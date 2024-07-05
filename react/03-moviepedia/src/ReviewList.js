@@ -7,13 +7,14 @@ function formatDate(value) {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
 
+// item은 db에서 받아온 데이터
 function ReviewListItem({ item }) {
   return (
     <div className="ReviewListItem">
       <img className="ReviewListItem-img" src={item.imgUrl} />
       <div className="ReviewListItem-rows">
         <h1 className="ReviewListItem-title">{item.title}</h1>
-        <Rating className="ReviewListItem-rating" />
+        <Rating className="ReviewListItem-rating" hoverRating={item.rating} />
         <p className="ReviewListItem-date">{formatDate(item.createdAt)}</p>
         <p className="ReviewListItem-content">{item.content}</p>
         <div className="ReviewListItem-buttons">

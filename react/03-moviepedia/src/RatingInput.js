@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Rating from "./Rating";
 
-function RatingInput({ inputName, setRating }) {
+function RatingInput({ inputName, setRating, value }) {
   // ratingValue State는 별을 색칠하는 용도의 점수
   const [ratingValue, setRatingValue] = useState(0);
 
@@ -10,12 +10,16 @@ function RatingInput({ inputName, setRating }) {
   const handleSelect = (nextValue) => {
     setRating(inputName, nextValue);
   };
+  const handleMouseOut = () => {
+    setRatingValue(value);
+  };
   return (
     <div>
       <Rating
         selectRating={handleSelect}
         hoverRating={ratingValue}
         onHover={setRatingValue}
+        onMouseOut={handleMouseOut}
       />
     </div>
   );

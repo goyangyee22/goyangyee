@@ -31,7 +31,11 @@ function ReviewForm(props) {
           placeholder="제목을 입력해주세요."
           onChange={handleInputChange}
         />
-        <RatingInput inputName="rating" setRating={handleChange} />
+        <RatingInput
+          inputName="rating"
+          setRating={handleChange}
+          value={values.rating}
+        />
         <textarea
           name="content"
           placeholder="내용을 입력해주세요."
