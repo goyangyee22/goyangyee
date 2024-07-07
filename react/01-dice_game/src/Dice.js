@@ -24,6 +24,7 @@ const DICE_IMAGES = {
 };
 
 function Dice({ color = "blue", num = 1 }) {
+  // INDEX의 자릿수라서 1의 눈이 나오게 하려면 INDEX 자리가 0이 되어야 함.
   const src = DICE_IMAGES[color][num - 1];
   return <img src={src} />;
 }
