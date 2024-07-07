@@ -37,6 +37,7 @@ function App() {
     setGameHistory([...gameHistory, result]);
   };
 
+  // 배점을 결정하는 함수입니다.
   const handleBetChange = (e) => {
     let num = Number(e.target.value);
     if (num > 9) num = num % 10;
@@ -45,6 +46,7 @@ function App() {
     setBet(num);
   };
 
+  // 초기화 함수입니다.
   const handleClearClick = () => {
     setHand("rock");
     setOtherHand("rock");
@@ -71,7 +73,7 @@ function App() {
         </div>
       </div>
       <div className="Box App-box">
-        {/* 가위바위보 내는 곳 */}
+        {/* 가위바위보 결과를 출력 (이긴 경우 win class가 추가됨) */}
         <div className="App-hands">
           <div
             className={`Hand ${isWin == 0 ? "" : isWin == 1 ? "winner" : ""}`}
@@ -104,6 +106,7 @@ function App() {
         </div>
       </div>
       <div>
+        {/* 가위바위보 내는 곳 */}
         <HandButton value="rock" onClick={handleButtonClick} />
         <HandButton value="scissor" onClick={handleButtonClick} />
         <HandButton value="paper" onClick={handleButtonClick} />
