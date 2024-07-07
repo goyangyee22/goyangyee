@@ -24,7 +24,7 @@ function App() {
   const handleButtonClick = (value) => {
     // 사용자가 클릭한 주먹가위보 가져와야됨
     setHand(value);
-    // 상대의 주먹가위보 랜덤으로 추출
+    // 상대의 주먹가위보 랜덤으로 추출 (utils.js 참고)
     const nextOtherHand = generateRandomHand();
     setOtherHand(nextOtherHand);
     // 승패 결정 ==> 배점을 곱해서 점수 추출
