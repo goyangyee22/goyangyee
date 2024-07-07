@@ -61,6 +61,7 @@ function App() {
     <div className="App">
       <h1 className="App-heading">가위바위보</h1>
       <img className="App-reset" src={reset} onClick={handleClearClick} />
+      {/* 나와 상대의 점수를 표시합니다. */}
       <div className="App-scores">
         <div className="Score">
           <div className="Score-num">{score}</div>
