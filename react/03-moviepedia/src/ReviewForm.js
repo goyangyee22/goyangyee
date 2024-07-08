@@ -10,8 +10,16 @@ const INITIAL_VALUE = {
   imgUrl: null,
 };
 
-function ReviewForm({ addData, handleAddSuccess }) {
-  const [values, setValues] = useState(INITIAL_VALUE);
+function ReviewForm({
+  // addData, handleAddSuccess App에서 호출 되는 prop을 받기 위해 사용
+  addData,
+  handleAddSuccess,
+  // initialPreview, initialValues, handleCancel ReviewList에서 호출 되는 prop을 받기 위해 사용
+  initialPreview,
+  initialValues = INITIAL_VALUE,
+  handleCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   // const [item, setItem] = useState(1);
 
@@ -48,6 +56,7 @@ function ReviewForm({ addData, handleAddSuccess }) {
           inputName="imgUrl"
           setFile={handleChange}
           value={values.imgUrl}
+          initialPreview={initialPreview}
         />
       </div>
       <div className="Form-container">
@@ -56,6 +65,7 @@ function ReviewForm({ addData, handleAddSuccess }) {
           name="title"
           placeholder="제목을 입력해주세요."
           onChange={handleInputChange}
+          value={values.title}
         />
         <RatingInput
           inputName="rating"
@@ -66,7 +76,11 @@ function ReviewForm({ addData, handleAddSuccess }) {
           name="content"
           placeholder="내용을 입력해주세요."
           onChange={handleInputChange}
+          value={values.content}
         />
+        {handleCancel && (
+          <button onClick={() => handleCancel(null)}>취소</button>
+        )}
         <button type="submit" disabled={isSubmitting}>
           확인
         </button>
