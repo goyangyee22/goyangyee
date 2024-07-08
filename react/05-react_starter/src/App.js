@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  // useState의 첫 번째 요소는 초기값으로 설정된 현재 상태 값이고, 두 번째 요소는 상태 값을 업데이트 하는 함수
   const [num, setNum] = useState(0);
   const [text, setText] = useState("");
 
