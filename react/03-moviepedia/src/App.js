@@ -2,8 +2,15 @@ import "./App.css";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import logoImg from "./assets/logo.png";
-import { addDatas, deleteDatas, getDatasByOrderLimit } from "./assets/firebase";
+import {
+  addDatas,
+  deleteDatas,
+  getDatasByOrderLimit,
+  updateDatas,
+} from "./assets/firebase";
 import { useEffect, useState } from "react";
+import LocaleSelect from "./LocaleSelect";
+import useTranslate from "./hooks/useTranslate";
 
 // 처음에 표시되는 데이터의 수 및 '더 보기' 버튼을 눌렀을 경우 추가로 표시되는 데이터의 수입니다.
 const LIMIT = 10;
@@ -25,6 +32,7 @@ function App() {
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
+  const t = useTranslate();
 
   // db에 접근하는 함수
   const handleLoad = async (options) => {
@@ -62,6 +70,20 @@ function App() {
     setItems((prevItems) => [data, ...prevItems]);
   };
 
+  const handleUpdateSuccess = (result) => {
+    // 화면처리.. 기존데이터는 items에서 삭제, 수정된 데이터는 items의 기존 위치에 추가
+    setItems((prevItems) => {
+      const splitIdx = prevItems.findIndex((item) => item.id === result.id);
+
+      // 수정된 값의 앞 + 수정된 값 + 수정된 값의 뒤
+      return [
+        ...prevItems.slice(0, splitIdx),
+        result,
+        ...prevItems.slice(splitIdx + 1),
+      ];
+    });
+  };
+
   // 데이터 삭제할 때
   const handleDelete = async (docId, imgUrl) => {
     // 1. Firebase에 접근해서 imgUrl을 사용해 스토리지에 있는 사진파일 삭제
@@ -97,32 +119,37 @@ function App() {
       <nav className="App-nav">
         <div className="App-nav-container">
           <img className="App-logo" src={logoImg} />
-          <select>
-            <option>한국어</option>
-            <option>English</option>
-          </select>
+          <LocaleSelect />
         </div>
       </nav>
       <div className="App-container">
         <div className="App-ReviewForm">
-          <ReviewForm addData={addDatas} handleAddSuccess={handleAddSuccess} />
+          <ReviewForm
+            onSubmit={addDatas}
+            handleSubmitSuccess={handleAddSuccess}
+          />
         </div>
         <div className="App-sorts">
           <AppSortButton
             selected={order === "createdAt"}
             onClick={handleNewestClick}
           >
-            최신순
+            {t("newest")}
           </AppSortButton>
           <AppSortButton
             selected={order === "rating"}
             onClick={handleBestClick}
           >
-            베스트순
+            {t("best")}
           </AppSortButton>
         </div>
         <div className="App-ReviewList">
-          <ReviewList items={items} handleDelete={handleDelete} />
+          <ReviewList
+            items={items}
+            handleDelete={handleDelete}
+            onUpdate={updateDatas}
+            onUpdateSuccess={handleUpdateSuccess}
+          />
           {/* {hasNext && (
             <button className="App-load-more-button" onClick={handleMoreClick}>
               더 보기
@@ -133,12 +160,14 @@ function App() {
             onClick={handleMoreClick}
             disabled={!hasNext}
           >
-            더 보기
+            {t("load more")}
           </button>
         </div>
       </div>
       <footer className="App-footer">
-        <div className="App-footer-container">| 개인정보 처리방침</div>
+        <div className="App-footer-container">
+          {t("terms of service")} | {t("privacy policy")}
+        </div>
       </footer>
     </div>
   );

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Rating from "./Rating";
 import ReviewForm from "./ReviewForm";
 import "./ReviewList.css";
+import { updateDatas } from "./assets/firebase";
+import useTranslate from "./hooks/useTranslate";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -10,6 +12,7 @@ function formatDate(value) {
 
 // item은 db에서 받아온 데이터
 function ReviewListItem({ item, handleDelete, handleEdit }) {
+  const t = useTranslate();
   const handleDeleteClick = () => {
     handleDelete(item.docId, item.imgUrl);
   };
@@ -29,13 +32,13 @@ function ReviewListItem({ item, handleDelete, handleEdit }) {
             className="ReviewListItem-edit-button"
             onClick={handleEditClick}
           >
-            수정
+            {t("edit button")}
           </button>
           <button
             className="ReviewListItem-delete-button"
             onClick={handleDeleteClick}
           >
-            삭제
+            {t("delete button")}
           </button>
         </div>
       </div>
@@ -43,21 +46,31 @@ function ReviewListItem({ item, handleDelete, handleEdit }) {
   );
 }
 
-function ReviewList({ items, handleDelete }) {
+function ReviewList({ items, handleDelete, onUpdate, onUpdateSuccess }) {
   const [editingId, setEditingId] = useState(null);
-  console.log(editingId);
+  // console.log(editingId);
   return (
     <ul className="ReviewList">
       {items.map((item) => {
         if (item.id === editingId) {
           const { title, rating, content, imgUrl, docId } = item;
           const initialValues = { title, rating, content, imgUrl: null };
+          const handleSubmit = (collectionName, dataObj) => {
+            const result = onUpdate(collectionName, dataObj, docId);
+            return result;
+          };
+          const handleSubmitSuccess = (result) => {
+            onUpdateSuccess(result);
+            setEditingId(null);
+          };
           return (
             <li key={item.id}>
               <ReviewForm
                 initialValues={initialValues}
                 initialPreview={imgUrl}
                 handleCancel={setEditingId}
+                onSubmit={handleSubmit}
+                handleSubmitSuccess={handleSubmitSuccess}
               />
             </li>
           );

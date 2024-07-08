@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
 import "./ReviewForm.css";
+import { LocaleContext, useLocale } from "./contexts/LocaleContext";
+import useTranslate from "./hooks/useTranslate";
 
 const INITIAL_VALUE = {
   title: "",
@@ -11,9 +13,9 @@ const INITIAL_VALUE = {
 };
 
 function ReviewForm({
-  // addData, handleAddSuccess App에서 호출 되는 prop을 받기 위해 사용
-  addData,
-  handleAddSuccess,
+  // onSubmit, handleSubmitSuccess App에서 호출 되는 prop을 받기 위해 사용
+  onSubmit,
+  handleSubmitSuccess,
   // initialPreview, initialValues, handleCancel ReviewList에서 호출 되는 prop을 받기 위해 사용
   initialPreview,
   initialValues = INITIAL_VALUE,
@@ -21,6 +23,8 @@ function ReviewForm({
 }) {
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const locale = useLocale();
+  const t = useTranslate();
   // const [item, setItem] = useState(1);
 
   const handleChange = (name, value) => {
@@ -40,8 +44,8 @@ function ReviewForm({
 
     // 버튼 비활성화 (작업 중인 상태)
     setIsSubmitting(true);
-    const result = await addData("movie", values);
-    handleAddSuccess(result);
+    const result = await onSubmit("movie", values);
+    handleSubmitSuccess(result);
 
     // 버튼 활성화 (작업 중이 아닌 상태)
     setIsSubmitting(false);
@@ -63,7 +67,7 @@ function ReviewForm({
         <input
           type="text"
           name="title"
-          placeholder="제목을 입력해주세요."
+          placeholder={t("title placeholder")}
           onChange={handleInputChange}
           value={values.title}
         />
@@ -74,15 +78,17 @@ function ReviewForm({
         />
         <textarea
           name="content"
-          placeholder="내용을 입력해주세요."
+          placeholder={t("content placeholder")}
           onChange={handleInputChange}
           value={values.content}
         />
         {handleCancel && (
-          <button onClick={() => handleCancel(null)}>취소</button>
+          <button onClick={() => handleCancel(null)}>
+            {t("cancel button")}
+          </button>
         )}
         <button type="submit" disabled={isSubmitting}>
-          확인
+          {t("confirm button")}
         </button>
       </div>
     </form>
