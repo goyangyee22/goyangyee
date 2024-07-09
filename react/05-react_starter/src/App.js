@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Cleanup from "./Cleanup";
 import TodoList from "./TodoList";
-import CoinTracker from "./CoinTracker";
+import MovieApp from "./MovieApp";
 
 function App() {
   // useState의 첫 번째 요소는 초기값으로 설정된 현재 상태 값이고, 두 번째 요소는 상태 값을 업데이트 하는 함수
@@ -57,7 +57,7 @@ function App() {
       <hr />
       <TodoList />
       <hr />
-      <CoinTracker />
+      <MovieApp />
     </div>
   );
 }
