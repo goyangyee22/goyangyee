@@ -41,7 +41,7 @@ function App() {
   }, [text]);
   return (
     <div>
-      {/* input에 입력한 값이 console.log에 나옵니다. */}
+      {/* input에 입력한 값이 console.log에 나옵니다.
       <input
         type="handleChange"
         placeholder="Search here"
@@ -49,14 +49,14 @@ function App() {
       />
       <h2>입력한 값: {text}</h2>
       {/* h1: Click me 버튼을 누를 때 마다 초기값 0부터 1씩 증가합니다. */}
-      <h1>{num}</h1>
+      {/* <h1>{num}</h1> */}
       {/* onClick: handleClick 함수의 내용을 가져와서 실행합니다. */}
-      <button onClick={handleClick}>Click me</button>
+      {/* <button onClick={handleClick}>Click me</button>
       <hr />
       <Cleanup />
       <hr />
       <TodoList />
-      <hr />
+      <hr />  */}
       <MovieApp />
     </div>
   );
