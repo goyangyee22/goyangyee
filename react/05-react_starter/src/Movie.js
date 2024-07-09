@@ -1,19 +1,21 @@
 import React from "react";
 import "./Movie.css";
 
-function Movie(props) {
+function Movie({ img, title, year, summary, genres }) {
   return (
     <div className="movie">
-      <img className="movie-img" />
+      <img className="movie-img" src={img} />
       <div>
         <h2 className="movie-title"></h2>
-        <span>제목</span>
-        <h3 className="movie-year">2024</h3>
-        <p>summary...</p>
+        <span>{title}</span>
+        <h3 className="movie-year">{year}</h3>
+        <p className="movie-summary">
+          {summary.length > 235 ? `${summary.slice(0, 235)}` : summary}
+        </p>
         <ul className="movie-genres">
-          <li>코미디</li>
-          <li>액션</li>
-          <li>호러</li>
+          {genres.map((genre, idx) => (
+            <li key={idx}>{genre}</li>
+          ))}
         </ul>
       </div>
     </div>
