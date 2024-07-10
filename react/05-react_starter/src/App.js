@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Cleanup from "./Cleanup";
-import TodoList from "./TodoList";
+import ToDoList from "./ToDoList";
 import MovieApp from "./MovieApp";
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
       <hr />
       <Cleanup />
       <hr />
-      <TodoList />
+      <ToDoList />
       <hr />  */}
       <MovieApp />
     </div>
