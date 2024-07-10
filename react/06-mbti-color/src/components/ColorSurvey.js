@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import styles from "./ColorSurvey.module.css";
 
-function ColorSurvey(props) {
+function ColorSurvey({ mbtiData }) {
   return (
     <div className={styles.colorSurvey}>
-      <div className={styles.id}>1</div>
-      <div className={styles.mbti}>ISTP</div>
+      <div className={styles.id}>{mbtiData.id}</div>
+      <div className={styles.mbti}>{mbtiData.mbti}</div>
       <div className={styles.arrow}>
         <img className={styles.arrowIcon} src="/images/arrow.svg" />
       </div>
       <div
         className={styles.colorChip}
-        style={{ backgroundColor: "#d9d9d9" }}
+        style={{ backgroundColor: mbtiData.colorCode }}
       ></div>
-      <div className={styles.colorCode}>#D9D9D9</div>
+      <div className={styles.colorCode}>{mbtiData.colorCode}</div>
     </div>
   );
 }
