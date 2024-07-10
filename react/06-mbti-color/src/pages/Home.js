@@ -5,10 +5,7 @@ import ColorSurvey from "../components/ColorSurvey";
 import mock from "mock.json";
 
 async function Home(props) {
-  const [mbti, setMbti] = useState([]);
-  const mock = <mock />;
-  setMbti();
-  console.log(mbti);
+  const [items, setItems] = useState([]);
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
