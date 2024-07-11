@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "./Input";
+import Input from "../03/Input";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -13,14 +13,16 @@ const Container = styled.div`
   }
 `;
 
-export function Practice2(props) {
+function Practice2(props) {
   return (
     <Container>
       <h1>로그인</h1>
       <label htmlFor="email">Email</label>
-      <Input id="email" />
+      <Input id="email" placeholder="styled@DW.kr" />
       <label htmlFor="password">Password</label>
-      <Input id="password" />
+      <Input id="password" placeholder="비밀번호" />
     </Container>
   );
 }
+
+export default Practice2;
