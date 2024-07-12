@@ -24,6 +24,12 @@ function App() {
         <Link to="06">
           <li>6. 연습3</li>
         </Link>
+        <Link to="07">
+          <li>7. 스타일 재사용: 상속</li>
+        </Link>
+        <Link to="08">
+          <li>8. 스타일 재사용: CSS함수</li>
+        </Link>
       </ul>
       <Outlet />
     </div>
