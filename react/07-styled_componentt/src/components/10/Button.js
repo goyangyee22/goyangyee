@@ -13,7 +13,6 @@ const Button = styled.button`
   height: 40px;
   font-size: 16px;
   padding: 24px;
-  margin-bottom: 16px;
 
   &:hover {
     background-color: #7462a4;

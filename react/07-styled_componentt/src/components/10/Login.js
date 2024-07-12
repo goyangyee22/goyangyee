@@ -20,6 +20,10 @@ const Container = styled.div`
   & > label {
     align-self: flex-start;
   }
+
+  ${Button} {
+    margin-bottom: 16px;
+  }
 `;
 
 const H4Tag = styled.div`
