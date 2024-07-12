@@ -8,7 +8,7 @@ const SIZES = {
 
 const InputSize = styled.input`
   background-color: #f2f2f2;
-  border: ${({ $error }) => ($error ? "2px solid red" : "2px solid black")};
+  border: 2px solid ${({ $error }) => ($error ? "#f44336" : "#eeeeee")};
   color: #000;
   padding: 16px;
   outline: none; // outline: none을 지정하지 않으면 border가 #000이 됨
@@ -16,7 +16,7 @@ const InputSize = styled.input`
   border-radius: ${({ $round }) => ($round ? "9999px" : "3px")};
 
   &:focus {
-    background-color: #ffd8d9;
+    border-color: ${({ $error }) => ($error ? "#f44336" : "#eeeeee")};
   }
 `;
 

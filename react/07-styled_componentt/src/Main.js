@@ -7,6 +7,7 @@ import { Practice as Practice1 } from "./components/03/Practice";
 import Practice2 from "./components/04/Practice2";
 import DynamicStyling from "./components/05/DynamicStyling";
 import { Practice as Practice3 } from "./components/06/Practice";
+import Inheritance from "./components/07/Inheritance";
 
 function Main(props) {
   return (
@@ -19,7 +20,8 @@ function Main(props) {
             <Route path="03" element={<Practice1 />} />
             <Route path="04" element={<Practice2 />} />
             <Route path="05" element={<DynamicStyling />} />
-            <Route path="06" element={<Practice3 />}></Route>
+            <Route path="06" element={<Practice3 />} />
+            <Route path="07" element={<Inheritance />} />
           </Route>
         </Routes>
       </BrowserRouter>
