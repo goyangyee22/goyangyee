@@ -4,10 +4,6 @@ import styled from "styled-components";
 import kakao from "./kakao.svg";
 
 const Container = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   width: 400px;
   margin: 0 auto;
 
@@ -15,7 +11,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #ff9966, #ff5e62);
+    background: linear-gradient(to right, #ffd8d9, #6750a4);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -38,7 +34,7 @@ const H4Tag = styled.div`
   gap: 4px;
 `;
 
-const KakaoLogin = styled.button`
+const KakaoLogin = styled(Button)`
   background-color: yellow;
   background-image: url(${kakao});
   background-size: 20px;
@@ -46,16 +42,7 @@ const KakaoLogin = styled.button`
   background-position: 35%;
   border: transparent;
   color: #000;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  margin: 8px;
-  width: 400px;
-  height: 40px;
-  font-size: 16px;
-  padding-left: 24px;
+  padding-left: 30px;
 
   &:hover {
     background-color: #e4ee05;

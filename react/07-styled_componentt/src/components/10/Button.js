@@ -9,10 +9,11 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  margin: 8px;
-  width: 400px;
+  width: 100%;
   height: 40px;
   font-size: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
 
   &:hover {
     background-color: #7462a4;
