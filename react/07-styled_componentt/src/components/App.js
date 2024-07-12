@@ -18,6 +18,12 @@ function App() {
         <Link to="04">
           <li>4. 연습2</li>
         </Link>
+        <Link to="05">
+          <li>5. DynamicStyling</li>
+        </Link>
+        <Link to="06">
+          <li>6. 연습3</li>
+        </Link>
       </ul>
       <Outlet />
     </div>
