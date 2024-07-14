@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  background-color: #6750a4;
+background-color: #6750a4;
+  border: #6750a4;
   color: white;
   cursor: pointer;
-  border: #6750a4;
   display: flex;
   justify-content: center;
   align-items: center;
