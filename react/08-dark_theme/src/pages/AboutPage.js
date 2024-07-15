@@ -1,7 +1,12 @@
 import React from "react";
+import Container from "../components/Container";
 
 function AboutPage(props) {
-  return <div>AboutPage입니다.</div>;
+  return (
+    <>
+      <Container>AboutPage입니다.</Container>
+    </>
+  );
 }
 
 export default AboutPage;
