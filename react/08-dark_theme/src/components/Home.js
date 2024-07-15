@@ -1,10 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Nav from "./Nav";
+import styles from "./Home.module.css";
 
 function Home(props) {
   return (
     <div>
-      <Outlet />
+      <Nav className={styles.nav} />
+      <div className={styles.body}>
+        <Outlet />
+      </div>
     </div>
   );
 }
