@@ -3,9 +3,9 @@ import Container from "./Container";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 
-function Nav(props) {
+function Nav({ className }) {
   return (
-    <div>
+    <div className={className}>
       <Container className={styles.container}>
         <Link to="/">
           <div className={styles.logo}>
