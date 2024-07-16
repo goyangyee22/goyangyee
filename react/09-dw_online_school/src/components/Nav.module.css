@@ -15,6 +15,7 @@
   font-weight: 700;
   font-style: normal;
   font-size: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 .logo > span {
   background-color: #545454;
