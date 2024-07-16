@@ -17,7 +17,9 @@ function HomePage(props) {
             <br />
             지금 함께 시작해보실래요?
           </p>
-          <div></div>
+          <div>
+            <button>지금 시작하기</button>
+          </div>
         </div>
         <div></div>
       </Container>

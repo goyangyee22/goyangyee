@@ -1,5 +1,16 @@
+import Nav from "./Nav";
+import styles from "./App.module.css";
+import { Outlet } from "react-router-dom";
+
 function App() {
-  return <div className="App">Hello, React!!</div>;
+  return (
+    <>
+      <Nav className={styles.nav} />
+      <div className={styles.body}>
+        <Outlet />
+      </div>
+    </>
+  );
 }
 
 export default App;
