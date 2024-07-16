@@ -4,16 +4,15 @@ import styles from "./ListPage.module.css";
 import cn from "classnames";
 import catalogImg from "../assets/catalog.svg";
 
-function ListPage(props) {
+function ListPage({ children }) {
+  const { heading, description } = children;
   return (
     <>
       <div className={cn(styles.bg, styles.community)}>
         <img className={styles.icon} src={catalogImg} />
         <div className={styles.texts}>
-          <h1 className={styles.heading}>모든 코스</h1>
-          <p className={styles.description}>
-            자체 제작된 코스들로 기초를 쌓으세요.
-          </p>
+          <h1 className={styles.heading}>{heading}</h1>
+          <p className={styles.description}>{description}</p>
         </div>
       </div>
       <Container className={styles.container}></Container>
