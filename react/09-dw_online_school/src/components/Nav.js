@@ -3,6 +3,7 @@ import Container from "./Container";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 import cn from "classnames";
+import UserMenu from "./UserMenu";
 
 function Nav({ className }) {
   return (
@@ -16,7 +17,13 @@ function Nav({ className }) {
         </Link>
         <ul className={styles.menu}>
           <li>
-            <Link to="about">ABOUT</Link>
+            <Link to="/courses">카탈로그</Link>
+          </li>
+          <li>
+            <Link to="/questions">커뮤니티</Link>
+          </li>
+          <li>
+            <UserMenu />
           </li>
         </ul>
       </Container>
