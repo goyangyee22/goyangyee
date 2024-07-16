@@ -4,13 +4,12 @@ import styles from "./ListPage.module.css";
 import cn from "classnames";
 import catalogImg from "../assets/catalog.svg";
 
-function ListPage({ children }) {
-  const { heading, description } = children;
+function ListPage({ texts, heading, description }) {
   return (
     <>
       <div className={cn(styles.bg, styles.community)}>
         <img className={styles.icon} src={catalogImg} />
-        <div className={styles.texts}>
+        <div className={styles.texts}>{texts}
           <h1 className={styles.heading}>{heading}</h1>
           <p className={styles.description}>{description}</p>
         </div>
