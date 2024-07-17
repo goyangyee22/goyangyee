@@ -9,6 +9,24 @@ let listItems;
 
 function CourseListPage() {
   const [items, setItems] = useState([]);
+  const [keyword, setKeyword] = useState("");
+
+  const handleKeywordChange = (e) => {
+    // 사용자가 입력한 키워드를 state에 저장한다.
+    setKeyword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // 전체 데이터를 가지고 있는 listItems를 활용해
+    // 사용자가 입력한 키워드를 title에 포함하고 있는 객체를 원소로 가지는 배열을 만든다.
+    // const searchItems = listItems.filter(function (item) {
+    //   return item.title.includes(keyword);
+    // });
+    // // 만든 배열을 items state에 set 해준다.
+    // setItems(searchItems);
+    setItems(listItems.filter(({ title }) => title.includes(keyword)));
+  };
 
   const handleLoad = async () => {
     // Firebase의 courses 컬렉션의 데이터를 가져온다.
@@ -27,8 +45,12 @@ function CourseListPage() {
 
   return (
     <ListPage variant="catalog">
-      <form className={styles.form}>
-        <input placeholder="검색으로 코스 찾기" />
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          value={keyword}
+          placeholder="검색으로 코스 찾기"
+          onChange={handleKeywordChange}
+        />
         <button>
           <img src={searchImg} />
         </button>
