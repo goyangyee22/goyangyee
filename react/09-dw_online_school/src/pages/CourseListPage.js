@@ -5,6 +5,8 @@ import styles from "./CourseListPage.module.css";
 import CourseItem from "../components/CourseItem";
 import { getDatas } from "../api/firebase";
 
+// listItems 변수는 Firebase에서 데이터를 가져와서 메모리에 저장합니다.
+// 이를 기반으로 검색 기능 구현 및 초기 데이터를 렌더링 합니다.
 let listItems;
 
 function CourseListPage() {
