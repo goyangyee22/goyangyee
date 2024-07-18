@@ -5,6 +5,8 @@ import styles from "./UserMenu.module.css";
 
 function UserMenu(props) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isLogined = JSON.parse(localStorage.getItem("member"));
   const handleClick = (e) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
@@ -12,9 +14,7 @@ function UserMenu(props) {
 
   useEffect(() => {
     if (!isOpen) return;
-    const handleClickOutside = () => {
-      setIsOpen(false);
-    };
+    const handleClickOutside = () => setIsOpen(false);
 
     window.addEventListener("cllick", handleClickOutside);
     return () => {
@@ -33,9 +33,15 @@ function UserMenu(props) {
             <li>위시리스트</li>
           </Link>
           <li className={styles.disabled}>회원가입</li>
-          <Link to="/login">
-            <li>로그인</li>
-          </Link>
+          {!isLogined ? (
+            <Link to="/login">
+              <li>로그인</li>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <li>로그아웃</li>
+            </Link>
+          )}
         </ul>
       )}
     </div>
