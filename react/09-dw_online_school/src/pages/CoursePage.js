@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import CourseIcon from "../components/CourseIcon";
 import Button from "../components/Button";
@@ -6,12 +6,16 @@ import Card from "../components/Card";
 import { useLocation, useParams } from "react-router-dom";
 import getCourseColor from "../utils/getCourseColor";
 import { getData } from "../api/firebase";
+import styles from "./CoursePage.module.css";
+
+let listItems;
 
 function CoursePage() {
   //   const props = useLocation();
   const { courseSlug } = useParams();
 
   const [course, setCourse] = useState();
+  const [keyword, setKeyword] = useState([]);
 
   //   ?.의 의미는 undefined이거나 null이면 (course?.code)의 평가를 멈추고 undefined를 반환함.
   const courseColor = getCourseColor(course?.code);
@@ -22,29 +26,31 @@ function CoursePage() {
       condition: "==",
       value: courseSlug,
     });
+    setCourse(resultData);
+    console.log(resultData);
   };
 
+  const handleClick = () => {};
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+
+  const { title, summary } = course;
   return (
     <>
-      <div>
-        <Container>
+      <div className={styles.header}>
+        <Container className={styles.content}>
           <CourseIcon />
-          <h1>머신 러닝 실전</h1>
+          <h1 className={styles.title}>{course.title}</h1>
           <Button>+ 코스 담기</Button>
-          <p>
-            머신 러닝이 우리 생활 속에서 어디에 사용되고, 어떻게 적용되는지 실전
-            예제를 통해 알아 보아요!
-          </p>
+          <p className={styles.summary}>{course.summary}</p>
         </Container>
       </div>
-      <Container>
-        <Card>
-          <h3>추천 시스템</h3>
-          <p>
-            추천 시스템이란 무엇이고, 우리 생활에 어떤 영향을 미치고 있을까요?
-            이번 토픽에서 추천 시스템이 우리의 생활을 어떻게 지배하고 있는지를
-            배워봅시다!
-          </p>
+      <Container className={styles.topics}>
+        <Card className={styles.topic}>
+          <h3 className={styles.title}>title</h3>
+          <p className={styles.summary}>summary</p>
         </Card>
       </Container>
     </>
