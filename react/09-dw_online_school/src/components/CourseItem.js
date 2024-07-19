@@ -7,12 +7,15 @@ import getCourseColor from "../utils/getCourseColor";
 
 const DIFFICULTY = ["입문", "초급", "중급", "고급"];
 
-function CourseItem({ course }) {
+function CourseItem({ course = {} }) {
   const { title, summary, language, difficulty, code, photoUrl, slug } = course;
   const courseColor = getCourseColor(code);
   const thumbStyle = {
     borderColor: courseColor,
   };
+  if (!course) {
+    return null;
+  }
   return (
     <Card className={styles.courseItem}>
       <div className={styles.thumb} style={thumbStyle}>
