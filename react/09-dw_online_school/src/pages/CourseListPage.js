@@ -39,9 +39,9 @@ function CourseListPage() {
     // 전체데이터 변수에 저장
     listItems = resultData;
     // 가져온 데이터 콘솔로 확인.
-    console.log(resultData);
+    console.log(listItems);
     // items state에 set 해준다.
-    setItems(resultData);
+    setItems(listItems);
     setIsLoading(false);
   };
 
