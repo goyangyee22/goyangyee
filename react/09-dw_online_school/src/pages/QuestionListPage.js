@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ListPage from "../components/ListPage";
-import { Link } from "react-router-dom";
-import Card from "../components/Card";
-import Ralo from "../assets/ralo-profile.png";
 import styles from "./QuestionListPage.module.css";
+import searchImg from "../assets/search.svg";
+import QuestionItem from "../components/QuestionItem";
+import { getDatas } from "../api/firebase";
+
+let listItems;
 
 function QuestionListPage() {
+  const [items, setItems] = useState([]);
+
+  const handleLoad = async () => {
+    const resultData = await getDatas("questions");
+    listItems = resultData; // 검색용으로 사용할 전체 데이터를 가지고 있어야 함.
+    console.log(listItems);
+    setItems(resultData);
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+
   return (
     <ListPage variant="community">
-      <Card className={styles.card}>
-        <Link>어디가 잘못 된걸까요?</Link> <span>[1]</span>
-        <h5 className={styles.date}>2021. 10. 14.</h5>
-        <img className={styles.img} src={Ralo} />
-      </Card>
+      <form className={styles.form}>
+        <input placeholder="검색으로 코스 찾기" />
+        <button>
+          <img src={searchImg} />
+        </button>
+      </form>
+      <p className={styles.count}>총 {items.length}개 코스</p>
+      <div>
+        {items.map((question) => (
+          <QuestionItem key={question.docId} question={question} />
+        ))}
+      </div>
     </ListPage>
   );
 }
