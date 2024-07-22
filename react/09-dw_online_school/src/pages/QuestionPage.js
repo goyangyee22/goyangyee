@@ -35,7 +35,7 @@ function QuestionPage() {
             <p
               className={styles.content}
               dangerouslySetInnerHTML={sanitizedData(content)}
-              //   dangerouslySetInnerHTML={{ __html: content }}
+                // dangerouslySetInnerHTML={{ __html: content }}
             />
           </div>
         </Container>
