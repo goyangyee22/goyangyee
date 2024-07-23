@@ -57,10 +57,8 @@ function FoodForm(props) {
           <input
             name="calorie"
             className="FoodForm-calorie"
-            placeholder="칼로리를 입력해주세요."
             onChange={handleInputChange}
             type="number"
-            min={1}
             value={values.calorie}
           />
           <button className="FoodForm-submit-button" type="submit">
