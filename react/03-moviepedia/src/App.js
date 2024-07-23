@@ -70,6 +70,7 @@ function App() {
     setItems((prevItems) => [data, ...prevItems]);
   };
 
+  // 데이터 업데이트를 성공했을 때
   const handleUpdateSuccess = (result) => {
     // 화면처리.. 기존데이터는 items에서 삭제, 수정된 데이터는 items의 기존 위치에 추가
     setItems((prevItems) => {
