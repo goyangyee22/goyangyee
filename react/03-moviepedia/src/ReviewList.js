@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Rating from "./Rating";
 import ReviewForm from "./ReviewForm";
 import "./ReviewList.css";
-import { updateDatas } from "./assets/firebase";
 import useTranslate from "./hooks/useTranslate";
 
 function formatDate(value) {

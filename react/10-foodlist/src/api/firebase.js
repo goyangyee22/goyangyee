@@ -7,8 +7,19 @@ import {
   query,
   orderBy,
   limit,
+  doc,
+  deleteDoc,
+  getDoc,
+  updateDoc,
+  startAfter,
 } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDfL1ZwQrGCTIJjmIbIfIumRmhNUV-0eRc",
@@ -75,4 +86,86 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-export { db, addDatas };
+async function deleteDatas(collectionName, docId, imgUrl) {
+  // 1. Storage 객체 가져온다.
+  const storage = getStorage();
+
+  try {
+    // 2. Storage에서 이미지 삭제
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+
+    // 3. 컬렉션에서 문서 삭제
+    const docRef = await doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function updateDatas(collectionName, dataObj, docId) {
+  // doc(db, 컬렉션명, 문서ID);
+  // getDoc(문서레퍼런스);
+  // updateDoc(문서데이터, 수정할 정보객체);
+  const docRef = await doc(db, collectionName, docId);
+
+  // 수정할 데이터 양식 생성 => title, content, rating, updatedAt, imgUrl
+  const time = new Date().getTime();
+  dataObj.updatedAt = time;
+
+  // 사진파일이 수정되면 => 기존 사진 삭제 => 새로운 사진 추가 => url 받아와서 imgUrl 값 셋팅
+  if (dataObj.imgUrl !== null) {
+    // 기존사진 url 가져오기
+    const docSnap = await getDoc(docRef);
+    const prevImgUrl = docSnap.data().imgUrl;
+
+    // 스토리지에서 기본사진 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, prevImgUrl);
+    await deleteObject(deleteRef);
+
+    // 새로운사진 추가
+    const uuid = crypto.randomUUID();
+    const path = `foodit/${uuid}`;
+    const url = await uploadImage(path, dataObj.imgUrl);
+    dataObj.imgUrl = url;
+  } else {
+    // imgUrl 프로퍼티 삭제
+    delete dataObj["imgUrl"];
+  }
+  // 사진파일이 수정되지 않으면 => 변경데이터만 업데이트
+  await updateDoc(docRef, dataObj);
+  const updatedData = await getDoc(docRef); // getDocs().docs.map(doc => {})
+  const resultData = { docId: updatedData.id, ...updatedData.data() };
+  return resultData;
+}
+
+async function getDatasOrderByLimit(collectionName, options) {
+  const { fieldName, limits } = options;
+  let q;
+  if (!options.lq) {
+    q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      limit(limits)
+    );
+  } else {
+    q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      startAfter(options.lq),
+      limit(limits)
+    );
+  }
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const lastQuery = docs[docs.length - 1];
+  const resultData = docs.map((doc) => ({
+    ...doc.data(),
+    docId: doc.id,
+  }));
+  return { resultData, lastQuery };
+}
+
+export { db, addDatas, deleteDatas, updateDatas, getDatasOrderByLimit };

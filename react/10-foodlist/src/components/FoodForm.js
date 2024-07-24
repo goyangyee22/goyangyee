@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import FileInput from "./FileInput";
 import "./FoodForm.css";
 import { addDatas } from "../api/firebase";
+import { useLocale } from "./../contexts/LocaleContext";
+import useTranslate from "./../hooks/useTranslate";
 
-const INITIAL_VALUES = {
+const INITIAL_VALUE = {
   title: "",
   content: "",
   calorie: 0,
@@ -20,8 +22,17 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm(props) {
-  const [values, setValues] = useState(INITIAL_VALUES);
+function FoodForm({
+  onSubmit,
+  handleSubmitSuccess,
+  initialPreview,
+  initialValues = INITIAL_VALUE,
+  handleCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const locale = useLocale();
+  // const t = useTranslate();
   const handleChange = (name, value) => {
     setValues((prevValues) => ({
       ...prevValues,
@@ -34,7 +45,11 @@ function FoodForm(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const resultData = await addDatas("foodit", values);
+    handleSubmitSuccess(resultData);
+    setIsSubmitting(false);
+    setValues(INITIAL_VALUE);
   };
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
@@ -61,7 +76,11 @@ function FoodForm(props) {
             type="number"
             value={values.calorie}
           />
-          <button className="FoodForm-submit-button" type="submit">
+          <button
+            className="FoodForm-submit-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             확인
           </button>
         </div>
