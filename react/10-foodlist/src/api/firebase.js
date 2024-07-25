@@ -60,7 +60,9 @@ async function addDatas(collectionName, addObj) {
   addObj.updatedAt = time;
 
   // 컬렉션에 저장
-  await addDoc(getCollection(collectionName), addObj);
+  const result = await addDoc(getCollection(collectionName), addObj);
+  const docSnap = await getDoc(result);
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
 }
 
 async function uploadImage(path, file) {
@@ -87,20 +89,23 @@ async function getLastNum(collectionName, field) {
 }
 
 async function deleteDatas(collectionName, docId, imgUrl) {
-  // 1. Storage 객체 가져온다.
+  // 1. Storage 객체 가져온다. ==> 파일명(경로포함) or 파일 url
   const storage = getStorage();
+  let message;
 
   try {
-    // 2. Storage에서 이미지 삭제
+    // 2. 삭제할 파일의 참조객체를 생성하여(ref 함수) Storage에서 이미지 삭제
+    message = "이미지 삭제에 실패했습니다. \n관리자에게 문의하세요.";
     const deleteRef = ref(storage, imgUrl);
     await deleteObject(deleteRef);
 
-    // 3. 컬렉션에서 문서 삭제
-    const docRef = await doc(db, collectionName, docId);
-    await deleteDoc(docRef);
-    return true;
+    // 3. 삭제할 문서의 참조객체 생성(doc 함수)
+    message = "문서 삭제에 실패했습니다. \n관리자에게 문의하세요.";
+    const deleteDocRef = doc(db, collectionName, docId);
+    await deleteDoc(deleteDocRef);
+    return { result: true, message: message };
   } catch (error) {
-    return false;
+    return { result: false, message: message };
   }
 }
 

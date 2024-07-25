@@ -3,7 +3,7 @@ import FileInput from "./FileInput";
 import "./FoodForm.css";
 import { addDatas } from "../api/firebase";
 
-const INITIAL_VALUE = {
+const INITIAL_VALUES = {
   title: "",
   content: "",
   calorie: 0,
@@ -20,17 +20,10 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm({
-  onSubmit,
-  handleSubmitSuccess,
-  initialPreview,
-  initialValues = INITIAL_VALUE,
-  handleCancel,
-}) {
-  const [values, setValues] = useState(initialValues);
+function FoodForm({ onSubmit, onSubmitSuccess, onCancel, onUpdate }) {
+  const [values, setValues] = useState(INITIAL_VALUES);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const locale = useLocale();
-  // const t = useTranslate();
+
   const handleChange = (name, value) => {
     setValues((prevValues) => ({
       ...prevValues,
@@ -44,10 +37,10 @@ function FoodForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const resultData = await addDatas("foodit", values);
-    handleSubmitSuccess(resultData);
+    const resultData = await onSubmit("foodit", values);
+    onSubmitSuccess(resultData);
     setIsSubmitting(false);
-    setValues(INITIAL_VALUE);
+    setValues(INITIAL_VALUES);
   };
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
@@ -56,7 +49,6 @@ function FoodForm({
         onChange={handleChange}
         name="imgUrl"
         value={values.imgUrl}
-        initialPreview={initialPreview}
       />
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
@@ -75,10 +67,20 @@ function FoodForm({
             type="number"
             value={values.calorie}
           />
+          {onCancel && (
+            <button
+              className="FoodForm-cancel-button"
+              type="button"
+              onClick={() => onCancel(null)}
+            >
+              취소
+            </button>
+          )}
           <button
             className="FoodForm-submit-button"
             type="submit"
             disabled={isSubmitting}
+            onClick={onUpdate}
           >
             확인
           </button>

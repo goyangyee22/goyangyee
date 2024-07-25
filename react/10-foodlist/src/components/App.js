@@ -43,9 +43,9 @@ function App() {
     );
     listItems = resultData;
     if (!options.lq) {
-      setItems(listItems);
+      setItems(resultData);
     } else {
-      setItems((prevItems) => [...prevItems, ...resultData]);
+      setItems((prevItems) => [resultData, ...prevItems]);
     }
     setLq(lastQuery);
     if (!lastQuery) {
@@ -81,17 +81,20 @@ function App() {
 
   // 데이터 삭제할 때
   const handleDelete = async (docId, imgUrl) => {
-    const result = await deleteDatas("footit", docId, imgUrl);
+    // items에서 docId를 받아온다.
+    // db에서 데이터 삭제(스토리지에 있는 사진파일 삭제, db에 있는 데이터 삭제)
+    // 삭제 성공시 화면에 결과 반영
+    const { result, message } = await deleteDatas("foodit", docId, imgUrl);
     if (!result) {
-      alert("저장된 이미지 파일이 없습니다. \n 관리자에게 문의하세요.");
-      return false;
+      alert(message);
+      return;
     }
     setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
   };
 
   // 데이터 추가를 성공했을 때
-  const handleAddSuccess = (data) => {
-    setItems((prevItems) => [data, ...prevItems]);
+  const handleAddSuccess = (resultData) => {
+    setItems((prevItems) => [...prevItems, resultData]);
   };
 
   // 데이터 업데이트를 성공했을 때
@@ -122,10 +125,7 @@ function App() {
       </div>
       <div className="App-container">
         <div className="App-FoodForm">
-          <FoodForm
-            onSubmit={addDatas}
-            handleSubmitSuccess={handleAddSuccess}
-          />
+          <FoodForm onSubmit={addDatas} onSubmitSuccess={handleAddSuccess} />
         </div>
         <div className="App-filter">
           <form className="App-search" onSubmit={handleSubmit}>
@@ -156,7 +156,7 @@ function App() {
         </div>
         <FoodList
           items={items}
-          handleDelete={handleDelete}
+          onDelete={handleDelete}
           onUpdate={updateDatas}
           onUpdateSuccess={handleUpdateSuccess}
         />

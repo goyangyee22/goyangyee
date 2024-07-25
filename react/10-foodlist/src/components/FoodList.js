@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import "./FoodList.css";
 import FoodForm from "./FoodForm";
+import { updateDatas } from "../api/firebase";
 
 function formatDate(value) {
   const date = new Date(value);
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}.`;
 }
 
-function FoodListItem({ item, handleDelete, handleEdit }) {
-  const { imgUrl, title, calorie, content, createdAt } = item;
-  //   const t = useTranslate();
+function FoodListItem({ item, onDelete, onEdit, onSubmit }) {
+  const { imgUrl, title, calorie, content, createdAt, docId, id } = item;
   const handleDeleteClick = () => {
-    handleDelete(item.docId, item.imgUrl);
+    onDelete(docId, imgUrl);
   };
   const handleEditClick = () => {
-    handleEdit(item.id);
+    onEdit(id);
+  };
+  const handleSubmit = () => {
+    onSubmit();
   };
   return (
     <div className="FoodListItem">
@@ -31,6 +34,7 @@ function FoodListItem({ item, handleDelete, handleEdit }) {
             <button
               className="FoodListItem-edit-button"
               onClick={handleEditClick}
+              onUpdate={handleSubmit}
             >
               수정
             </button>
@@ -47,46 +51,25 @@ function FoodListItem({ item, handleDelete, handleEdit }) {
   );
 }
 
-function FoodList({ items, handleDelete, onUpdate, onUpdateSuccess }) {
+function FoodList({ items, onDelete, onUpdate }) {
   const [editingId, setEditingId] = useState(null);
   return (
     <ul className="FoodList">
       {items.map((item) => {
         if (item.id === editingId) {
-          const { imgUrl, title, calorie, content, createdAt, docId } = item;
-          const initialValues = {
-            title,
-            calorie,
-            content,
-            createdAt,
-            imgUrl: null,
-          };
-          const handleSubmit = (collectionName, dataObj) => {
-            const result = onUpdate(collectionName, dataObj, docId);
-            return result;
-          };
-          const handleSubmitSuccess = (result) => {
-            onUpdateSuccess(result);
-            setEditingId(null);
-          };
           return (
-            <li key={item.id}>
-              <FoodForm
-                initialValues={initialValues}
-                initialPreview={imgUrl}
-                handleCancel={setEditingId}
-                onSubmit={handleSubmit}
-                handleSubmitSuccess={handleSubmitSuccess}
-              />
+            <li key={item.docId}>
+              <FoodForm onCancel={setEditingId} />
             </li>
           );
         }
         return (
-          <li key={item.id}>
+          <li key={item.docId}>
             <FoodListItem
               item={item}
-              handleDelete={handleDelete}
-              handleEdit={setEditingId}
+              onDelete={onDelete}
+              onSubmit={onUpdate}
+              onEdit={setEditingId}
             />
           </li>
         );
