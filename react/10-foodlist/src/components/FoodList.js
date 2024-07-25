@@ -8,6 +8,7 @@ function formatDate(value) {
 }
 
 function FoodListItem({ item, handleDelete, handleEdit }) {
+  const { imgUrl, title, calorie, content, createdAt } = item;
   //   const t = useTranslate();
   const handleDeleteClick = () => {
     handleDelete(item.docId, item.imgUrl);
@@ -15,14 +16,13 @@ function FoodListItem({ item, handleDelete, handleEdit }) {
   const handleEditClick = () => {
     handleEdit(item.id);
   };
-  const { imgUrl, title, calorie, content, createdAt } = item;
   return (
     <div className="FoodListItem">
       <img className="FoodListItem-preview" src={imgUrl} />
       <div className="FoodListItem-rows">
         <div className="FoodListItem-title-calorie">
           <h1 className="FoodListItem-title">{title}</h1>
-          <span className="FoodListItem-calorie">{calorie}</span>
+          <span className="FoodListItem-calorie">{calorie}kcal</span>
         </div>
         <p className="FoodListItem-content">{content}</p>
         <div className="FoodListItem-date-buttons">

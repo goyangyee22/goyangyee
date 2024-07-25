@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import placeholderImg from "../assets/preview-placeholder.png";
 import resetImg from "../assets/ic-reset-white.png";
 import "./FileInput.css";
 
-function FileInput({ name, value, onChange }) {
-  const [preview, setPreview] = useState();
+function FileInput({ name, value, onChange, initialPreview }) {
+  const [preview, setPreview] = useState(initialPreview);
+  const inputRef = useRef();
 
   const handleChange = (e) => {
     const nextValue = e.target.files[0];
@@ -12,6 +13,8 @@ function FileInput({ name, value, onChange }) {
   };
 
   const handleClearClick = () => {
+    const inputNode = inputRef;
+    console.log(inputNode);
     onChange(name, null);
   };
 
@@ -21,7 +24,7 @@ function FileInput({ name, value, onChange }) {
     setPreview(nextPreview);
 
     return () => {
-      setPreview(null);
+      setPreview();
       URL.revokeObjectURL(nextPreview);
     };
   }, [value]);

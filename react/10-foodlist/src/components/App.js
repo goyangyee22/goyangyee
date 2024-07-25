@@ -13,6 +13,7 @@ import {
   updateDatas,
 } from "../api/firebase";
 
+let listItems;
 const LIMITS = 5;
 
 function AppSortButton({ children, selected, onClick }) {
@@ -32,6 +33,7 @@ function App() {
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
+  const [keyword, setKeyword] = useState("");
 
   // db에 접근합니다.
   const handleLoad = async (options) => {
@@ -39,14 +41,30 @@ function App() {
       "foodit",
       options
     );
+    listItems = resultData;
     if (!options.lq) {
-      setItems(resultData);
+      setItems(listItems);
     } else {
       setItems((prevItems) => [...prevItems, ...resultData]);
     }
     setLq(lastQuery);
     if (!lastQuery) {
       setHasNext(false);
+    }
+  };
+
+  const handleKeywordChange = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (keyword.trim() === "") {
+      // 키워드가 비어있는 경우, 모든 항목을 보여줍니다.
+      setItems(items);
+    } else {
+      // 키워드가 있는 경우, 해당 키워드를 포함하는 항목들을 필터링하여 보여줍니다.
+      setItems(items.filter(({ title }) => title.includes(keyword)));
     }
   };
 
@@ -110,8 +128,13 @@ function App() {
           />
         </div>
         <div className="App-filter">
-          <form className="App-search">
-            <input className="App-search-input" />
+          <form className="App-search" onSubmit={handleSubmit}>
+            <input
+              className="App-search-input"
+              value={keyword}
+              placeholder="검색으로 음식 찾기"
+              onChange={handleKeywordChange}
+            />
             <button className="App-search-button">
               <img src={searchImg} />
             </button>

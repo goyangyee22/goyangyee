@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import FileInput from "./FileInput";
 import "./FoodForm.css";
 import { addDatas } from "../api/firebase";
-import { useLocale } from "./../contexts/LocaleContext";
-import useTranslate from "./../hooks/useTranslate";
 
 const INITIAL_VALUE = {
   title: "",
@@ -58,6 +56,7 @@ function FoodForm({
         onChange={handleChange}
         name="imgUrl"
         value={values.imgUrl}
+        initialPreview={initialPreview}
       />
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
