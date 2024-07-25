@@ -8,7 +8,7 @@ function formatDate(value) {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}.`;
 }
 
-function FoodListItem({ item, onDelete, onEdit, onSubmit }) {
+function FoodListItem({ item, onDelete, onEdit }) {
   const { imgUrl, title, calorie, content, createdAt, docId, id } = item;
   const handleDeleteClick = () => {
     onDelete(docId, imgUrl);
@@ -16,9 +16,7 @@ function FoodListItem({ item, onDelete, onEdit, onSubmit }) {
   const handleEditClick = () => {
     onEdit(id);
   };
-  const handleSubmit = () => {
-    onSubmit();
-  };
+
   return (
     <div className="FoodListItem">
       <img className="FoodListItem-preview" src={imgUrl} />
@@ -34,7 +32,6 @@ function FoodListItem({ item, onDelete, onEdit, onSubmit }) {
             <button
               className="FoodListItem-edit-button"
               onClick={handleEditClick}
-              onUpdate={handleSubmit}
             >
               수정
             </button>
@@ -51,15 +48,31 @@ function FoodListItem({ item, onDelete, onEdit, onSubmit }) {
   );
 }
 
-function FoodList({ items, onDelete, onUpdate }) {
+function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
   const [editingId, setEditingId] = useState(null);
   return (
     <ul className="FoodList">
       {items.map((item) => {
         if (item.id === editingId) {
+          const { id, title, calorie, content, imgUrl, docId } = item;
+          const initialValues = { title, calorie, content, imgUrl: null };
+          const handleSubmit = (collectionName, updateObj) => {
+            onUpdate(collectionName, docId, updateObj);
+          };
+          const handleSubmitSuccess = (result) => {
+            onUpdateSuccess(result);
+            // 수정 폼 리스트로 변경
+            setEditingId(null);
+          };
           return (
             <li key={item.docId}>
-              <FoodForm onCancel={setEditingId} />
+              <FoodForm
+                initialValues={initialValues}
+                initialPreview={imgUrl}
+                onCancel={setEditingId}
+                onSubmit={handleSubmit}
+                onSubmitSuccess={handleSubmitSuccess}
+              />
             </li>
           );
         }
@@ -68,7 +81,6 @@ function FoodList({ items, onDelete, onUpdate }) {
             <FoodListItem
               item={item}
               onDelete={onDelete}
-              onSubmit={onUpdate}
               onEdit={setEditingId}
             />
           </li>

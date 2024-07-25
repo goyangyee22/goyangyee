@@ -113,6 +113,7 @@ async function updateDatas(collectionName, dataObj, docId) {
   // doc(db, 컬렉션명, 문서ID);
   // getDoc(문서레퍼런스);
   // updateDoc(문서데이터, 수정할 정보객체);
+  console.log("updateDatas 함수 실행");
   const docRef = await doc(db, collectionName, docId);
 
   // 수정할 데이터 양식 생성 => title, content, rating, updatedAt, imgUrl

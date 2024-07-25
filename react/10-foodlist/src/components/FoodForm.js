@@ -20,8 +20,14 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm({ onSubmit, onSubmitSuccess, onCancel, onUpdate }) {
-  const [values, setValues] = useState(INITIAL_VALUES);
+function FoodForm({
+  onCancel,
+  onSubmit,
+  onSubmitSuccess,
+  initialValues = INITIAL_VALUES,
+  initialPreview,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (name, value) => {
@@ -49,6 +55,7 @@ function FoodForm({ onSubmit, onSubmitSuccess, onCancel, onUpdate }) {
         onChange={handleChange}
         name="imgUrl"
         value={values.imgUrl}
+        initialPreview={initialPreview}
       />
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
@@ -80,7 +87,6 @@ function FoodForm({ onSubmit, onSubmitSuccess, onCancel, onUpdate }) {
             className="FoodForm-submit-button"
             type="submit"
             disabled={isSubmitting}
-            onClick={onUpdate}
           >
             확인
           </button>
