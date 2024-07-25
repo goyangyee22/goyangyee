@@ -30,8 +30,8 @@ function AppSortButton({ children, selected, onClick }) {
 
 function App() {
   const [items, setItems] = useState([]);
-  const [searchedItems, setSearchedItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
+  const [searchedItems, setSearchedItems] = useState([]);
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const [keyword, setKeyword] = useState("");
@@ -58,8 +58,7 @@ function App() {
     setKeyword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (keyword.trim() === "") {
       // 키워드가 비어있는 경우, 모든 항목을 보여줍니다.
       setSearchedItems(items);
