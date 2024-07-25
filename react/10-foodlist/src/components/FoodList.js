@@ -54,10 +54,11 @@ function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
     <ul className="FoodList">
       {items.map((item) => {
         if (item.id === editingId) {
-          const { id, title, calorie, content, imgUrl, docId } = item;
+          const { title, calorie, content, imgUrl, docId } = item;
           const initialValues = { title, calorie, content, imgUrl: null };
           const handleSubmit = (collectionName, updateObj) => {
-            onUpdate(collectionName, docId, updateObj);
+            const result = onUpdate(collectionName, updateObj, docId);
+            return result;
           };
           const handleSubmitSuccess = (result) => {
             onUpdateSuccess(result);

@@ -30,6 +30,7 @@ function AppSortButton({ children, selected, onClick }) {
 
 function App() {
   const [items, setItems] = useState([]);
+  const [searchedItems, setSearchedItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
@@ -61,10 +62,13 @@ function App() {
     e.preventDefault();
     if (keyword.trim() === "") {
       // 키워드가 비어있는 경우, 모든 항목을 보여줍니다.
-      setItems(items);
+      setSearchedItems(items);
     } else {
       // 키워드가 있는 경우, 해당 키워드를 포함하는 항목들을 필터링하여 보여줍니다.
-      setItems(items.filter(({ title }) => title.includes(keyword)));
+      const filteredItems = items.filter(({ title }) =>
+        title.includes(keyword)
+      );
+      setSearchedItems(filteredItems);
     }
   };
 
@@ -118,6 +122,11 @@ function App() {
     setHasNext(true);
   }, [order]);
 
+  // 검색어 변경 시 검색 실행
+  useEffect(() => {
+    handleSubmit();
+  }, [keyword]);
+
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>
       <div className="App-nav">
@@ -155,7 +164,7 @@ function App() {
           </div>
         </div>
         <FoodList
-          items={items}
+          items={searchedItems.length > 0 ? searchedItems : items}
           onDelete={handleDelete}
           onUpdate={updateDatas}
           onUpdateSuccess={handleUpdateSuccess}
