@@ -71,7 +71,7 @@ function App() {
         limits: LIMITS,
         keyword: keyword,
       });
-      setItems(resultData);
+      setSearchedItems(resultData);
     }
   };
 
@@ -122,7 +122,6 @@ function App() {
   // 처음 렌더링될 때
   useEffect(() => {
     handleLoad({ fieldName: order, limits: LIMITS, lq: undefined });
-    setHasNext(true);
   }, [order]);
 
   return (
