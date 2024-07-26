@@ -109,40 +109,40 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   }
 }
 
-async function updateDatas(collectionName, dataObj, docId) {
-  // doc(db, 컬렉션명, 문서ID);
-  // getDoc(문서레퍼런스);
-  // updateDoc(문서데이터, 수정할 정보객체);
+async function updateDatas(collectionName, docId, updateObj, imgUrl) {
   const docRef = await doc(db, collectionName, docId);
 
-  // 수정할 데이터 양식 생성 => title, content, rating, updatedAt, imgUrl
+  // 저장돼있는 시간 관련 필드들의 값이 밀리세컨드로 돼있기 때문에 getTime() 함수 사용
   const time = new Date().getTime();
-  dataObj.updatedAt = time;
 
-  // 사진파일이 수정되면 => 기존 사진 삭제 => 새로운 사진 추가 => url 받아와서 imgUrl 값 셋팅
-  if (dataObj.imgUrl !== null) {
-    // 기존사진 url 가져오기
-    const docSnap = await getDoc(docRef);
-    const prevImgUrl = docSnap.data().imgUrl;
-
-    // 스토리지에서 기본사진 삭제
+  // 사진 파일을 변경하지 않았을 때
+  if (updateObj.imgUrl === null) {
+    // 사진이 변경되지 않았을 때 imgUrl 값이 null이 돼서
+    // 문서를 update하면 imgUrl 값이 null이 됩니다.
+    // 그래서 updateObj에서 imgUrl 프로퍼티를 삭제합니다.
+    delete updateObj["imgUrl"];
+  } else {
+    // 사진파일을 변경했을 때 => 기존 사진 삭제
     const storage = getStorage();
-    const deleteRef = ref(storage, prevImgUrl);
+    const deleteRef = ref(storage, imgUrl);
     await deleteObject(deleteRef);
 
-    // 새로운사진 추가
-    const uuid = crypto.randomUUID();
-    const path = `foodit/${uuid}`;
-    const url = await uploadImage(path, dataObj.imgUrl);
-    dataObj.imgUrl = url;
-  } else {
-    // imgUrl 프로퍼티 삭제
-    delete dataObj["imgUrl"];
+    // 변경한 사진을 스토리지에 저장
+    const url = await uploadImage(createPath("foodit/"), updateObj.imgUrl);
+
+    // 스토리지에 저장하고 그 파일의 url을 가져와서 updateObj의 imgUrl 값을 변경
+    // 기존 updateObj에 있는 imgUrl은 'File'객체이고
+    // DB에 저장해야 할 imgUrl은 문자열 url이기 때문
+    updateObj.imgUrl = url;
   }
-  // 사진파일이 수정되지 않으면 => 변경데이터만 업데이트
-  await updateDoc(docRef, dataObj);
-  const updatedData = await getDoc(docRef); // getDocs().docs.map(doc => {})
-  const resultData = { docId: updatedData.id, ...updatedData.data() };
+
+  // updatedAt 필드에 넣어줄 시간 데이터를 updateObj에 넣음
+  updateObj.updatedAt = time;
+
+  // 문서 필드 데이터 수정
+  await updateDoc(docRef, updateObj);
+  const docSnap = await getDoc(docRef);
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
   return resultData;
 }
 
