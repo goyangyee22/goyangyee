@@ -57,7 +57,7 @@ function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
           const { title, calorie, content, imgUrl, docId } = item;
           const initialValues = { title, calorie, content, imgUrl: null };
           const handleSubmit = (collectionName, updateObj) => {
-            const result = onUpdate(collectionName, updateObj, docId);
+            const result = onUpdate(collectionName, docId, updateObj, imgUrl);
             return result;
           };
           const handleSubmitSuccess = (result) => {
