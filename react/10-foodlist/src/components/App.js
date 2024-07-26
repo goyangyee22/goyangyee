@@ -12,6 +12,8 @@ import {
   getDatasOrderByLimit,
   updateDatas,
 } from "../api/firebase";
+import LocaleSelect from "../LocaleSelect";
+import useTranslate from "../hooks/useTranslate";
 
 let listItems;
 const LIMITS = 5;
@@ -35,6 +37,7 @@ function App() {
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const [keyword, setKeyword] = useState("");
+  const t = useTranslate();
 
   // db에 접근합니다.
   const handleLoad = async (options) => {
@@ -46,7 +49,7 @@ function App() {
     if (!options.lq) {
       setItems(listItems);
     } else {
-      setItems((prevItems) => [resultData, ...prevItems]);
+      setItems((prevItems) => [...prevItems, ...resultData]);
     }
     setLq(lastQuery);
     if (!lastQuery) {
@@ -140,7 +143,7 @@ function App() {
             <input
               className="App-search-input"
               value={keyword}
-              placeholder="검색으로 음식 찾기"
+              placeholder={t("search placeholder")}
               onChange={handleKeywordChange}
             />
             <button className="App-search-button">
@@ -152,13 +155,13 @@ function App() {
               selected={order === "createdAt"}
               onClick={handleNewestClick}
             >
-              최신순
+              {t("newest")}
             </AppSortButton>
             <AppSortButton
               selected={order === "calorie"}
               onClick={handleHighestClick}
             >
-              칼로리순
+              {t("calorie")}
             </AppSortButton>
           </div>
         </div>
@@ -170,19 +173,16 @@ function App() {
         />
         {hasNext && (
           <button className="App-load-more-button" onClick={handleLoadMore}>
-            더 보기
+            {t("load more")}
           </button>
         )}
       </div>
       <footer className="App-footer">
         <div className="App-footer-container">
           <img src={logoTextImg} />
-          <select>
-            <option>한국어</option>
-            <option>English</option>
-          </select>
+          <LocaleSelect />
           <div className="App-footer-menu">
-            서비스 이용약관 | 개인정보 처리방침
+            {t("terms of service")} | {t("privacy policy")}
           </div>
         </div>
       </footer>

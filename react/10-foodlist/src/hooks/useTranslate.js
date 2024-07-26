@@ -9,11 +9,12 @@ const dict = {
     "delete button": "삭제",
     "title placeholder": "제목을 입력해주세요.",
     "content placeholder": "내용을 입력해주세요.",
+    "search placeholder": "검색으로 음식 찾기",
     "terms of service": "서비스 이용약관",
     "privacy policy": "개인정보 처리방침",
     "load more": "더 보기",
     newest: "최신순",
-    best: "베스트순",
+    calorie: "칼로리순",
   },
   en: {
     "confirm button": "OK",
@@ -22,11 +23,12 @@ const dict = {
     "delete button": "delete",
     "title placeholder": "Typing title",
     "content placeholder": "Typing content",
+    "search placeholder": "Search food",
     "terms of service": "terms of service",
     "privacy policy": "Privacy policy",
     "load more": "Load More",
     newest: "Newest",
-    best: "Best",
+    calorie: "Calorie",
   },
 };
 

@@ -2,13 +2,16 @@ import { createContext, useContext, useState } from "react";
 
 // Context가 제공할 기본값을 만든다.
 export const LocaleContext = createContext();
+export const SetLocaleContext = createContext();
 
 // 언어 설정하는 함수입니다.
 export function LocaleProvider({ defaultValue = "ko", children }) {
   const [locale, setLocale] = useState(defaultValue);
   return (
     <LocaleContext.Provider value={{ locale, setLocale }}>
-      {children}
+      <SetLocaleContext.Provider value={setLocale}>
+        {children}
+      </SetLocaleContext.Provider>
     </LocaleContext.Provider>
   );
 }
