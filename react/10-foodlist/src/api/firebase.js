@@ -12,6 +12,7 @@ import {
   getDoc,
   updateDoc,
   startAfter,
+  where,
 } from "firebase/firestore";
 import {
   deleteObject,
@@ -173,4 +174,24 @@ async function getDatasOrderByLimit(collectionName, options) {
   return { resultData, lastQuery };
 }
 
-export { db, addDatas, deleteDatas, updateDatas, getDatasOrderByLimit };
+async function getSearchDatas(collectionName, options) {
+  const q = query(
+    getCollection(collectionName),
+    where("title", ">=", options.keyword),
+    where("title", "<=", options.keyword + "\uf8ff"),
+    limit(options.limits)
+  );
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
+  return resultData;
+}
+
+export {
+  db,
+  addDatas,
+  deleteDatas,
+  updateDatas,
+  getSearchDatas,
+  getDatasOrderByLimit,
+};

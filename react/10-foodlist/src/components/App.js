@@ -10,6 +10,7 @@ import {
   addDatas,
   deleteDatas,
   getDatasOrderByLimit,
+  getSearchDatas,
   updateDatas,
 } from "../api/firebase";
 import LocaleSelect from "../LocaleSelect";
@@ -61,16 +62,16 @@ function App() {
     setKeyword(e.target.value);
   };
 
-  const handleSubmit = () => {
-    if (keyword.trim() === "") {
-      // 키워드가 비어있는 경우, 모든 항목을 보여줍니다.
-      setSearchedItems(items);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (keyword === "") {
+      handleLoad({ fieldName: order, limits: LIMITS, lq: undefined });
     } else {
-      // 키워드가 있는 경우, 해당 키워드를 포함하는 항목들을 필터링하여 보여줍니다.
-      const filteredItems = items.filter(({ title }) =>
-        title.includes(keyword)
-      );
-      setSearchedItems(filteredItems);
+      const resultData = await getSearchDatas("foodit", {
+        limits: LIMITS,
+        keyword: keyword,
+      });
+      setItems(resultData);
     }
   };
 
@@ -123,11 +124,6 @@ function App() {
     handleLoad({ fieldName: order, limits: LIMITS, lq: undefined });
     setHasNext(true);
   }, [order]);
-
-  // 검색어 변경 시 검색 실행
-  useEffect(() => {
-    handleSubmit();
-  }, [keyword]);
 
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>
