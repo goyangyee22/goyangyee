@@ -49,6 +49,7 @@ function App() {
     listItems = resultData;
     if (!options.lq) {
       setItems(listItems);
+      console.log(listItems)
     } else {
       setItems((prevItems) => [...prevItems, ...resultData]);
     }
