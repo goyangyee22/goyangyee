@@ -15,6 +15,7 @@ import {
 } from "../api/firebase";
 import LocaleSelect from "../LocaleSelect";
 import useTranslate from "../hooks/useTranslate";
+import useAsync from "../hooks/useAsync";
 
 let listItems;
 const LIMITS = 5;
@@ -38,28 +39,31 @@ function App() {
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const [keyword, setKeyword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, loadingError, getDatasAsync] =
+    useAsync(getDatasOrderByLimit);
   const t = useTranslate();
 
   // db에 접근합니다.
   const handleLoad = async (options) => {
-    setIsLoading(true);
-    const { resultData, lastQuery } = await getDatasOrderByLimit(
-      "foodit",
-      options
-    );
-    listItems = resultData;
-    if (!options.lq) {
-      setItems(listItems);
-      console.log(listItems);
-    } else {
-      setItems((prevItems) => [...prevItems, ...resultData]);
-    }
-    setLq(lastQuery);
-    if (!lastQuery) {
-      setHasNext(false);
-    }
-    setIsLoading(false);
+    // setIsLoading(true);
+    // const { resultData, lastQuery } = await getDatasOrderByLimit(
+    //   "foodit",
+    //   options
+    // );
+    // listItems = resultData;
+    // if (!options.lq) {
+    //   setItems(listItems);
+    //   console.log(listItems);
+    // } else {
+    //   setItems((prevItems) => [...prevItems, ...resultData]);
+    // }
+    // setLq(lastQuery);
+    // if (!lastQuery) {
+    //   setHasNext(false);
+    // }
+    // setIsLoading(false);
+    const { resultData, lastQuery } = await getDatasAsync("foodit", options);
   };
 
   const handleKeywordChange = (e) => {

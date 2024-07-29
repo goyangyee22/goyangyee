@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FileInput from "./FileInput";
 import "./FoodForm.css";
 import useTranslate from "../hooks/useTranslate";
+import useAsync from "../hooks/useAsync";
 
 const INITIAL_VALUES = {
   title: "",
@@ -28,7 +29,8 @@ function FoodForm({
   initialPreview,
 }) {
   const [values, setValues] = useState(initialValues);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, submittingError, onSubmitAsync] = useAsync(onSubmit);
   const t = useTranslate();
 
   const handleChange = (name, value) => {
@@ -43,10 +45,8 @@ function FoodForm({
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    const resultData = await onSubmit("foodit", values);
+    const resultData = await onSubmitAsync("foodit", values);
     onSubmitSuccess(resultData);
-    setIsSubmitting(false);
     setValues(INITIAL_VALUES);
   };
   return (
