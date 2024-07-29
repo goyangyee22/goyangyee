@@ -38,10 +38,12 @@ function App() {
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const [keyword, setKeyword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const t = useTranslate();
 
   // db에 접근합니다.
   const handleLoad = async (options) => {
+    setIsLoading(true);
     const { resultData, lastQuery } = await getDatasOrderByLimit(
       "foodit",
       options
@@ -49,7 +51,7 @@ function App() {
     listItems = resultData;
     if (!options.lq) {
       setItems(listItems);
-      console.log(listItems)
+      console.log(listItems);
     } else {
       setItems((prevItems) => [...prevItems, ...resultData]);
     }
@@ -57,6 +59,7 @@ function App() {
     if (!lastQuery) {
       setHasNext(false);
     }
+    setIsLoading(false);
   };
 
   const handleKeywordChange = (e) => {
@@ -168,7 +171,11 @@ function App() {
           onUpdateSuccess={handleUpdateSuccess}
         />
         {hasNext && (
-          <button className="App-load-more-button" onClick={handleLoadMore}>
+          <button
+            className="App-load-more-button"
+            onClick={handleLoadMore}
+            disabled={isLoading}
+          >
             {t("load more")}
           </button>
         )}
