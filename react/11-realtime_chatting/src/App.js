@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import { getUserAuth } from "./api/firebase";
 import "./App.css";
 import SignIn from "./components/SignIn";
-import { onAuthStateChanged } from "firebase/auth";
 import ChatRoom from "./components/ChatRoom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
