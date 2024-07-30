@@ -1,16 +1,13 @@
 import React from "react";
-import tempImg from "../assets/ralo-profile.png";
 
-function ChatMessage(props) {
+function ChatMessage({ message, auth }) {
+  const { text, uid, photoURL } = message;
+  const messageClass = uid === auth?.currentUser.uid ? "sent" : "received";
   return (
     <>
-      <div className="message sent">
-        <img src={tempImg} />
-        <p>내가 보낸 채팅 내용</p>
-      </div>
-      <div className="message received">
-        <img src={tempImg} />
-        <p>상대방의 채팅 내용</p>
+      <div className={`message ${messageClass}`}>
+        <img src={photoURL} />
+        <p>{text}</p>
       </div>
     </>
   );

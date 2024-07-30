@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import ChatMessage from "./ChatMessage";
 import {
@@ -14,7 +14,7 @@ import { addDatas, db } from "../api/firebase";
 function ChatRoom({ auth }) {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState([]);
-  console.log(auth);
+  const dummy = useRef();
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -32,24 +32,40 @@ function ChatRoom({ auth }) {
     await addDatas("messages", addObj);
 
     // inputValue를 빈 문자열로 셋팅
-    setInputValue = "";
+    setInputValue("");
   };
 
   useEffect(() => {
     const collect = collection(db, "messages");
     const q = query(collect, orderBy("createdAt"), limit(100));
+
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      console.log(snapshot.docs);
-      // snapshot.forEach((doc) => {
-      //   console.log(doc.data());
-      // });
+      const resultData = snapshot.docs.map((doc) => doc.data());
+      setMessages(resultData);
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
+
+  // 채팅이 올라오면 scroll의 위치가 <span ref={dummy}></span>으로 이동함
+  useEffect(() => {
+    // scrollIntoView() 함수는 자신이 호출된 요소가 사용자에게 표시되도록 상위 컨테이너를 스크롤
+    // true의 경우 scroll이 제일 위로 가고 false의 경우 scroll이 제일 밑으로 감
+    // { behavior: "smooth" }는 스크롤이 부드럽게 내려갈 수 있게 합니다.
+    // (true or false) {behavior}는 둘 중 하나만 들어가야함
+    // block은 start, center, end, nearest의 값을 사용
+    dummy.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [messages]);
 
   return (
     <>
       <main>
-        <ChatMessage />
+        {messages.map((message, idx) => {
+          return <ChatMessage key={idx} message={message} auth={auth} />;
+        })}
+        <span ref={dummy}></span>
       </main>
       <form onSubmit={sendMessage}>
         <input
