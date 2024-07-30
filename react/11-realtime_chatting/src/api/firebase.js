@@ -28,4 +28,18 @@ async function addDatas(collectionName, addObj) {
   await addDoc(getCollection(collectionName), addObj);
 }
 
-export { db, getUserAuth, addDatas };
+async function handleCollect() {
+  const collect = collection(db, "messages");
+  const q = query(collect, orderBy("createdAt"), limit(100));
+
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    const resultData = snapshot.docs.map((doc) => doc.data());
+    setMessages(resultData);
+  });
+
+  return () => {
+    unsubscribe();
+  };
+}
+
+export { db, getUserAuth, addDatas, handleCollect };

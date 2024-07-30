@@ -9,7 +9,7 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore";
-import { addDatas, db } from "../api/firebase";
+import { addDatas, db, handleCollect } from "../api/firebase";
 
 function ChatRoom({ auth }) {
   const [inputValue, setInputValue] = useState("");
@@ -36,17 +36,18 @@ function ChatRoom({ auth }) {
   };
 
   useEffect(() => {
-    const collect = collection(db, "messages");
-    const q = query(collect, orderBy("createdAt"), limit(100));
+    handleCollect();
+    // const collect = collection(db, "messages");
+    // const q = query(collect, orderBy("createdAt"), limit(100));
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const resultData = snapshot.docs.map((doc) => doc.data());
-      setMessages(resultData);
-    });
+    // const unsubscribe = onSnapshot(q, (snapshot) => {
+    //   const resultData = snapshot.docs.map((doc) => doc.data());
+    //   setMessages(resultData);
+    // });
 
-    return () => {
-      unsubscribe();
-    };
+    // return () => {
+    //   unsubscribe();
+    // };
   }, []);
 
   // 채팅이 올라오면 scroll의 위치가 <span ref={dummy}></span>으로 이동함
