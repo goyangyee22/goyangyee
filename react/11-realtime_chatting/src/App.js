@@ -1,8 +1,8 @@
 import { getUserAuth } from "./api/firebase";
 import "./App.css";
-import SignIn from "./components/SignIn";
 import ChatRoom from "./components/ChatRoom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import SignIn from "./SignIn";
 
 function App() {
   const auth = getUserAuth();
