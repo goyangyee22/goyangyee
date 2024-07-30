@@ -4,21 +4,23 @@ import "./App.css";
 import SignIn from "./components/SignIn";
 import { onAuthStateChanged } from "firebase/auth";
 import ChatRoom from "./components/ChatRoom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function App() {
   const auth = getUserAuth();
-  const user = auth.currentUser;
-  const [loginUser, setLoginUser] = useState(user);
+  // const user = auth.currentUser;
+  const [user] = useAuthState(auth);
+  // const [loginUser, setLoginUser] = useState(user);
   const handleLogout = () => {
     auth.signOut();
   };
 
-  useEffect(() => {
-    // 인증 정보가 바뀌면 계속 실행되는 함수
-    onAuthStateChanged(auth, (user) => {
-      setLoginUser(user);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // 인증 정보가 바뀌면 계속 실행되는 함수
+  //   onAuthStateChanged(auth, (user) => {
+  //     setLoginUser(user);
+  //   });
+  // }, []);
 
   return (
     <div className="App">
@@ -29,11 +31,7 @@ function App() {
         </button>
       </header>
       <section>
-        {user ? (
-          <ChatRoom auth={auth} />
-        ) : (
-          <SignIn auth={auth} login={setLoginUser} />
-        )}
+        {user ? <ChatRoom auth={auth} /> : <SignIn auth={auth} />}
       </section>
     </div>
   );

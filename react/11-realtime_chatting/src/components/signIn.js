@@ -16,8 +16,8 @@ function SignIn({ auth, login }) {
         </span>
       </button>
       <span className="notice">
-        🐯 아이폰(ios)은 safari, chrome <br />
-        등으로 로그인 해주세요 🙏.
+        🙀 아이폰(ios)은 safari, chrome <br />
+        등으로 로그인 해주세요. 🙏
       </span>
     </>
   );

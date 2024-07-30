@@ -1,19 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import ChatMessage from "./ChatMessage";
-import {
-  collection,
-  limit,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-} from "firebase/firestore";
-import { addDatas, db, handleCollect } from "../api/firebase";
+import { serverTimestamp } from "firebase/firestore";
+import { addDatas, getQuery } from "../api/firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 function ChatRoom({ auth }) {
   const [inputValue, setInputValue] = useState("");
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
+  const conditions = [];
+  const orderBys = [{ field: "createdAt", direction: "asc" }];
+  const LIMITS = 100;
+  const q = getQuery("messages", { conditions, orderBys, limits: LIMITS });
+  const [messages] = useCollectionData(q);
   const dummy = useRef();
 
   const sendMessage = async (e) => {
@@ -35,20 +34,13 @@ function ChatRoom({ auth }) {
     setInputValue("");
   };
 
-  useEffect(() => {
-    handleCollect();
-    // const collect = collection(db, "messages");
-    // const q = query(collect, orderBy("createdAt"), limit(100));
+  // useEffect(() => {
+  //   const unsubscribe = getRealTimeMessages("messages", setMessages);
 
-    // const unsubscribe = onSnapshot(q, (snapshot) => {
-    //   const resultData = snapshot.docs.map((doc) => doc.data());
-    //   setMessages(resultData);
-    // });
-
-    // return () => {
-    //   unsubscribe();
-    // };
-  }, []);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
 
   // 채팅이 올라오면 scroll의 위치가 <span ref={dummy}></span>으로 이동함
   useEffect(() => {
@@ -57,13 +49,16 @@ function ChatRoom({ auth }) {
     // { behavior: "smooth" }는 스크롤이 부드럽게 내려갈 수 있게 합니다.
     // (true or false) {behavior}는 둘 중 하나만 들어가야함
     // block은 start, center, end, nearest의 값을 사용
-    dummy.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    dummy.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }, [messages]);
 
   return (
     <>
       <main>
-        {messages.map((message, idx) => {
+        {messages?.map((message, idx) => {
           return <ChatMessage key={idx} message={message} auth={auth} />;
         })}
         <span ref={dummy}></span>
