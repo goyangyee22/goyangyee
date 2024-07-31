@@ -22,9 +22,9 @@ function DiaryEditor() {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
   const handleInputChange = (e) => {
+    // name은 content고 value는 input창에 입력한 값
     const { name, value } = e.target;
     handleChange(name, value);
-    // console.log(value);
   };
 
   // 4. 상태 변경 함수를 emotionItem의 onClick에 전달
