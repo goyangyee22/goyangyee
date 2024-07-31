@@ -19,7 +19,9 @@ function DiaryEditor() {
   // 2. 각각의 emotionItem을 클릭했을 때 console.log(emotion_id) 출력
   // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자 도구의 components 탭에서 확인
   const handleChange = (name, value) => {
+    // name은 createdAt고 value는 날짜(ex. 2024-08-08)
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
+    console.log(name, value);
   };
   const handleInputChange = (e) => {
     // name은 content고 value는 input창에 입력한 값
