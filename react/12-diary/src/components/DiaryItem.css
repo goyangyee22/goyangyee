@@ -1,0 +1,34 @@
+.diaryItem {
+  display: flex;
+  border-bottom: 1px solid #ececec;
+}
+.diaryItem .emotion_img_wrapper {
+  min-width: 120px;
+  height: 80px;
+  overflow: hidden;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 5px;
+}
+.diaryItem .emotion_img_wrapper img {
+  background-color: #64c964;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  z-index: 0;
+}
+.diaryItem .info_wrapper {
+  flex: 1;
+}
+.diaryItem .diary_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+.diaryItem .diary_content_preview {
+  font-size: 18px;
+}
