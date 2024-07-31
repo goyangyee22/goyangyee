@@ -5,7 +5,7 @@ import "../components/DiaryItem.css";
 function DiaryItem(props) {
   return (
     <div className="diaryItem">
-      <div className="emotion_img_wrapper">
+      <div className="emotion_img_wrapper emotion_img_wrapper_1">
         <img src="assets/emotion1.png" />
       </div>
       <div className="info_wrapper">
