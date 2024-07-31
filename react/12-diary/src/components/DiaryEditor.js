@@ -24,6 +24,7 @@ function DiaryEditor() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     handleChange(name, value);
+    // console.log(value);
   };
 
   // 4. 상태 변경 함수를 emotionItem의 onClick에 전달
