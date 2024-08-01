@@ -50,7 +50,7 @@ function DiaryList({ diaryList }) {
       // [1, 11, 21].sort((a, b) => a - b);
       // order state가 latest이면 b - a
       // order state가 latest가 아니면 a - b
-      if (sortOptionList.name === "최신순") {
+      if (order === "최신순") {
         setOrder("latest");
       } else {
         setOrder("oldest");
