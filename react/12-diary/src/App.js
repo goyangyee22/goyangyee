@@ -3,8 +3,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NewPage from "./pages/NewPage";
 import DiaryEditor from "./components/DiaryEditor";
+import { useReducer } from "react";
+import { addItem, initialState, reducer } from "./api/itemReducer";
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const onCreate = async () => {
+    await addItem("diary", addObj, dispatch);
+  };
   return (
     <BrowserRouter>
       <div className="App">
