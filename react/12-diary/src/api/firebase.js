@@ -12,3 +12,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+function getCollection(collectionName) {
+  return collection(db, collectionName);
+}
+
+function getUserAuth() {
+  return auth;
+}
