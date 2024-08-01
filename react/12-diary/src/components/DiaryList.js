@@ -43,23 +43,32 @@ function DiaryList({ diaryList }) {
     const getFilteredList = () => {
       // filter state가 good이면 emotion의 값이 3보다 작거나 같음
       // filter state가 good이 아니면 emotion의 값이 3보다 큼
+      if(filter === "good"){
+        return diaryList.filter((diary) => diary.emotion <= 3);
+      } else if (filter === "bad"){
+        return diaryList.filter((diary) => diary.emotion > 3);
+      } else{
+        return diaryList;
+      }
     };
 
     // 정렬 함수
-    const getOrderedList = () => {
+    const getOrderedList = (list) => {
       // [1, 11, 21].sort((a, b) => a - b);
       // order state가 latest이면 b - a
       // order state가 latest가 아니면 a - b
-      if (order === "최신순") {
-        setOrder("latest");
+      if (order === "latest") {
+        return list.sort((a, b) => new Date(b.date) - new Date(a.date));
       } else {
-        setOrder("oldest");
+        return list.sort((a, b) => new Date(a.date) - new Date(b.date));
       }
     };
-    const filteredList = diaryList.filter((diary) => getFilteredList(diary));
-    const sortedList = filteredList.sort(getOrderedList);
+    const filteredList = getFilteredList();
+    const sortedList = getOrderedList(filteredList);
     return sortedList;
   };
+
+  const sortedDiaryList = getSortedDiaryList();
 
   return (
     <div className="diaryList">
@@ -84,7 +93,7 @@ function DiaryList({ diaryList }) {
           />
         </div>
       </div>
-      {diaryList.map((diary) => {
+      {sortedDiaryList.map((diary) => {
         return <DiaryItem key={diary.id} {...diary} />;
       })}
     </div>
