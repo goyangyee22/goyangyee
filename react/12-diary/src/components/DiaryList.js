@@ -29,7 +29,7 @@ function ControlMenu({ optionList }) {
   );
 }
 
-function DiaryList(props) {
+function DiaryList({ item }) {
   const navigate = useNavigate();
   return (
     <div className="diaryList">
@@ -46,7 +46,7 @@ function DiaryList(props) {
           />
         </div>
       </div>
-      <DiaryItem />
+      <DiaryItem item={item} />
     </div>
   );
 }

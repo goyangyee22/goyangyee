@@ -1,4 +1,4 @@
-import { addDatas } from "./firebase";
+import { addDatas, getDatas } from "./firebase";
 
 // Action types
 const FETCH_ITEMS = "FETCH_ITEMS";
@@ -19,7 +19,7 @@ export function reducer(state, action) {
   // dispatch 함수를 호출할 때 넣어주는 객체가 action으로 들어옴.
   switch (action.type) {
     case FETCH_ITEMS:
-      return;
+      return { ...state, items: action.payload, error: null };
     case ADD_ITEM:
       return { ...state, items: [...state.items, action.payload], error: null };
     case UPDATE_ITEM:
@@ -35,7 +35,14 @@ export function reducer(state, action) {
 
 // Actions(실제 reducer가 state를 변경하기 전에 수행해야 할 작업들)
 // dispatch = set함수
-export const fetchItems = async () => {};
+export const fetchItems = async (collectionName, queryOptions, dispatch) => {
+  const resultData = await getDatas(collectionName, queryOptions);
+  if (!resultData) {
+    dispatch({ type: SET_ERROR, payload: "FETCH Datas 에러!" });
+  } else {
+    dispatch({ type: FETCH_ITEMS, payload: resultData });
+  }
+};
 
 export const addItem = async (collectionName, addObj, dispatch) => {
   // dispatch 할 변경된 state 값을 만들어야한다.

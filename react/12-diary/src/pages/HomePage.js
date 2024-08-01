@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import DiaryList from "../components/DiaryList";
+import { DiaryStateContext } from "../App";
 
 function HomePage(props) {
+  const diaryList = useContext(DiaryStateContext);
   const [curDate, setCurDate] = useState(new Date());
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
@@ -21,7 +23,7 @@ function HomePage(props) {
         leftChild={<Button text={"<"} onClick={decreaseMonth} />}
         rightChild={<Button text={">"} onClick={increaseMonth} />}
       />
-      <DiaryList />
+      <DiaryList diaryList={diaryList} />
     </div>
   );
 }

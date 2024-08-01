@@ -48,6 +48,32 @@ async function getLastNum(collectionName, field) {
   return lastNum;
 }
 
+function getQuery(collectionName, queryOption) {
+  const { conditions = [], orderBys = [], limits } = queryOption;
+  const collect = getCollection(collectionName);
+  let q = query(collect);
+
+  const condition = [
+    { field: "text", operator: "==", value: "test" },
+    { field: "uid", operator: "==", value: "xjdiwjKDJ2jdkxJND2J" },
+  ];
+
+  // where 조건
+  conditions.forEach((condition) => {
+    q = query(q, where(condition.field, condition.operator, condition.value));
+  });
+
+  // orderBy 조건
+  orderBys.forEach((order) => {
+    q = query(q, orderBy(order.field, order.direction || "asc"));
+  });
+
+  // limit 조건
+  q = query(q, limit(limits));
+
+  return q;
+}
+
 export async function addDatas(collectionName, addObj) {
   try {
     // runTransaction()은 데이터의 일관성 보장, 여러 작업을 원자적으로 수행
@@ -65,6 +91,14 @@ export async function addDatas(collectionName, addObj) {
   } catch (error) {
     console.log("Error transaction: ", error);
   }
+}
+
+export async function getDatas(collectionName, queryOptions) {
+  const q = getQuery(collectionName, queryOptions);
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
+  return resultData;
 }
 
 export { getCollection, getUserAuth };

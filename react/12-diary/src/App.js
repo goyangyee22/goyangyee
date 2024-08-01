@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NewPage from "./pages/NewPage";
 import DiaryEditor from "./components/DiaryEditor";
-import { createContext, useReducer } from "react";
-import { addItem, initialState, reducer } from "./api/itemReducer";
+import { createContext, useEffect, useReducer } from "react";
+import { addItem, fetchItems, initialState, reducer } from "./api/itemReducer";
 
 // 컨텍스트 생성
 export const DiaryStateContext = createContext();
@@ -28,6 +28,19 @@ function App() {
   // READ
   // UPDATE
   // DELETE
+
+  useEffect(() => {
+    fetchItems(
+      "diary",
+      {
+        conditions: [
+          { field: "userEmail", operator: "==", value: "4447447@naver.com" },
+        ],
+        orderBys: [{ field: "date", direction: "desc" }],
+      },
+      dispatch
+    );
+  }, []);
   return (
     // 컨텍스트 범위 설정
     <DiaryStateContext.Provider value={state.items}>
