@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Header from "./Header";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import EmotionItem from "./EmotionItem";
 import { emotionList } from "../util/emotion";
 import "./DiaryEditor.css";
+import { DiaryDispatchContext } from "../App";
 
 const INITIAL_VALUES = {
-  createdAt: "",
+  date: "",
   content: "",
   emotion: 3,
 };
 
 function DiaryEditor() {
+  const { onCreate } = useContext(DiaryDispatchContext);
+  const contentRef = useRef();
+  const navigate = useNavigate();
   // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
   const [values, setValues] = useState(INITIAL_VALUES);
 
@@ -21,7 +25,7 @@ function DiaryEditor() {
   const handleChange = (name, value) => {
     // name은 emotion이고 value는 1~5(id)의 값 중 하나
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
-    console.log(name, value);
+    // console.log(name, value);
   };
   const handleInputChange = (e) => {
     // name은 createdAt고 value는 날짜(ex. 2024-08-08)
@@ -29,11 +33,21 @@ function DiaryEditor() {
     const { name, value } = e.target;
     handleChange(name, value);
   };
+  const handleSubmit = () => {
+    // trim은 처음과 마지막 공백을 지우는 함수
+    if (values.content.trim().length < 1) {
+      handleChange("content", "");
+      contentRef.current.focus();
+      return;
+    }
+    if (window.confirm("새로운 일기를 저장하시겠습니까?")) {
+      onCreate(values);
+    }
+    navigate("/", { replace: true });
+  };
 
   // 4. 상태 변경 함수를 emotionItem의 onClick에 전달
   // 5. emotionItem_on_${id} 클래스가 적용될 수 있도록 함.
-
-  const navigate = useNavigate();
 
   return (
     <div className="diaryEditor">
@@ -50,8 +64,9 @@ function DiaryEditor() {
             <input
               className="input_date"
               type="date"
-              name="createdAt"
+              name="date"
               onChange={handleInputChange}
+              value={values.date}
             />
           </div>
         </section>
@@ -78,13 +93,19 @@ function DiaryEditor() {
               placeholder="오늘은 어땠나요?"
               name="content"
               onChange={handleInputChange}
+              value={values.content}
+              ref={contentRef}
             />
           </div>
         </section>
         <section>
           <div className="control_box">
             <Button text={"취소하기"} />
-            <Button text={"작성완료"} type={"positive"} />
+            <Button
+              text={"작성완료"}
+              type={"positive"}
+              onClick={handleSubmit}
+            />
           </div>
         </section>
       </div>
