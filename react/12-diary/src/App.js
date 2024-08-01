@@ -21,6 +21,7 @@ function App() {
       date: new Date(values.date).getTime(),
       content: values.content,
       emotion: values.emotion,
+      userEmail: "4447447@naver.com",
     };
     await addItem("diary", addObj, dispatch);
   };
