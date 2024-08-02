@@ -5,6 +5,7 @@ import NewPage from "./pages/NewPage";
 import DiaryEditor from "./components/DiaryEditor";
 import { createContext, useEffect, useReducer } from "react";
 import { addItem, fetchItems, initialState, reducer } from "./api/itemReducer";
+import DiaryPage from "./pages/DiaryPage";
 
 // 컨텍스트 생성
 export const DiaryStateContext = createContext();
@@ -53,7 +54,7 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="new" element={<NewPage />} />
                 <Route path="edit" element={<DiaryEditor />} />
-                {/* <Route path="diary" element={} /> */}
+                <Route path="diary/:id" element={<DiaryPage />} />
               </Route>
             </Routes>
           </div>
