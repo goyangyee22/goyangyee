@@ -8,6 +8,9 @@ function DiaryItem({ date, content, emotion, id }) {
   const goDetail = () => {
     navigate(`/diary/${id}`);
   };
+  const goEdit = () => {
+    navigate(`/edit/${id}`);
+  };
   return (
     <div className="diaryItem">
       <div
@@ -24,7 +27,7 @@ function DiaryItem({ date, content, emotion, id }) {
         )}...`}</div>
       </div>
       <div className="btn_wrapper">
-        <Button text={"수정하기"} onClick={goDetail} />
+        <Button text={"수정하기"} onClick={goEdit} />
       </div>
     </div>
   );

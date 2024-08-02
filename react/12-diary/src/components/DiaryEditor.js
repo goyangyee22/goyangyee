@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
@@ -13,12 +13,12 @@ const INITIAL_VALUES = {
   emotion: 3,
 };
 
-function DiaryEditor() {
+function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
   const { onCreate } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const navigate = useNavigate();
   // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
-  const [values, setValues] = useState(INITIAL_VALUES);
+  const [values, setValues] = useState(originData);
 
   // 2. 각각의 emotionItem을 클릭했을 때 console.log(emotion_id) 출력
   // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자 도구의 components 탭에서 확인
@@ -34,26 +34,44 @@ function DiaryEditor() {
     handleChange(name, value);
   };
   const handleSubmit = () => {
-    // trim은 처음과 마지막 공백을 지우는 함수
     if (values.content.trim().length < 1) {
       handleChange("content", "");
       contentRef.current.focus();
       return;
     }
-    if (window.confirm("새로운 일기를 저장하시겠습니까?")) {
-      onCreate(values);
+    if (
+      window.confirm(
+        isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 저장하시겠습니까?"
+      )
+    ) {
+      if (!isEdit) {
+        onCreate(values);
+      } else {
+        // onUpdate();
+      }
+      navigate("/", { replace: true });
     }
-    navigate("/", { replace: true });
   };
 
   // 4. 상태 변경 함수를 emotionItem의 onClick에 전달
   // 5. emotionItem_on_${id} 클래스가 적용될 수 있도록 함.
 
+  useEffect(() => {
+    if (isEdit) {
+      // 받아온 날짜 데이터(밀리세컨즈 단위)를 formatting(yyyy-mm-dd)
+      handleChange(
+        "date",
+        new Date(originData.date).toISOString().split("T")[0]
+      );
+    }
+  }, []);
+
   return (
     <div className="diaryEditor">
       <Header
-        headText={"새 일기 작성하기"}
+        headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
+        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} />}
       />
       <div>
         <section>
@@ -98,7 +116,7 @@ function DiaryEditor() {
         </section>
         <section>
           <div className="control_box">
-            <Button text={"취소하기"} />
+            <Button text={"취소하기"} onClick={() => navigate(-1)} />
             <Button
               text={"작성완료"}
               type={"positive"}

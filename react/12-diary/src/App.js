@@ -2,10 +2,10 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NewPage from "./pages/NewPage";
-import DiaryEditor from "./components/DiaryEditor";
 import { createContext, useEffect, useReducer } from "react";
 import { addItem, fetchItems, initialState, reducer } from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
+import EditPage from "./pages/EditPage";
 
 // 컨텍스트 생성
 export const DiaryStateContext = createContext();
@@ -53,7 +53,7 @@ function App() {
               <Route path="/">
                 <Route index element={<HomePage />} />
                 <Route path="new" element={<NewPage />} />
-                <Route path="edit" element={<DiaryEditor />} />
+                <Route path="edit/:id" element={<EditPage />} />
                 <Route path="diary/:id" element={<DiaryPage />} />
               </Route>
             </Routes>

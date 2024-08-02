@@ -35,12 +35,12 @@ function HomePage(props) {
     ).getTime();
 
     // 3. diaryList에서 date 필드가 firstDay와 lastDay 사이에 있는 원소들만 뽑아 새로운 배열을 만든다.
-    const filteredDiaries = diaryList.filter(
+    const newItem = diaryList.filter(
       (diary) => diary.date >= firstDay && diary.date <= lastDay
     );
 
     // 4. setSortedItem 함수 사용
-    setSortedItem(filteredDiaries);
+    setSortedItem(newItem);
   }, [curDate, diaryList]);
 
   return (
