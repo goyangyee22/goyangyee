@@ -40,35 +40,34 @@ function DiaryList({ diaryList }) {
 
   const getSortedDiaryList = () => {
     // 필터링 함수
-    const getFilteredList = () => {
+    const getFilteredList = (diary) => {
       // filter state가 good이면 emotion의 값이 3보다 작거나 같음
       // filter state가 good이 아니면 emotion의 값이 3보다 큼
-      if(filter === "good"){
-        return diaryList.filter((diary) => diary.emotion <= 3);
-      } else if (filter === "bad"){
-        return diaryList.filter((diary) => diary.emotion > 3);
-      } else{
-        return diaryList;
+      if (filter === "good") {
+        return diary.emotion <= 3;
+      } else {
+        return diary.emotion > 3;
       }
     };
 
     // 정렬 함수
-    const getOrderedList = (list) => {
+    const getOrderedList = (a, b) => {
       // [1, 11, 21].sort((a, b) => a - b);
       // order state가 latest이면 b - a
       // order state가 latest가 아니면 a - b
       if (order === "latest") {
-        return list.sort((a, b) => new Date(b.date) - new Date(a.date));
+        return b.date - a.date;
       } else {
-        return list.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return a.date - b.date;
       }
     };
-    const filteredList = getFilteredList();
-    const sortedList = getOrderedList(filteredList);
+    const filteredList =
+      filter === "all"
+        ? diaryList
+        : diaryList.filter((diary) => getFilteredList(diary));
+    const sortedList = filteredList.sort(getOrderedList);
     return sortedList;
   };
-
-  const sortedDiaryList = getSortedDiaryList();
 
   return (
     <div className="diaryList">
@@ -93,7 +92,7 @@ function DiaryList({ diaryList }) {
           />
         </div>
       </div>
-      {sortedDiaryList.map((diary) => {
+      {getSortedDiaryList().map((diary) => {
         return <DiaryItem key={diary.id} {...diary} />;
       })}
     </div>
