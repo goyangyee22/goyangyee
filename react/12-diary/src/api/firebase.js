@@ -14,6 +14,7 @@ import {
   getDocs,
   doc,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -112,6 +113,15 @@ export async function updateDatas(collectionName, docId, updateObj) {
     return resultData;
   } catch (error) {
     console.log("Error Update: ", error);
+  }
+}
+
+export async function deleteDatas(collectionName, docId) {
+  try {
+    const docRef = doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+  } catch (error) {
+    console.log("Error Delete: ", error);
   }
 }
 

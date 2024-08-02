@@ -1,4 +1,4 @@
-import { addDatas, getDatas, updateDatas } from "./firebase";
+import { addDatas, deleteDatas, getDatas, updateDatas } from "./firebase";
 
 // Action types
 const FETCH_ITEMS = "FETCH_ITEMS";
@@ -31,7 +31,11 @@ export function reducer(state, action) {
         error: null,
       };
     case DELETE_ITEM:
-      return;
+      return {
+        ...state,
+        items: state.items.filter((item) => item.id !== action.payload.id),
+        error: null,
+      };
     case SET_ERROR:
       return { ...state, error: action.payload };
     default:
@@ -76,4 +80,18 @@ export const updateItem = async (
   }
 };
 
-export const deleteItem = async () => {};
+export const deleteItem = async (collectionName, docId, dispatch) => {
+  try {
+    const resultData = await deleteDatas(collectionName, docId);
+    if (!resultData) {
+      dispatch({ type: SET_ERROR, payload: "DELETE Datas 에러!" });
+    } else {
+      dispatch({ type: DELETE_ITEM, payload: resultData });
+    }
+  } catch (error) {
+    dispatch({
+      type: SET_ERROR,
+      payload: `삭제 처리 중 오류 발생: ${error.message}`,
+    });
+  }
+};

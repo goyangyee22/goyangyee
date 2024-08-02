@@ -6,6 +6,7 @@ import EmotionItem from "./EmotionItem";
 import { emotionList } from "../util/emotion";
 import "./DiaryEditor.css";
 import { DiaryDispatchContext } from "../App";
+import { deleteDatas } from "../api/firebase";
 
 const INITIAL_VALUES = {
   date: "",
