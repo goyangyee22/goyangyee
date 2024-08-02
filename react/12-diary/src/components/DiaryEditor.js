@@ -14,7 +14,7 @@ const INITIAL_VALUES = {
 };
 
 function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
-  const { onCreate } = useContext(DiaryDispatchContext);
+  const { onCreate, onUpdate } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const navigate = useNavigate();
   // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
@@ -47,7 +47,7 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
       if (!isEdit) {
         onCreate(values);
       } else {
-        // onUpdate();
+        onUpdate(values);
       }
       navigate("/", { replace: true });
     }

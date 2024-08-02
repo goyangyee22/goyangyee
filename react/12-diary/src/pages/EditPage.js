@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DiaryEditor from "../components/DiaryEditor";
 import { useNavigate, useParams } from "react-router-dom";
 import { DiaryStateContext } from "../App";
@@ -7,7 +7,7 @@ import { changeTitle } from "../util/changeTitle";
 function EditPage(props) {
   const { id } = useParams();
   const [data, setData] = useState();
-  const diaryList = useState(DiaryStateContext);
+  const diaryList = useContext(DiaryStateContext);
   const navigate = useNavigate();
 
   useEffect(() => {

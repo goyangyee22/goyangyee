@@ -3,7 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NewPage from "./pages/NewPage";
 import { createContext, useEffect, useReducer } from "react";
-import { addItem, fetchItems, initialState, reducer } from "./api/itemReducer";
+import {
+  addItem,
+  fetchItems,
+  initialState,
+  reducer,
+  updateItem,
+} from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
 import EditPage from "./pages/EditPage";
 
@@ -29,6 +35,15 @@ function App() {
 
   // READ
   // UPDATE
+  const onUpdate = async (values) => {
+    const updateObj = {
+      updatedAt: new Date().getTime(),
+      date: new Date(values.date).getTime(),
+      content: values.content,
+      emotion: values.emotion,
+    };
+    await updateItem("diary", values.docId, updateObj, dispatch);
+  };
   // DELETE
 
   useEffect(() => {
@@ -46,7 +61,7 @@ function App() {
   return (
     // 컨텍스트 범위 설정
     <DiaryStateContext.Provider value={state.items}>
-      <DiaryDispatchContext.Provider value={{ onCreate }}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate }}>
         <BrowserRouter>
           <div className="App">
             <Routes>

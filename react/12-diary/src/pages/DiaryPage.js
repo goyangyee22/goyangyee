@@ -2,16 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import { useNavigate, useParams } from "react-router-dom";
-import { DiaryStateContext } from "../App";
-import "./DiaryPage.css";
+import { DiaryStateContext } from "./../App";
 import { emotionList } from "../util/emotion";
+import "./DiaryPage.css";
 import { changeTitle } from "../util/changeTitle";
 
 function DiaryPage() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const diaryList = useContext(DiaryStateContext);
   const [data, setData] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     changeTitle(`감정 일기장 - ${id}번 일기`);
@@ -19,12 +19,13 @@ function DiaryPage() {
 
   useEffect(() => {
     if (diaryList.length > 0) {
-      // targetDiary를 찾는 방법
-      // 전체 diaryList를 확인해서 useParams로 가져온 id와 같은 diary data 뽑아서
+      // targetDiary 를 찾는 방법
+      // 전체 diaryList 를 확인해서 useParams로 가져온 id 와 같은 diary data를 뽑아서
       // filter, findIndex, find
-      const targetDiary = diaryList.find((diary) => diary.id === id);
-      // data state에 set한다.
+      const targetDiary = diaryList.find((diary) => diary.id == id);
+
       if (targetDiary) {
+        // data state에 set 해준다.
         setData(targetDiary);
       } else {
         alert("없는 일기입니다.");
@@ -39,6 +40,7 @@ function DiaryPage() {
     const emotionData = emotionList.find(
       (emotion) => emotion.emotion_id == data.emotion
     );
+
     return (
       <div className="diaryPage">
         <Header
