@@ -5,6 +5,7 @@ import NewPage from "./pages/NewPage";
 import { createContext, useEffect, useReducer } from "react";
 import {
   addItem,
+  deleteItem,
   fetchItems,
   initialState,
   reducer,
@@ -44,7 +45,11 @@ function App() {
     };
     await updateItem("diary", values.docId, updateObj, dispatch);
   };
+
   // DELETE
+  const onDelete = async (values) => {
+    await deleteItem("diary", values.docId, dispatch);
+  }
 
   useEffect(() => {
     fetchItems(
@@ -61,7 +66,7 @@ function App() {
   return (
     // 컨텍스트 범위 설정
     <DiaryStateContext.Provider value={state.items}>
-      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate }}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
         <BrowserRouter>
           <div className="App">
             <Routes>
