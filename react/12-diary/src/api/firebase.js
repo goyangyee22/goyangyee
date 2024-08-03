@@ -7,7 +7,6 @@ import {
   query,
   orderBy,
   limit,
-  onSnapshot,
   where,
   getDoc,
   runTransaction,
@@ -116,12 +115,14 @@ export async function updateDatas(collectionName, docId, updateObj) {
   }
 }
 
-export async function deleteDatas(collectionName, docId) {
-  try {
-    const docRef = doc(db, collectionName, docId);
-    await deleteDoc(docRef);
-  } catch (error) {
-    console.log("Error Delete: ", error);
+export async function deleteDatas(collectionName, docId){
+  try{
+  const docRef = doc(db, collectionName, docId);
+  await deleteDoc(docRef);
+  return true;
+  } catch (error){
+    console.error("문서 삭제 중 오류가 발생했습니다. ", error);
+    return false;
   }
 }
 

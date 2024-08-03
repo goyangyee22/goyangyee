@@ -57,6 +57,21 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
   // 4. 상태 변경 함수를 emotionItem의 onClick에 전달
   // 5. emotionItem_on_${id} 클래스가 적용될 수 있도록 함.
 
+  const handleDelete = async () => {
+  try{
+    const resultData = await deleteDatas("diary", originData.docId);
+    if (resultData){
+      alert("성공적으로 삭제되었습니다.");
+      navigate("/", { replace: true });
+    } else{
+      alert("삭제에 실패하였습니다.");
+    }
+  } catch (error){
+    console.error("삭제 중 오류가 발생했습니다: ", error);
+    alert("삭제 중 오류가 발생하였습니다.");
+  }
+  }
+
   useEffect(() => {
     if (isEdit) {
       // 받아온 날짜 데이터(밀리세컨즈 단위)를 formatting(yyyy-mm-dd)
@@ -72,7 +87,7 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
       <Header
         headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
-        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} />}
+        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} onClick={handleDelete} />}
       />
       <div>
         <section>

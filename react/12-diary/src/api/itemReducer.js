@@ -81,17 +81,10 @@ export const updateItem = async (
 };
 
 export const deleteItem = async (collectionName, docId, dispatch) => {
-  try {
     const resultData = await deleteDatas(collectionName, docId);
-    if (!resultData) {
+    if(!resultData) {
       dispatch({ type: SET_ERROR, payload: "DELETE Datas 에러!" });
-    } else {
+    } else{
       dispatch({ type: DELETE_ITEM, payload: resultData });
     }
-  } catch (error) {
-    dispatch({
-      type: SET_ERROR,
-      payload: `삭제 처리 중 오류 발생: ${error.message}`,
-    });
-  }
 };
