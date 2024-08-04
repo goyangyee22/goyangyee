@@ -12,6 +12,7 @@ const INITIAL_VALUES = {
   date: "",
   content: "",
   emotion: 3,
+  docId: null,
 };
 
 function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
@@ -26,13 +27,13 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
   const handleChange = (name, value) => {
     // name은 emotion이고 value는 1~5(id)의 값 중 하나
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
-    // console.log(name, value);
   };
   const handleInputChange = (e) => {
     // name은 createdAt고 value는 날짜(ex. 2024-08-08)
     // name은 content고 value는 input창에 입력한 값
     const { name, value } = e.target;
     handleChange(name, value);
+    // console.log(name, value);
   };
   const handleSubmit = () => {
     if (values.content.trim().length < 1) {
@@ -80,7 +81,7 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
         new Date(originData.date).toISOString().split("T")[0]
       );
     }
-  }, []);
+  }, [originData]);
 
   return (
     <div className="diaryEditor">
@@ -111,7 +112,7 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
                   key={emotion.emotion_id}
                   {...emotion}
                   name="emotion"
-                  onChange={handleChange}
+                  onChange={() => handleChange("emotion", emotion.emotion_id)}
                   isSelected={emotion.emotion_id === values.emotion}
                 />
               );
