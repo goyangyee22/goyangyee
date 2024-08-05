@@ -87,7 +87,7 @@ function App() {
           {
             field: "userEmail",
             operator: "==",
-            value: user ? user.email : "admin@gmail.com",
+            value: user ? user.email : "admin@naver.com",
           },
         ],
         orderBys: [{ field: "date", direction: "desc" }],
