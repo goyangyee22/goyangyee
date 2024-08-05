@@ -47,9 +47,9 @@ function App() {
   };
 
   // DELETE
-  const onDelete = async (values) => {
-    await deleteItem("diary", values.docId, dispatch);
-  }
+  const onDelete = async (docId) => {
+    await deleteItem("diary", docId, dispatch);
+  };
 
   useEffect(() => {
     fetchItems(
