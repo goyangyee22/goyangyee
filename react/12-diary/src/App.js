@@ -13,6 +13,9 @@ import {
 } from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
 import EditPage from "./pages/EditPage";
+import LoginPage from "./pages/LoginPage";
+import { getUserAuth } from "./api/firebase";
+import { userInitialState, userReducer } from "./api/userReducer";
 
 // 컨텍스트 생성
 export const DiaryStateContext = createContext();
@@ -20,6 +23,8 @@ export const DiaryDispatchContext = createContext();
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [userState, loginDispatch] = useReducer(userReducer, userInitialState);
+  const auth = getUserAuth();
 
   // CREATE
   const onCreate = async (values) => {
@@ -65,16 +70,20 @@ function App() {
   }, []);
   return (
     // 컨텍스트 범위 설정
-    <DiaryStateContext.Provider value={state.items}>
+    <DiaryStateContext.Provider
+      value={{ diaryList: state.items, auth: userState }}
+    >
       <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
         <BrowserRouter>
           <div className="App">
+            {/* <Button text={"로그인"} className="btn_login" onClick={goLogin} /> */}
             <Routes>
               <Route path="/">
                 <Route index element={<HomePage />} />
                 <Route path="new" element={<NewPage />} />
                 <Route path="edit/:id" element={<EditPage />} />
                 <Route path="diary/:id" element={<DiaryPage />} />
+                <Route path="login" element={<LoginPage />} />
               </Route>
             </Routes>
           </div>

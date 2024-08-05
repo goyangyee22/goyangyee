@@ -81,10 +81,10 @@ export const updateItem = async (
 };
 
 export const deleteItem = async (collectionName, docId, dispatch) => {
-    const resultData = await deleteDatas(collectionName, docId);
-    if(!resultData) {
-      dispatch({ type: SET_ERROR, payload: "DELETE Datas 에러!" });
-    } else{
-      dispatch({ type: DELETE_ITEM, payload: resultData });
-    }
+  const resultData = await deleteDatas(collectionName, docId);
+  if (!resultData) {
+    dispatch({ type: SET_ERROR, payload: "DELETE Datas 에러!" });
+  } else {
+    dispatch({ type: DELETE_ITEM, payload: docId });
+  }
 };

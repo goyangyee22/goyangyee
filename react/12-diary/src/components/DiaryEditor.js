@@ -6,17 +6,15 @@ import EmotionItem from "./EmotionItem";
 import { emotionList } from "../util/emotion";
 import "./DiaryEditor.css";
 import { DiaryDispatchContext } from "../App";
-import { deleteDatas } from "../api/firebase";
 
 const INITIAL_VALUES = {
   date: "",
   content: "",
   emotion: 3,
-  docId: null,
 };
 
 function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
-  const { onCreate, onUpdate } = useContext(DiaryDispatchContext);
+  const { onCreate, onUpdate, onDelete } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const navigate = useNavigate();
   // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
@@ -59,19 +57,11 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
   // 5. emotionItem_on_${id} 클래스가 적용될 수 있도록 함.
 
   const handleDelete = async () => {
-  try{
-    const resultData = await deleteDatas("diary", originData.docId);
-    if (resultData){
-      alert("성공적으로 삭제되었습니다.");
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onDelete(originData.docId);
       navigate("/", { replace: true });
-    } else{
-      alert("삭제에 실패하였습니다.");
     }
-  } catch (error){
-    console.error("삭제 중 오류가 발생했습니다: ", error);
-    alert("삭제 중 오류가 발생하였습니다.");
-  }
-  }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -81,14 +71,22 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
         new Date(originData.date).toISOString().split("T")[0]
       );
     }
-  }, [originData]);
+  }, []);
 
   return (
     <div className="diaryEditor">
       <Header
         headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
-        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} onClick={handleDelete} />}
+        rightChild={
+          isEdit && (
+            <Button
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleDelete}
+            />
+          )
+        }
       />
       <div>
         <section>
