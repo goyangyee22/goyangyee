@@ -6,7 +6,7 @@ import { createContext, useEffect, useReducer } from "react";
 import {
   addItem,
   deleteItem,
-  fetchItems,
+  // fetchItems,
   initialState,
   reducer,
   updateItem,
@@ -16,15 +16,23 @@ import EditPage from "./pages/EditPage";
 import LoginPage from "./pages/LoginPage";
 import { getUserAuth } from "./api/firebase";
 import { userInitialState, userReducer } from "./api/userReducer";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchItems } from "./store/diarySlice";
 
 // 컨텍스트 생성
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  // diary는 store에서 작성된 reducer의 diary
+  const items = useSelector((state) => state.diary.items);
+  const dispatch = useDispatch();
   const [userState, loginDispatch] = useReducer(userReducer, userInitialState);
   const auth = getUserAuth();
+  const [user] = useAuthState(auth);
+  console.log(user);
 
   // CREATE
   const onCreate = async (values) => {
@@ -34,7 +42,7 @@ function App() {
       date: new Date(values.date).getTime(),
       content: values.content,
       emotion: values.emotion,
-      userEmail: "4447447@naver.com",
+      userEmail: user.email,
     };
     await addItem("diary", addObj, dispatch);
   };
@@ -57,22 +65,40 @@ function App() {
   };
 
   useEffect(() => {
-    fetchItems(
-      "diary",
-      {
+    // fetchItems(
+    //   'diary',
+    //   {
+    //     conditions: [
+    //       {
+    //         field: 'userEmail',
+    //         operator: '==',
+    //         value: user ? user.email : 'admin@gmail.com',
+    //       },
+    //     ],
+    //     orderBys: [{ field: 'date', direction: 'desc' }],
+    //   },
+    //   dispatch
+    // );
+
+    const param = {
+      collectionName: "diary",
+      queryOptions: {
         conditions: [
-          { field: "userEmail", operator: "==", value: "4447447@naver.com" },
+          {
+            field: "userEmail",
+            operator: "==",
+            value: user ? user.email : "admin@gmail.com",
+          },
         ],
         orderBys: [{ field: "date", direction: "desc" }],
       },
-      dispatch
-    );
-  }, []);
+    };
+
+    dispatch(fetchItems(param));
+  }, [user]);
   return (
     // 컨텍스트 범위 설정
-    <DiaryStateContext.Provider
-      value={{ diaryList: state.items, auth: userState }}
-    >
+    <DiaryStateContext.Provider value={{ diaryList: items, auth }}>
       <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
         <BrowserRouter>
           <div className="App">

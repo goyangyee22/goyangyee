@@ -39,7 +39,7 @@ function DiaryList({ diaryList, auth }) {
   const navigate = useNavigate();
 
   const checkLogin = () => {
-    if (!auth) {
+    if (!auth.currentUser) {
       alert("로그인을 해주세요.");
       navigate("/login");
     } else {
@@ -96,6 +96,15 @@ function DiaryList({ diaryList, auth }) {
         <div className="new_btn">
           <Button text={"새 일기 쓰기"} type="positive" onClick={checkLogin} />
         </div>
+        {auth.currentUser && (
+          <div>
+            <Button
+              text={"로그아웃"}
+              type="negative"
+              onClick={() => auth.signOut()}
+            />
+          </div>
+        )}
       </div>
       {getSortedDiaryList().map((diary) => {
         return <DiaryItem key={diary.id} {...diary} />;
