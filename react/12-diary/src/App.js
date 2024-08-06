@@ -4,12 +4,12 @@ import HomePage from "./pages/HomePage";
 import NewPage from "./pages/NewPage";
 import { createContext, useEffect, useReducer } from "react";
 import {
-  addItem,
-  deleteItem,
+  // addItem,
+  // deleteItem,
   // fetchItems,
   initialState,
   reducer,
-  updateItem,
+  // updateItem,
 } from "./api/itemReducer";
 import DiaryPage from "./pages/DiaryPage";
 import EditPage from "./pages/EditPage";
@@ -18,7 +18,12 @@ import { getUserAuth } from "./api/firebase";
 import { userInitialState, userReducer } from "./api/userReducer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchItems } from "./store/diarySlice";
+import {
+  addItem,
+  deleteItem,
+  fetchItems,
+  updateItem,
+} from "./store/diarySlice";
 
 // 컨텍스트 생성
 export const DiaryStateContext = createContext();
@@ -32,7 +37,7 @@ function App() {
   const [userState, loginDispatch] = useReducer(userReducer, userInitialState);
   const auth = getUserAuth();
   const [user] = useAuthState(auth);
-  console.log(user);
+  // console.log(user);
 
   // CREATE
   const onCreate = async (values) => {
@@ -44,10 +49,17 @@ function App() {
       emotion: values.emotion,
       userEmail: user.email,
     };
-    await addItem("diary", addObj, dispatch);
+    const param = {
+      collectionName: "diary",
+      addObj,
+    };
+    // await addItem("diary", addObj, dispatch);
+    dispatch(addItem(param));
   };
 
   // READ
+  const onRead = () => {};
+
   // UPDATE
   const onUpdate = async (values) => {
     const updateObj = {
@@ -56,12 +68,25 @@ function App() {
       content: values.content,
       emotion: values.emotion,
     };
-    await updateItem("diary", values.docId, updateObj, dispatch);
+    // await updateItem("diary", values.docId, updateObj, dispatch);
+    const param = {
+      collectionName: "diary",
+      docId: values.docId,
+      updateObj: updateObj,
+    };
+    dispatch(updateItem(param));
+    // console.log(param);
   };
 
   // DELETE
   const onDelete = async (docId) => {
-    await deleteItem("diary", docId, dispatch);
+    // await deleteItem("diary", docId, dispatch);
+    const param = {
+      collectionName: "diary",
+      docId: docId,
+    };
+    dispatch(deleteItem(param));
+    // console.log(param);
   };
 
   useEffect(() => {
