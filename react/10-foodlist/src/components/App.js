@@ -63,7 +63,18 @@ function App() {
     //   setHasNext(false);
     // }
     // setIsLoading(false);
-    const { resultData, lastQuery } = await getDatasAsync("foodit", options);
+    try{
+      const { resultData, lastQuery } = await getDatasAsync("foodit", options);
+      if(!options.lq){
+        setItems(resultData);
+      } else{
+        setItems((prevItems) => [...prevItems, ...resultData]);
+      }
+      setLq(lastQuery);
+      setHasNext(!lastQuery);
+    } catch (error){
+      console.error("데이터 로드 오류: ", error);
+    }
   };
 
   const handleKeywordChange = (e) => {
@@ -75,12 +86,16 @@ function App() {
     if (keyword === "") {
       handleLoad({ fieldName: order, limits: LIMITS, lq: undefined });
     } else {
-      const resultData = await getSearchDatas("foodit", {
-        limits: LIMITS,
-        keyword: keyword,
-      });
-      setSearchedItems(resultData);
-    }
+      try{
+        const resultData = await getSearchDatas("foodit", {
+          limits: LIMITS,
+          keyword: keyword,
+        });
+        setSearchedItems(resultData);
+      } catch (error) {
+        console.error("검색 오류: ", error);
+      }
+    } 
   };
 
   // 최신순 버튼에 대한 함수입니다.
@@ -99,12 +114,16 @@ function App() {
     // items에서 docId를 받아온다.
     // db에서 데이터 삭제(스토리지에 있는 사진파일 삭제, db에 있는 데이터 삭제)
     // 삭제 성공시 화면에 결과 반영
-    const { result, message } = await deleteDatas("foodit", docId, imgUrl);
-    if (!result) {
-      alert(message);
-      return;
+    try{
+      const { result, message } = await deleteDatas("foodit", docId, imgUrl);
+      if (!result) {
+        alert(message);
+        return;
+      }
+      setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+    } catch (error) {
+      console.error("삭제 오류: ", error);
     }
-    setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
   };
 
   // 데이터 추가를 성공했을 때
@@ -169,7 +188,7 @@ function App() {
           </div>
         </div>
         <FoodList
-          items={searchedItems.length > 0 ? searchedItems : items}
+          items={searchedItems.length > 0 ? searchedItems : items || []}
           onDelete={handleDelete}
           onUpdate={updateDatas}
           onUpdateSuccess={handleUpdateSuccess}

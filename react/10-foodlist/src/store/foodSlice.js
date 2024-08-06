@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDatas, getSearchDatas } from "../api/firebase";
+import { deleteData, getDatas, getSearchDatas, updateData } from "../api/firebase";
 
 const foodSlice = createSlice({
   name: "foodlist",
@@ -72,7 +72,7 @@ const foodSlice = createSlice({
 });
 
 const loadItems = createAsyncThunk(
-  "items/loadAllItems",
+  "items/loadItems",
   async ({ collectionName, queryOptions }) => {
     try {
       const resultData = await getDatas(collectionName, queryOptions);
@@ -98,7 +98,31 @@ const searchItems = createAsyncThunk(
   }
 );
 
-// addItemsAsync, updateItemAsync, deleteItemAsync 작성하기
+const addItemsAsync = createAsyncThunk("items/addItemsAsync", async (item) => {
+  try{
+    const resultData = await addData
+  } catch (error){
+    console.log("ADD Error: ", error);
+  }
+})
+
+const updateItemAsync = createAsyncThunk("items/updateItemsAsync", async (item) => {
+  try{
+    const updatedData = await updateData(item);
+    return updatedData;
+  } catch (error) {
+    console.log("UPDATE Error: ", error);
+  }
+})
+
+const deleteItemAsync = createAsyncThunk("items/deleteItemsAsync", async (docId) => {
+  try{
+await deleteData(docId);
+return docId;
+  } catch (error){
+    console.error("DELETE Error: ", error);
+  }
+})
 
 export const { setLq, setHasNext, setLoading, setLoadingError } =
   foodSlice.actions;

@@ -226,6 +226,35 @@ async function getSearchDatas(collectionName, options) {
   return resultData;
 }
 
+export const addData = async (item) => {
+  try{
+    const docRef = await db.collection("foodlist").add(item);
+    const doc = await docRef.get();
+    return { id: doc.id, ...doc.data() };
+  } catch (error){
+    console.error("ADD Error: ", error);
+  }
+};
+
+export const updateData = async (item) => {
+  try{
+    const { id, ...data } = item;
+    await db.collection("foodlist").doc(id).update(data);
+    return { id, ...data };
+  } catch (error){
+    console.error("UPDATE Error: ", error);
+  }
+}
+
+export const deleteData = async (docId) => {
+  try{
+    await db.collection("footlist").doc(docId).delete();
+    return docId;
+  } catch (error) {
+    console.error("DELETE Error: ", error);
+  }
+}
+
 export {
   db,
   addDatas,
