@@ -3,16 +3,17 @@ import Button from "./Button";
 import "./DiaryList.css";
 import DiaryItem from "./DiaryItem";
 import { useNavigate } from "react-router-dom";
+import { getUserAuth } from "../api/firebase";
+import { useSelector } from "react-redux";
 
 const sortOptionList = [
   { name: "최신순", value: "latest" },
-  { name: "오래된순", value: "oldest" },
+  { name: "오래된 순", value: "oldest" },
 ];
-
 const filterOptionList = [
   { name: "전부다", value: "all" },
   { name: "좋은 감정만", value: "good" },
-  { name: "안 좋은 감정만", value: "bad" },
+  { name: "안좋은 감정만", value: "bad" },
 ];
 
 function ControlMenu({ optionList, value, onChange }) {
@@ -33,13 +34,19 @@ function ControlMenu({ optionList, value, onChange }) {
   );
 }
 
-function DiaryList({ diaryList, auth }) {
+function DiaryList({ diaryList }) {
   const [order, setOrder] = useState("latest");
   const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
+  const isAuthenticated = useSelector(
+    (state) => state.user?.isAuthenticated ?? false
+  );
+
+  const auth = getUserAuth();
 
   const checkLogin = () => {
-    if (!auth.currentUser) {
+    // if (!auth.currentUser) {
+    if (!isAuthenticated) {
       alert("로그인을 해주세요.");
       navigate("/login");
     } else {
@@ -50,23 +57,22 @@ function DiaryList({ diaryList, auth }) {
   const getSortedDiaryList = () => {
     // 필터링 함수
     const getFilteredList = (diary) => {
-      // filter state가 good이면 emotion의 값이 3보다 작거나 같음
-      // filter state가 good이 아니면 emotion의 값이 3보다 큼
       if (filter === "good") {
+        // filter state가 good 이면(emotion의 값이 3보다 작거나 같을 때)
         return diary.emotion <= 3;
       } else {
+        // filter state가 good 이 아니면(emotion의 값이 3보다 클 때)
         return diary.emotion > 3;
       }
     };
-
+    // [1, 11, 21].sort((a,b) => b - a);
     // 정렬 함수
     const getOrderedList = (a, b) => {
-      // [1, 11, 21].sort((a, b) => a - b);
-      // order state가 latest이면 b - a
-      // order state가 latest가 아니면 a - b
       if (order === "latest") {
+        // order state가 latest 이면 b - a
         return b.date - a.date;
       } else {
+        // order state가 latest 가 아니면 a - b
         return a.date - b.date;
       }
     };
@@ -74,6 +80,7 @@ function DiaryList({ diaryList, auth }) {
       filter === "all"
         ? diaryList
         : diaryList.filter((diary) => getFilteredList(diary));
+
     const sortedList = filteredList.sort(getOrderedList);
     return sortedList;
   };
@@ -94,20 +101,27 @@ function DiaryList({ diaryList, auth }) {
           />
         </div>
         <div className="new_btn">
-          <Button text={"새 일기 쓰기"} type="positive" onClick={checkLogin} />
+          <Button text={"새 일기쓰기"} type="positive" onClick={checkLogin} />
         </div>
-        {auth.currentUser && (
+        {/* {auth.currentUser && ( */}
+        {isAuthenticated && (
           <div>
             <Button
               text={"로그아웃"}
-              type="negative"
+              type={"negative"}
               onClick={() => auth.signOut()}
             />
           </div>
         )}
       </div>
       {getSortedDiaryList().map((diary) => {
-        return <DiaryItem key={diary.id} {...diary} />;
+        return (
+          <DiaryItem
+            key={diary.id}
+            {...diary}
+            isAuthenticated={isAuthenticated}
+          />
+        );
       })}
     </div>
   );

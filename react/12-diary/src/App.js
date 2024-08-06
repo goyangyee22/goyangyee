@@ -24,6 +24,7 @@ import {
   fetchItems,
   updateItem,
 } from "./store/diarySlice";
+import { loginSuccess, logout } from "./store/userSlice";
 
 // 컨텍스트 생성
 export const DiaryStateContext = createContext();
@@ -38,6 +39,16 @@ function App() {
   const auth = getUserAuth();
   const [user] = useAuthState(auth);
   // console.log(user);
+
+  useEffect(() => {
+    // serialize(직렬화): 데이터를 저장할 때 저장할 수 있는 형태로 변환
+    // serialize가 안되는 타입: Promise, Symbol, Map, Set, function, class
+    if (user) {
+      dispatch(loginSuccess([user.email, true, null]));
+    } else {
+      dispatch(logout([null, false, null]));
+    }
+  }, [user]);
 
   // CREATE
   const onCreate = async (values) => {
@@ -58,8 +69,6 @@ function App() {
   };
 
   // READ
-  const onRead = () => {};
-
   // UPDATE
   const onUpdate = async (values) => {
     const updateObj = {
@@ -123,24 +132,24 @@ function App() {
   }, [user]);
   return (
     // 컨텍스트 범위 설정
-    <DiaryStateContext.Provider value={{ diaryList: items, auth }}>
-      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
-        <BrowserRouter>
-          <div className="App">
-            {/* <Button text={"로그인"} className="btn_login" onClick={goLogin} /> */}
-            <Routes>
-              <Route path="/">
-                <Route index element={<HomePage />} />
-                <Route path="new" element={<NewPage />} />
-                <Route path="edit/:id" element={<EditPage />} />
-                <Route path="diary/:id" element={<DiaryPage />} />
-                <Route path="login" element={<LoginPage />} />
-              </Route>
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </DiaryDispatchContext.Provider>
-    </DiaryStateContext.Provider>
+    // <DiaryStateContext.Provider value={{ diaryList: items, auth }}>
+    <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+      <BrowserRouter>
+        <div className="App">
+          {/* <Button text={"로그인"} className="btn_login" onClick={goLogin} /> */}
+          <Routes>
+            <Route path="/">
+              <Route index element={<HomePage />} />
+              <Route path="new" element={<NewPage auth={auth} />} />
+              <Route path="edit/:id" element={<EditPage />} />
+              <Route path="diary/:id" element={<DiaryPage />} />
+              <Route path="login" element={<LoginPage />} />
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </DiaryDispatchContext.Provider>
+    // </DiaryStateContext.Provider>
   );
 }
 
