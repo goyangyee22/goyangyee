@@ -1,17 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getDatasOrderByLimit } from "../api/firebase";
+import {
+  deleteData,
+  deleteDatas,
+  getDatasOrderByLimit,
+  updateDatas,
+} from "../api/firebase";
 
 const foodSlice = createSlice({
   name: "food",
   initialState: {
     items: [],
     lq: undefined,
-    isLoading: "idle",
+    isLoading: false,
     loadingError: "",
-    // searchedItems: [],
-    // hasNext: true,
+    order: "createdAt",
+    hasNext: true,
   },
   reducers: {
+    setOrder: (state, action) => {
+      state.order = action.payload;
+      state.items = [];
+    },
+    setHasNext: (state, action) => {
+      state.hasNext = action.payload;
+    },
     // setLq(state, action) {
     //   state.lq = action.payload;
     // },
@@ -28,14 +40,46 @@ const foodSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchItems.pending, (state, action) => {
-        state.isLoading = "Loading";
+        state.isLoading = true;
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
-        state.isLoading = "complete";
+        // if (action.payload.isReset) {
+        //   state.items = action.payload.resultData;
+        // } else {
+        //   action.payload.resultData.forEach((data) => {
+        //     state.items.push(data);
+        //   });
+        // }
+        // action.payload.resultData.forEach((data) => {
+        //   state.items.push(data);
+        // });
+        state.items = [...state.items, ...action.payload.resultData];
+        // if (!action.payload.lastQuery) {
+        //   state.hasNext = false;
+        // } else {
+        //   state.hasNext = true;
+        // }
+        // state.hasNext = action.payload.lastQuery ? true : false;
+        state.hasNext = !!action.payload.lastQuery;
+        state.lq = action.payload.lastQuery;
+        state.isLoading = false;
       })
       .addCase(fetchItems.rejected, (state, action) => {
-        state.items = state.isLoading = "fail";
+        state.isLoading = false;
         state.loadingError = action.payload;
+      })
+      .addCase(updateItem.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items[index] = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(deleteItem.fulfilled, (state, action) => {
+        state.items = state.items.filter(
+          (item) => item.docId !== action.payload
+        );
+        state.isLoading = false;
       });
   },
 });
@@ -76,30 +120,6 @@ const foodSlice = createSlice({
 //   }
 // });
 
-// const updateItemAsync = createAsyncThunk(
-//   "items/updateItemsAsync",
-//   async (item) => {
-//     try {
-//       const updatedData = await updateData(item);
-//       return updatedData;
-//     } catch (error) {
-//       console.log("UPDATE Error: ", error);
-//     }
-//   }
-// );
-
-// const deleteItemAsync = createAsyncThunk(
-//   "items/deleteItemsAsync",
-//   async (docId) => {
-//     try {
-//       await deleteData(docId);
-//       return docId;
-//     } catch (error) {
-//       console.error("DELETE Error: ", error);
-//     }
-//   }
-// );
-
 const fetchItems = createAsyncThunk(
   "items/fetchItems",
   async ({ collectionName, queryOptions }) => {
@@ -108,6 +128,7 @@ const fetchItems = createAsyncThunk(
         collectionName,
         queryOptions
       );
+      resultData.isReset = !queryOptions.lastQuery ? true : false;
       return resultData;
     } catch (error) {
       return "FETCH Error: ", error;
@@ -116,6 +137,48 @@ const fetchItems = createAsyncThunk(
   }
 );
 
+const updateItem = createAsyncThunk(
+  "items/updateItem",
+  async ({ collectionName, docId, updateObj, imgUrl }) => {
+    try {
+      const resultData = await updateDatas(
+        collectionName,
+        docId,
+        updateObj,
+        imgUrl
+      );
+      return resultData;
+    } catch (error) {
+      return "UPDATE Error: " + error;
+    }
+  }
+);
+
+const deleteItem = createAsyncThunk(
+  "items/deleteItemsAsync",
+  async ({ collectionName, docId, imgUrl }) => {
+    try {
+      await deleteDatas(collectionName, docId, imgUrl);
+      console.log(docId);
+      return docId;
+    } catch (error) {
+      console.error("DELETE Error: ", error);
+    }
+  }
+);
+
+// const deleteItem = createAsyncThunk(
+//   "items/deleteItem",
+//   async ({ collectionName, docId, imgUrl }) => {
+//     try {
+//       const resultData = await deleteDatas(collectionName, docId, imgUrl);
+//       return resultData;
+//     } catch (error) {
+//       return "DELETE Error: " + error;
+//     }
+//   }
+// );
+
 export default foodSlice;
-// export const { setLq, setHasNext, setLoading, setLoadingError } =
-//   foodSlice.actions;
+export { fetchItems, updateItem, deleteItem };
+export const { setOrder, setHasNext } = foodSlice.actions;

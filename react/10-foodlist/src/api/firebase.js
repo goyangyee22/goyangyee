@@ -133,7 +133,7 @@ async function deleteDatas(collectionName, docId, imgUrl) {
 
     // 3. 삭제할 문서의 참조객체 생성(doc 함수)
     message = "문서 삭제에 실패했습니다. \n관리자에게 문의하세요.";
-    const deleteDocRef = doc(db, collectionName, docId);
+    const deleteDocRef = await doc(db, collectionName, docId);
     await deleteDoc(deleteDocRef);
     return { result: true, message: message };
   } catch (error) {
@@ -183,6 +183,7 @@ async function getDatasOrderByLimit(collectionName, options) {
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
   const lastQuery = docs[docs.length - 1];
+  // console.log(lastQuery);
   const resultData = docs.map((doc) => ({
     ...doc.data(),
     docId: doc.id,

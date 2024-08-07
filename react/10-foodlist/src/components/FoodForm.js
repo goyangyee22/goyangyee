@@ -46,8 +46,8 @@ function FoodForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const resultData = await onSubmitAsync("foodit", values);
-    onSubmitSuccess(resultData);
     setValues(INITIAL_VALUES);
+    onSubmitSuccess(resultData);
   };
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
