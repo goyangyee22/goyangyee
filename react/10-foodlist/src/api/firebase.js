@@ -179,22 +179,7 @@ async function updateDatas(collectionName, docId, updateObj, imgUrl) {
 }
 
 async function getDatasOrderByLimit(collectionName, options) {
-  // const { fieldName, limits } = options;
-  let q = getQuery(collectionName, options);
-  // if (!options.lq) {
-  //   q = query(
-  //     getCollection(collectionName),
-  //     orderBy(fieldName, "desc"),
-  //     limit(limits)
-  //   );
-  // } else {
-  //   q = query(
-  //     getCollection(collectionName),
-  //     orderBy(fieldName, "desc"),
-  //     startAfter(options.lq),
-  //     limit(limits)
-  //   );
-  // }
+  const q = getQuery(collectionName, options);
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
   const lastQuery = docs[docs.length - 1];
@@ -227,33 +212,33 @@ async function getSearchDatas(collectionName, options) {
 }
 
 export const addData = async (item) => {
-  try{
-    const docRef = await db.collection("foodlist").add(item);
+  try {
+    const docRef = await db.collection("foodit").add(item);
     const doc = await docRef.get();
     return { id: doc.id, ...doc.data() };
-  } catch (error){
+  } catch (error) {
     console.error("ADD Error: ", error);
   }
 };
 
 export const updateData = async (item) => {
-  try{
+  try {
     const { id, ...data } = item;
-    await db.collection("foodlist").doc(id).update(data);
+    await db.collection("foodit").doc(id).update(data);
     return { id, ...data };
-  } catch (error){
+  } catch (error) {
     console.error("UPDATE Error: ", error);
   }
-}
+};
 
 export const deleteData = async (docId) => {
-  try{
-    await db.collection("footlist").doc(docId).delete();
+  try {
+    await db.collection("footit").doc(docId).delete();
     return docId;
   } catch (error) {
     console.error("DELETE Error: ", error);
   }
-}
+};
 
 export {
   db,
