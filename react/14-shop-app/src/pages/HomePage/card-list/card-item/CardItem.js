@@ -2,23 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./CardItem.module.scss";
 
-function CardItem({
-  items,
-  id,
-  title,
-  price,
-  description,
-  category,
-  image,
-  rating,
-}) {
+function CardItem({ item }) {
+  const { id, title, price, image } = item;
   return (
-    <li className={styles.card_item}>
-      <Link></Link>
+    <li key={id} className={styles.card_item}>
+      <Link>
+        <img src={image} />
+      </Link>
       <h5>{title}</h5>
       <div>
         <button>장바구니에 담기</button>
-        <p>{price}</p>
+        <p>$ {price}</p>
       </div>
     </li>
   );

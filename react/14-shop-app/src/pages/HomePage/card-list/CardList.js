@@ -18,12 +18,11 @@ const products = [
   },
 ];
 
-function CardList({ items }) {
+function CardList() {
   return (
     <ul className={styles.card_list}>
-      {items.map((item) => {
-        const { id, title, price, description, category, image, rating } = item;
-        <CardItem title={title} />;
+      {products.map((product) => {
+        return <CardItem item={product} />;
       })}
     </ul>
   );
