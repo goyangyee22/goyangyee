@@ -1,12 +1,14 @@
 import React from "react";
+import FiltersCategory from "./filter-category/FiltersCategory";
+import CountProducts from "./count-products/CountProducts";
 
 function HomePage() {
   return (
     <div className="page">
       <div className="container">
         <h1>Products</h1>
-        {/* <FiltersCategory /> */}
-        {/* <CountProducts /> */}
+        <FiltersCategory />
+        <CountProducts />
         {/* <CardList /> */}
       </div>
     </div>
