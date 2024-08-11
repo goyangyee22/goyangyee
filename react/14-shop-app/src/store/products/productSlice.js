@@ -1,6 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getData } from "../../firebase";
 
+const fetchProduct = createAsyncThunk(
+  "product/fetchProduct",
+  async ({ collectionName, queryOptions }) => {
+    try {
+      const resultData = await getData(collectionName, queryOptions);
+      return resultData;
+    } catch (error) {
+      return null;
+    }
+  }
+);
+
 const initialState = {
   product: {},
   isLoading: false,
@@ -26,18 +38,6 @@ const productSlice = createSlice({
       });
   },
 });
-
-const fetchProduct = createAsyncThunk(
-  "product/fetchProduct",
-  async ({ collectionName, queryOptions }) => {
-    try {
-      const resultData = await getData(collectionName, queryOptions);
-      return resultData;
-    } catch (error) {
-      return null;
-    }
-  }
-);
 
 export default productSlice.reducer;
 export { fetchProduct };
