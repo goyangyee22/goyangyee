@@ -30,16 +30,20 @@ const cartSlice = createSlice({
       const index = state.products.findIndex(
         (product) => product.id === action.payload
       );
-      state.products[index].quantity += 1;
-      state.products[index].total += state.products[index].price;
+      if (index !== -1) {
+        state.products[index].quantity += 1;
+        state.products[index].total += state.products[index].price;
+        localStorage.setItem("cartProducts", JSON.stringify(state.products));
+      }
     },
     decrementProduct: (state, action) => {
-      if (state.products.quantity > 0) {
-        const index = state.products.findIndex(
-          (product) => product.id === action.payload
-        );
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload
+      );
+      if (index !== -1 && state.products[index].quantity > 1) {
         state.products[index].quantity -= 1;
         state.products[index].total -= state.products[index].price;
+        localStorage.setItem("cartProducts", JSON.stringify(state.products));
       }
     },
   },
