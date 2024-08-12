@@ -2,20 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import styles from "./NavCartItem.module.scss";
-import { useSelector } from "react-redux";
 
-function NavCartItem() {
-  const { products } = useSelector((state) => state.cartSlice);
-  const { category, title, price } = products;
+function NavCartItem({ image, title, price, category, quantity, total }) {
   return (
     <div className={styles.nav_cart_item}>
       <Link>
-        <img src="/gucci.jfif" />
+        <img src={image} />
       </Link>
       <div className={styles.nav_cart_description}>
         <h3>{category}</h3>
         <h2>{title}</h2>
-        <span>{price}</span>
+        <span>
+          {price} * {quantity} = $ {total.toFixed(2)}
+        </span>
       </div>
       <button className={styles.nav_cart_delete}>
         <AiOutlineDelete />

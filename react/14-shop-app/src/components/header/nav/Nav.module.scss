@@ -12,7 +12,6 @@
       @include hover-effect(blue);
     }
   }
-
   @media (min-width: 768px) {
     li {
       font-size: 25px;
@@ -33,9 +32,9 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    border-radius: 50%;
     top: -11px;
     right: -14px;
+    border-radius: 50%;
   }
 }
 
@@ -52,10 +51,12 @@
     right: 0;
     opacity: 0;
     display: block;
+    visibility: hidden;
     transition: 0.2s all ease-in-out;
   }
 }
 
 .nav li:hover .nav_hover_cart {
+  visibility: visible;
   opacity: 1;
 }

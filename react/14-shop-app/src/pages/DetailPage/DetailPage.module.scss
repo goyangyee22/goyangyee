@@ -3,22 +3,21 @@
   flex-flow: column wrap;
   align-items: center;
   max-width: 1200px;
-  margin: 80px auto;
+  margin: 0 auto;
+  margin-top: 80px;
+  margin-bottom: 80px;
   padding: 5px;
-  //   gap: 50px;
+  gap: 50px;
 
   @media (min-width: 576px) {
     padding: 15px;
-    flex-wrap: wrap;
   }
-
   @media (min-width: 990px) {
     flex-flow: row wrap;
     padding: 5px;
     gap: 0;
   }
 }
-
 .card_img {
   display: flex;
   justify-content: center;
@@ -35,7 +34,6 @@
     width: 50%;
   }
 }
-
 .card_description {
   width: 100%;
   text-align: start;
@@ -46,33 +44,28 @@
     color: rgb(206, 202, 202);
     font-size: 25px;
   }
-
   h1 {
     margin: 0;
     margin-bottom: 40px;
     font-weight: 400;
     font-size: 30px;
   }
-
   h4 {
     margin: 0;
     margin-bottom: 40px;
     font-size: 35px;
   }
-
   p {
     margin: 0;
     margin-bottom: 50px;
     color: rgb(153, 149, 149);
     font-size: 20px;
   }
-
   div {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
   button {
     border-radius: 4px;
     padding: 15px 40px;
@@ -81,19 +74,17 @@
     background-color: #fff;
     border: 1px solid var(--main-color);
     cursor: pointer;
-    transition: 0.3 all ease;
+    transition: 0.3s all ease;
 
     &:hover {
-      background-color: var(--second-color);
       color: #fff;
+      background-color: var(--second-color);
     }
-
     &:disabled {
-      background-color: var(--second-color);
       color: #fff;
+      background-color: var(--second-color);
     }
   }
-
   a {
     border-radius: 4px;
     padding: 15px 40px;
@@ -103,11 +94,11 @@
     background-color: #fff;
     border: 1px solid var(--main-color);
     cursor: pointer;
-    transition: 0.3 all ease;
+    transition: 0.3s all ease;
 
     &:hover {
-      background-color: var(--second-color);
       color: #fff;
+      background-color: var(--second-color);
     }
   }
 
@@ -117,29 +108,23 @@
     h3 {
       font-size: 30px;
     }
-
     h1 {
       font-size: 40px;
     }
-
     h4 {
       font-size: 45px;
     }
-
     p {
       font-size: 20px;
     }
-
     div {
       //   justify-content: flex-start;
       //   align-items: flex-start;
     }
-
     button {
       font-size: 17px;
       padding: 20px 60px;
     }
-
     a {
       font-size: 17px;
       padding: 20px 60px;
@@ -151,6 +136,7 @@
   }
 
   @media (min-width: 990px) {
+    // justify-content: space-between;
     width: 50%;
   }
 }
