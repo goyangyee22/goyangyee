@@ -33,7 +33,7 @@ function Nav() {
         </li>
         <li>
           <div>
-            <Link>
+            <Link to={"/login"}>
               <FiLogIn />
             </Link>
           </div>
