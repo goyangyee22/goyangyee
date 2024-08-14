@@ -56,6 +56,11 @@ const cartSlice = createSlice({
   },
 });
 
+export const asyncCartAndStorage = createAsyncThunk(
+  "cart/asyncCartItem",
+  async ({ uid, cartItems }, thunkAPI) => {}
+);
+
 export const addCartItem = createAsyncThunk(
   "cart/addCartItem",
   async ({ collectionName, product }, thunkAPI) => {

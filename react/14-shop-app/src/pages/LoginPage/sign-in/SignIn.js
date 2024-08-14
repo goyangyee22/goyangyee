@@ -25,7 +25,10 @@ function SignIn() {
       //   로컬 스토리지에서 장바구니 데이터 읽기
       const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
       console.log(cartItems);
-      await asyncCart(user.uid, cartItems);
+
+      // await asyncCart(user.uid, cartItems);
+
+      dispatch(asyncCartAndStorage({ uid: user.uid, cartItems }));
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })
       );
