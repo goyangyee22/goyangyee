@@ -11,6 +11,7 @@ import {
 function NavCartItem({ image, title, price, category, quantity, total, id }) {
   const dispatch = useDispatch();
   const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
+
   const deleteProduct = () => {
     if (isAuthenticated) {
       dispatch(
@@ -23,6 +24,7 @@ function NavCartItem({ image, title, price, category, quantity, total, id }) {
       dispatch(deleteFromCart(id));
     }
   };
+
   return (
     <div className={styles.nav_cart_item}>
       <Link>

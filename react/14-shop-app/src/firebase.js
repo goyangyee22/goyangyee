@@ -98,7 +98,7 @@ export async function joinUser(uid, email) {
   await setDoc(doc(db, "users", uid), { email: email });
 }
 
-export async function asyncCart(uid, cartArr) {
+export async function syncCart(uid, cartArr) {
   const cartRef = getCollection("users", uid, "cart");
   const batch = writeBatch(db);
 
@@ -110,6 +110,8 @@ export async function asyncCart(uid, cartArr) {
     }
   }
   await batch.commit();
+  const resultData = await getDatas(["users", uid, "cart"], {});
+  return resultData;
 }
 
 export async function updateQuantity(uid, cartItem) {
@@ -119,13 +121,34 @@ export async function updateQuantity(uid, cartItem) {
   // 문서가 존재하는지 확인
   const itemDoc = await getDoc(itemRef);
   if (itemDoc.exists()) {
-    const currentData = itemDoc.data();
-    const updatedQuantity = (currentData.quantity || 0) + 1;
-    await updateDoc(itemRef, { quantity: updatedQuantity });
+    // const currentData = itemDoc.data();
+    // const updatedQuantity = (currentData.quantity || 0) + 1;
+    // await updateDoc(itemRef, { quantity: updatedQuantity });
     return true;
   } else {
     return false;
   }
+}
+
+export async function updateTotalAndQuantity(uid, docId, operator) {
+  const cartRef = getCollection("users", uid, "cart");
+  const itemRef = doc(cartRef, docId.toString());
+
+  const itemDoc = await getDoc(itemRef);
+  const itemData = itemDoc.data();
+  let updatedQuantity;
+
+  if (operator == "increment") {
+    updatedQuantity = itemData.quantity + 1;
+  } else {
+    updatedQuantity = itemData.quantity - 1;
+  }
+  const updatedTotal = itemData.price * updatedQuantity;
+  const updateObj = {
+    quantity: updatedQuantity,
+    total: updatedTotal,
+  };
+  await updateDoc(itemRef, updateObj);
 }
 
 export async function deleteDatas(collectionName, docId) {
