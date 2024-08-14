@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./OrderItem.module.scss";
 import { Link } from "react-router-dom";
 
-function OrderItem({ image, category, title, price, quantity, totalPrice }) {
+function OrderItem({ image, category, title, price, quantity, total, id }) {
   return (
     <li className={styles.order_item}>
-      <Link>
+      <Link to={`/product/${id}`}>
         <img src={image} />
       </Link>
       <div className={styles.order_description}>
@@ -15,12 +15,12 @@ function OrderItem({ image, category, title, price, quantity, totalPrice }) {
       <div className={styles.order_price}>
         <h4>가격: </h4>
         <span>
-          $ {price} x {quantity} = $ {totalPrice.toFixed(2)}
+          $ {price} x {quantity} = $ {total.toFixed(2)}
         </span>
       </div>
       <div className={styles.order_total}>
         <h4>합계: </h4>
-        <span>$ {totalPrice}</span>
+        <span>$ {total}</span>
       </div>
     </li>
   );
