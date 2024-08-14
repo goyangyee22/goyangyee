@@ -172,13 +172,15 @@ export async function createOrder(uid, orderObj) {
     // 2.1 batch 객체를 생성. writeBacth(db)
     const batch = writeBatch(db);
     // 2.2 orderObj.products.forEach를 사용하여 삭제할 docRef를 생성한다.
+    // 2.3 batch.delete(docRef)
+    const cartRef = getCollection("users", uid, "cart");
     orderObj.products.forEach((product) => {
-      // 2.3 batch.delete(docRef)
-      const docRef = doc(db, "users", uid, "cart", product.id);
-      batch.delete(docRef);
+      const itemRef = doc(cartRef, product.id.toString());
+      batch.delete(itemRef);
     });
     // 2.4 await batch.commit();
     await batch.commit();
+    return docRef.id;
   } catch (error) {
     console.error(error);
   }

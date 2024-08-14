@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./OrdersList.module.scss";
 import OrderItem from "./order-item/OrderItem";
 import mockData from "../../../orderMock.json";
 import { getISODate } from "../../../utils/getFormattedDate";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrder } from "../../../store/order/orderSlice";
+import CartEmpty from "./../../../components/cart-empty/CartEmpty";
 
 function OrdersList() {
-  const cart = (state) => state.cartSlice;
+  const { order } = useSelector((state) => state.orderSlice);
+  const { uid } = useSelector((state) => state.userSlice);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      fetchOrder({
+        collectionName: ["users", uid, "orders"],
+        queryOptions: {},
+      })
+    );
+  }, []);
+
+  if (order.length == 0) return <CartEmpty title="주문 내역" />;
+
   return (
     <div className={styles.orders}>
-      {mockData.map((order, idx) => (
+      {order.map((order, idx) => (
         <div key={idx}>
           <div className={styles.order_header}>
             <h3>주문 번호_{order.createdAt}</h3>
