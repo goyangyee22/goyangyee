@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./OrdersList.module.scss";
 import OrderItem from "./order-item/OrderItem";
-import mockData from "../../../orderMock.json";
 import { getISODate } from "../../../utils/getFormattedDate";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrder } from "../../../store/order/orderSlice";
