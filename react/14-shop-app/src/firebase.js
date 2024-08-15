@@ -165,17 +165,17 @@ export async function createOrder(uid, orderObj) {
       updatedAt: new Date().getTime,
       ...orderObj,
     };
-    // 1.3 await addDoc
+    // 1.3 await addDoc (ordersRef에 createObj를 추가하여 새로운 문서 생성)
     const docRef = await addDoc(ordersRef, createObj);
     // 2. cart 문서 삭제
     batch.delete(ordersRef);
-    // 2.1 batch 객체를 생성. writeBacth(db)
+    // 2.1 batch 객체를 생성. writeBacth(db) - 읽기/쓰기 작업을 하나의 배치로 묶어 처리
     const batch = writeBatch(db);
     // 2.2 orderObj.products.forEach를 사용하여 삭제할 docRef를 생성한다.
-    // 2.3 batch.delete(docRef)
     const cartRef = getCollection("users", uid, "cart");
     orderObj.products.forEach((product) => {
       const itemRef = doc(cartRef, product.id.toString());
+      // 2.3 batch.delete(docRef)
       batch.delete(itemRef);
     });
     // 2.4 await batch.commit();
