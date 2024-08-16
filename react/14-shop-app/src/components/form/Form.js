@@ -41,8 +41,8 @@ function Form({ title, getDataForm, firebaseError }) {
           {...register("email", userEmail)}
         />
         {errors?.email && (
-          <div className={styles.form_error}>
-            <span>{errors.email.message}</span>
+          <div>
+            <span className={styles.form_error}>{errors.email.message}</span>
           </div>
         )}
       </div>
@@ -53,13 +53,15 @@ function Form({ title, getDataForm, firebaseError }) {
           {...register("password", userPassword)}
         />
         {errors?.password && (
-          <div className={styles.form_error}>
-            <span>{errors.password.message}</span>
+          <div>
+            <span className={styles.form_error}>{errors.password.message}</span>
           </div>
         )}
       </div>
       <button>{title}</button>
-      {firebaseError && <span className={styles.form_error}></span>}
+      {firebaseError && (
+        <span className={styles.form_error}>{firebaseError}</span>
+      )}
     </form>
   );
 }

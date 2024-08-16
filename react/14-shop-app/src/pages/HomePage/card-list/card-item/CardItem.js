@@ -12,16 +12,20 @@ function CardItem({ item }) {
   const addItemToCart = () => {
     if (isAuthenticated) {
       dispatch(
-        addCartItem({ collectionName: ["users", uid, "cart"], product: item })
+        // addCartItem({ collectionName: ["users", uid, "cart"], product: item })
+        addCartItem({
+          collectionName: `/users/${uid}/cart/${item.id}`,
+          product: item,
+        })
       );
     } else {
       dispatch(addToCart(item));
     }
   };
-  const { id, title, price, image } = item;
+  const { id, title, price, image, docId } = item;
   return (
     <li className={styles.card_item}>
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${docId}`}>
         <img src={image} />
       </Link>
       <h5>{`${title.slice(0, 15)}...`}</h5>

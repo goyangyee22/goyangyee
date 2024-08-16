@@ -16,7 +16,7 @@ function NavCartItem({ image, title, price, category, quantity, total, id }) {
     if (isAuthenticated) {
       dispatch(
         deleteCartItem({
-          collectionName: ["users", uid, "cart"],
+          collectionName: `/users/${uid}/cart/`,
           productId: id,
         })
       );

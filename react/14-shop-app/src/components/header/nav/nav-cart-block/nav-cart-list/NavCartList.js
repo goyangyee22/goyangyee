@@ -7,9 +7,9 @@ function NavCartList() {
   const { products } = useSelector((state) => state.cartSlice);
   return (
     <div className={styles.nav_cart_list}>
-      {products.map((product) => {
-        return <NavCartItem key={product.id} {...product} />;
-      })}
+      {products.map((product) => (
+        <NavCartItem key={product.id} {...product} />
+      ))}
     </div>
   );
 }

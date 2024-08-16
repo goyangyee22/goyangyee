@@ -6,6 +6,7 @@ import {
   syncCart,
   updateTotalAndQuantity,
 } from "../../firebase";
+import { addDatasRest, deleteDatasRest } from "../../api";
 
 const initialState = {
   products: localStorage.getItem("cartProducts")
@@ -92,8 +93,11 @@ export const addCartItem = createAsyncThunk(
         (sliceProduct) => sliceProduct.id === product.id
       );
       // console.log(addItem);
-      await addCart(collectionName, addItem);
-    } catch (error) {}
+      // await addCart(collectionName, addItem);
+      await addDatasRest(collectionName, addItem);
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Error Add CartItem");
+    }
   }
 );
 
@@ -101,9 +105,13 @@ export const deleteCartItem = createAsyncThunk(
   "cart/deleteCartItem",
   async ({ collectionName, productId }, thunkAPI) => {
     try {
-      const resultData = await deleteDatas(collectionName, productId);
+      // const resultData = await deleteDatas(collectionName, productId);
+      const resultData = await deleteDatasRest(collectionName + productId);
       if (resultData) {
         thunkAPI.dispatch(deleteFromCart(productId));
+        // await deleteDatasRest(url);
+        console.log(resultData);
+        // return resultData;
       }
     } catch (error) {
       return thunkAPI.rejectWithValue("Error Delete CartItem");
@@ -132,14 +140,25 @@ export const postOrder = createAsyncThunk(
   async ({ uid, cart }, thunkAPI) => {
     try {
       // createOrder 함수 호출
-      const result = await createOrder(uid, cart);
-      if (!result) {
-        return;
+      // const result = await createOrder(uid, cart);
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": { uid, cart },
+        },
+        body: JSON.stringify({ uid, cart }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "주문 생성에 실패했습니다.");
       }
+      const result = await response.json();
       // cartSlice의 products 초기화 및 로컬스토리지 초기화
       thunkAPI.dispatch(sendOrder());
+      return result;
     } catch (error) {
       console.error(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

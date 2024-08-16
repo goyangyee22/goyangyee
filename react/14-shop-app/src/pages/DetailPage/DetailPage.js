@@ -6,15 +6,18 @@ import styles from "./DetailPage.module.scss";
 
 function DetailPage() {
   const { id } = useParams();
-  const productId = Number(id);
+  // const productId = Number(id);
   const dispatch = useDispatch();
   const { product, isLoading } = useSelector((state) => state.productSlice);
+  const { products } = useSelector((state) => state.cartSlice);
+  const productMatching = products.some((cartItem) => cartItem.docId === id);
 
   useEffect(() => {
-    const queryOptions = {
-      conditions: [{ field: "id", operator: "==", value: productId }],
-    };
-    dispatch(fetchProduct({ collectionName: "shop", queryOptions }));
+    // const queryOptions = {
+    //   conditions: [{ field: "id", operator: "==", value: productId }],
+    // };
+    // dispatch(fetchProduct({ collectionName: "shop", queryOptions }));
+    dispatch(fetchProduct({ collectionName: `/shop/${id}` }));
   }, []);
 
   const { image, category, title, price, description } = product;
@@ -33,7 +36,9 @@ function DetailPage() {
             <h4>{price}</h4>
             <p>{description}</p>
             <div>
-              <button>장바구니에 담기</button>
+              <button disabled={productMatching}>
+                {productMatching ? "장바구니에 담긴 제품" : "장바구니에 담기"}
+              </button>
               <Link>장바구니로 이동</Link>
             </div>
           </div>

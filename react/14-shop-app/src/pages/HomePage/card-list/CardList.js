@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../store/products/productsSlice";
 import CardSkeleton from "../card-skeleton/CardSkeleton";
 import { getDatasRest } from "../../../api";
+import { Link } from "react-router-dom";
 
 function CardList() {
   const dispatch = useDispatch();

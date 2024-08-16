@@ -20,7 +20,9 @@ function OrdersList() {
     );
   }, []);
 
-  if (order.length == 0) return <CartEmpty title="주문 내역" />;
+  if (order.length == 0) {
+    return <CartEmpty title="주문 내역" />;
+  }
 
   return (
     <div className={styles.orders}>

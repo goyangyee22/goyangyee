@@ -42,7 +42,7 @@ function Nav() {
         </li>
         <li>
           <div>
-            <Link to={"/user"}>
+            <Link to={"/order"}>
               <FiUser />
             </Link>
           </div>
