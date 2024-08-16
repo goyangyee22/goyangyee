@@ -4,14 +4,13 @@ import CardItem from "./card-item/CardItem";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../store/products/productsSlice";
 import CardSkeleton from "../card-skeleton/CardSkeleton";
+import { getDatasRest } from "../../../api";
 
 function CardList() {
   const dispatch = useDispatch();
   const { products, isLoading } = useSelector((state) => state.productsSlice);
   const category = useSelector((state) => state.categoriesSlice);
-
-  // ※ dependency list([])를 넣어야 됨 ※
-  useEffect(() => {
+  const handleLoad = async () => {
     const queryOptions = {
       conditions: [
         {
@@ -21,7 +20,23 @@ function CardList() {
         },
       ],
     };
+    const restResult = await getDatasRest("shop", queryOptions);
+  };
+
+  // ※ dependency list([])를 넣어야 됨 ※
+  useEffect(() => {
+    const queryOptions = {
+      conditions: [
+        {
+          field: "category",
+          // operator: category ? "==" : ">=",
+          operator: category ? "EQUAL" : "GREATER_THAN_OR_EQUAL",
+          value: category.toLowerCase(),
+        },
+      ],
+    };
     dispatch(fetchProducts({ collectionName: "shop", queryOptions }));
+    handleLoad();
   }, [category]);
 
   if (isLoading) return <CardSkeleton />;
