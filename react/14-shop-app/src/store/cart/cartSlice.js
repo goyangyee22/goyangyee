@@ -141,24 +141,30 @@ export const postOrder = createAsyncThunk(
     try {
       // createOrder 함수 호출
       // const result = await createOrder(uid, cart);
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": { uid, cart },
-        },
-        body: JSON.stringify({ uid, cart }),
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "주문 생성에 실패했습니다.");
+      const orderObj = {
+        cancelYn: "N",
+        createdAt: new Date().getTime(),
+        updatedAt: new Date().getTime(),
+        ...cart,
+      };
+
+      const result = await addDatasRest(
+        `/users/${uid}/orders/${crypto.randomUUID().slice(0, 20)}`,
+        orderObj
+      );
+
+      const deleteResult = await deleteDatasRest(
+        `users/${uid}/cart`,
+        cart.products
+      );
+
+      if (!result) {
+        return;
       }
-      const result = await response.json();
       // cartSlice의 products 초기화 및 로컬스토리지 초기화
       thunkAPI.dispatch(sendOrder());
-      return result;
     } catch (error) {
       console.error(error);
-      return thunkAPI.rejectWithValue(error);
     }
   }
 );

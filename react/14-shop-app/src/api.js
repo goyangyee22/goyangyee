@@ -4,6 +4,8 @@ import {
   toFirestoreFields,
 } from "./utils/firebaseTranslate";
 
+const API_KEY = "AIzaSyBP0BMK34Pmmdwt6Lp_hYIvea2rMCiC5O0";
+
 const BASE_URL =
   "https://firestore.googleapis.com/v1/projects/shop-app-30bda/databases/(default)/documents";
 
@@ -61,12 +63,38 @@ export async function getDataRest(url) {
 }
 
 export async function addDatasRest(url, addObj) {
-  await api.patch(url, { fields: toFirestoreFields(addObj) });
+  try {
+    await api.patch(url, { fields: toFirestoreFields(addObj) });
+    return true;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function deleteDatasRest(url) {
   try {
     await api.delete(url);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+export async function deleteDatasRestBatch(url, dataArr) {
+  try {
+    const requests = dataArr.map((item) => {
+      return {
+        delete: `projects/shop-app-c8539/databases/(default)/documents/${url}/${item.id}`,
+      };
+    });
+    console.log(requests);
+
+    const response = await api.post(
+      ":batchWrite",
+      { writes: requests },
+      { params: { key: API_KEY } }
+    );
     return true;
   } catch (error) {
     console.error(error);

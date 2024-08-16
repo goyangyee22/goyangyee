@@ -32,7 +32,7 @@ function Nav() {
             <Link to={"/cart"}>
               <FiShoppingCart />
             </Link>
-            {products.length > 0 ? <b>{products.length}</b> : <b></b>}
+            {products.length > 0 && <b>{products.length}</b>}
             {products.length > 0 && (
               <div className={styles.nav_hover_cart}>
                 <NavCartBlock />
