@@ -1,0 +1,31 @@
+REST (Representational State Transfer)는
+웹 애플리케이션과 웹 서비스의 설계를 위한 아키텍처 스타일이다.
+RESTful 애플리케이션은 REST 원칙을 따르는 애플리케이션을 의미한다.
+
+1. 자원(Resource): 
+REST에서는 모든 것이 자원이다. 이 자원은 URL(Uniform Resource Locator)을 통해 식별된다.
+자원은 데이터베이스의 컬렉션(테이블), 문서(로우), 또는 비즈니스 객체 등을 포함할 수 있다.
+
+2. HTTP 메소드: 
+REST는 HTTP 메서드를 사용하여 자원을 조작한다.
+GET: 자원 조회
+POST: 자원 생성(자원을 조회할 때도 쓸 수 있음)
+PUT: 자원 전체 수정
+PATCH: 자원 부분 수정
+DELETE: 자원 삭제
+
+https://localhost:3000/
+GET /users: 모든 사용자 목록을 가져온다.
+GET /users/{userId}: 특정 사용자 정보를 가져온다.
+POST /users: 새로운 사용자를 생성한다.
+PUT /users/{userId}: 특정 사용자의 정보를 전체적으로 업데이트한다.
+PATCH /users/{userId}: 특정 사용자의 정보 중 일부를 업데이트한다.
+DELETE /users/{userId}: 특정 사용자를 삭제한다.
+
+3. 무상태성(Statelessness): 
+
+4. 캐시 가능성(Caching): 
+
+5. 계층화된 시스템(Layered System): 
+
+6. 일관된 인터페이스(Uniform Interface): 
