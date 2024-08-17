@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getData } from "../../firebase";
 import { getDataRest } from "../../api";
 
 const fetchProduct = createAsyncThunk(

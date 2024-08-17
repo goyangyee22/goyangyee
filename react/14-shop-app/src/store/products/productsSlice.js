@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDatas } from "../../firebase";
 import { getDatasRest } from "../../api";
 
 const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async ({ collectionName, queryOptions }) => {
     try {
-      // const resultData = await getDatas(collectionName, queryOptions);
       const resultData = await getDatasRest(collectionName, queryOptions);
       return resultData;
     } catch (error) {
