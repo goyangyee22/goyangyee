@@ -85,22 +85,25 @@ export async function deleteDatasRest(url) {
 
 export async function deleteDatasRestBatch(url, dataArr) {
   try {
-    const requests = dataArr.map((item) => {
-      return {
-        delete: `projects/shop-app-c8539/databases/(default)/documents/${url}/${item.id}`,
-      };
-    });
-    console.log(requests);
+    for (const item of dataArr) {
+      const response = await api.delete(`${url}${item.id}`);
+    }
+    // const requests = dataArr.map((item) => {
+    //   return {
+    //     delete: `projects/shop-app-c8539/databases/(default)/documents/${url}/${item.id}`,
+    //   };
+    // });
+    // console.log(requests);
 
-    const response = await api.post(
-      ":batchWrite",
-      { writes: requests },
-      {
-        headers: {
-          Authorization: `Bearer ${AUTH_TOKEN}`,
-        },
-      }
-    );
+    // const response = await api.post(
+    //   ":batchWrite",
+    //   { writes: requests },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${AUTH_TOKEN}`,
+    //     },
+    //   }
+    // );
     return true;
   } catch (error) {
     console.error(error);
